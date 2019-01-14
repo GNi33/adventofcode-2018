@@ -17,7 +17,8 @@ fun main(args: Array<String>) {
 class Application(argv: Array<String>) {
 
     fun device() {
-        print(WristDevice().calibrate())
+        println(WristDevice().calibrate())
+        println(WristDevice().firstDoubleFrequency())
     }
 
 }
