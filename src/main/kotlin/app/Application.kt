@@ -24,6 +24,7 @@ class Application(argv: Array<String>) {
     fun device() {
         println(wristDevice.calibrate())
         println(wristDevice.firstDoubleFrequency())
+        println(wristDevice.scanBoxes())
     }
 
 }

@@ -25,9 +25,7 @@ class WristDevice : KoinComponent {
 
         val boxIds = getDataFromFile("src/main/resources/box-ids.txt")
 
-
-
-        return 0
+        return boxScanner.getChecksumOfList(boxIds)
     }
 
     private fun getDataFromFile(fileName : String) : List<String> = File(fileName).useLines { it.toList() }
