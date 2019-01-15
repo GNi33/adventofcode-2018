@@ -1,7 +1,9 @@
 package app
 
 import app.device.WristDevice
+import app.device.services.BoxScanner
 import app.device.services.CalibrationService
+import app.device.services.IBoxScanner
 import app.device.services.ICalibrationService
 import org.koin.dsl.module.module
 import org.koin.standalone.StandAloneContext.startKoin
@@ -11,18 +13,22 @@ fun main(args: Array<String>) {
 
     startKoin(listOf(dependenciesModule))
 
-    Application(args).device()
+    val app = Application(args)
+    app.device()
 }
 
 class Application(argv: Array<String>) {
 
+    private val wristDevice = WristDevice()
+
     fun device() {
-        println(WristDevice().calibrate())
-        println(WristDevice().firstDoubleFrequency())
+        println(wristDevice.calibrate())
+        println(wristDevice.firstDoubleFrequency())
     }
 
 }
 
 val dependenciesModule = module {
     single {CalibrationService() as ICalibrationService}
+    single {BoxScanner() as IBoxScanner}
 }
