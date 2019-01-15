@@ -42,4 +42,45 @@ internal class BoxScannerTest {
         assertEquals(expectedPair, boxScanner.getChecksumPairOfBox(boxId))
     }
 
+    @Test
+    fun testPrototypeBoxIds() {
+        val boxScanner = BoxScanner()
+
+        val boxIdList = listOf(
+            "abcde",
+            "fghij",
+            "klmno",
+            "pqrst",
+            "fguij",
+            "axcye",
+            "wvxyz"
+        )
+
+        val expectedList = listOf(
+            "fghij",
+            "fguij"
+        )
+
+        assertEquals(expectedList, boxScanner.getPrototypeFabricBoxes(boxIdList))
+    }
+
+    @Test
+    fun testCommonLetters() {
+        val boxScanner = BoxScanner()
+
+        val boxIdList = listOf(
+            "abcde",
+            "fghij",
+            "klmno",
+            "pqrst",
+            "fguij",
+            "axcye",
+            "wvxyz"
+        )
+
+        val expectedResult = "fgij"
+
+        assertEquals(expectedResult, boxScanner.getCommonLettersOfFabricBoxes(boxIdList))
+    }
+
 }

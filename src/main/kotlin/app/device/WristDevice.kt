@@ -22,10 +22,13 @@ class WristDevice : KoinComponent {
     }
 
     fun scanBoxes() : Int {
-
         val boxIds = getDataFromFile("src/main/resources/box-ids.txt")
-
         return boxScanner.getChecksumOfList(boxIds)
+    }
+
+    fun retrieveCommonLettersOfFabricBoxes() : String {
+        val boxIds = getDataFromFile("src/main/resources/box-ids.txt")
+        return boxScanner.getCommonLettersOfFabricBoxes(boxIds)
     }
 
     private fun getDataFromFile(fileName : String) : List<String> = File(fileName).useLines { it.toList() }

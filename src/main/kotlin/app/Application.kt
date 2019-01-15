@@ -25,6 +25,7 @@ class Application(argv: Array<String>) {
         println(wristDevice.calibrate())
         println(wristDevice.firstDoubleFrequency())
         println(wristDevice.scanBoxes())
+        println(wristDevice.retrieveCommonLettersOfFabricBoxes())
     }
 
 }
