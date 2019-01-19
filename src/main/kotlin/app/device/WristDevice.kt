@@ -11,25 +11,25 @@ class WristDevice : KoinComponent {
     val calibrationService by inject<ICalibrationService>()
     val boxScanner by inject<IBoxScanner>()
 
-    fun calibrate() : Int {
+    fun calibrate(): Int {
         val calibrationData = getDataFromFile("src/main/resources/calibration-frequencies.txt")
         return calibrationService.calibrateFrequencies(calibrationData)
     }
 
-    fun firstDoubleFrequency() : Int {
+    fun firstDoubleFrequency(): Int {
         val calibrationData = getDataFromFile("src/main/resources/calibration-frequencies.txt")
         return calibrationService.findFirstDoubleOccurence(calibrationData)
     }
 
-    fun scanBoxes() : Int {
+    fun scanBoxes(): Int {
         val boxIds = getDataFromFile("src/main/resources/box-ids.txt")
         return boxScanner.getChecksumOfList(boxIds)
     }
 
-    fun retrieveCommonLettersOfFabricBoxes() : String {
+    fun retrieveCommonLettersOfFabricBoxes(): String {
         val boxIds = getDataFromFile("src/main/resources/box-ids.txt")
         return boxScanner.getCommonLettersOfFabricBoxes(boxIds)
     }
 
-    private fun getDataFromFile(fileName : String) : List<String> = File(fileName).useLines { it.toList() }
+    private fun getDataFromFile(fileName: String): List<String> = File(fileName).useLines { it.toList() }
 }

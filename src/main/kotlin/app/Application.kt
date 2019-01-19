@@ -27,10 +27,9 @@ class Application(argv: Array<String>) {
         println(wristDevice.scanBoxes())
         println(wristDevice.retrieveCommonLettersOfFabricBoxes())
     }
-
 }
 
 val dependenciesModule = module {
-    single {CalibrationService() as ICalibrationService}
-    single {BoxScanner() as IBoxScanner}
+    single { CalibrationService() as ICalibrationService }
+    single { BoxScanner() as IBoxScanner }
 }

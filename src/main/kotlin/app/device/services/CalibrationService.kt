@@ -15,7 +15,7 @@ class CalibrationService : ICalibrationService {
         var acc = 0
         val occurrences = mutableMapOf(Pair(0, 1))
 
-        while(!occurrences.containsValue(2)) {
+        while (!occurrences.containsValue(2)) {
             val dataIterator = calibrationData.iterator()
 
             for (item in dataIterator) {
@@ -41,11 +41,11 @@ class CalibrationService : ICalibrationService {
         return acc
     }
 
-    private fun calculateFrequency(acc : Int, frequencyChange : String) : Int {
-        val operation = frequencyChange.substring(0,1)
+    private fun calculateFrequency(acc: Int, frequencyChange: String): Int {
+        val operation = frequencyChange.substring(0, 1)
         val value = frequencyChange.substring(1).toInt()
 
-        return when(operation) {
+        return when (operation) {
             "+" -> acc + value
             "-" -> acc - value
             else -> {
@@ -54,5 +54,4 @@ class CalibrationService : ICalibrationService {
             }
         }
     }
-
 }

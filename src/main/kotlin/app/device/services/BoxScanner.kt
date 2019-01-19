@@ -1,7 +1,5 @@
 package app.device.services
 
-import com.sun.deploy.util.StringUtils
-
 class BoxScanner : IBoxScanner {
 
     override fun getChecksumOfList(boxIds: List<String>): Int {
@@ -59,7 +57,6 @@ class BoxScanner : IBoxScanner {
                         listOfPrototypeFabricBoxes.add(id)
                     }
                 }
-
             }
         }
 
@@ -85,7 +82,7 @@ class BoxScanner : IBoxScanner {
                     val idChars = id.toCharArray()
                     val filtered = boxChars.filterIndexed { index, it -> idChars[index] == (it) }
 
-                    filtered.forEach { commonLetters.add(it)}
+                    filtered.forEach { commonLetters.add(it) }
                 }
             }
 
@@ -94,5 +91,4 @@ class BoxScanner : IBoxScanner {
 
         return commonLetters.joinToString("")
     }
-
 }
