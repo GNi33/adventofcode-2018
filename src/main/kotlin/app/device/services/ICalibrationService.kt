@@ -4,5 +4,5 @@ interface ICalibrationService {
 
     fun calibrateFrequencies(calibrationData: List<String>): Int
 
-    fun findFirstDoubleOccurence(calibrationData: List<String>): Int
+    fun findFirstDoubleOccurrence(calibrationData: List<String>): Int
 }

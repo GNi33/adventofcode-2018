@@ -2,7 +2,7 @@ package app.device.services
 
 class CalibrationService : ICalibrationService {
 
-    override fun findFirstDoubleOccurence(calibrationData: List<String>): Int {
+    override fun findFirstDoubleOccurrence(calibrationData: List<String>): Int {
         return getMultipleFrequencies(calibrationData)
     }
 

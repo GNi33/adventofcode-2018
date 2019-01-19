@@ -39,7 +39,7 @@ internal class CalibrationServiceTest {
         val calibrationService = CalibrationService()
         val frequencyList = listOf("+1", "-1")
 
-        assertEquals(0, calibrationService.findFirstDoubleOccurence(frequencyList))
+        assertEquals(0, calibrationService.findFirstDoubleOccurrence(frequencyList))
     }
 
     @Test
@@ -47,7 +47,7 @@ internal class CalibrationServiceTest {
         val calibrationService = CalibrationService()
         val frequencyList = listOf("+3", "+3", "+4", "-2", "-4")
 
-        assertEquals(10, calibrationService.findFirstDoubleOccurence(frequencyList))
+        assertEquals(10, calibrationService.findFirstDoubleOccurrence(frequencyList))
     }
 
     @Test
@@ -56,7 +56,7 @@ internal class CalibrationServiceTest {
 
         val frequencyList = listOf("-6", "+3", "+8", "+5", "-6")
 
-        assertEquals(5, calibrationService.findFirstDoubleOccurence(frequencyList))
+        assertEquals(5, calibrationService.findFirstDoubleOccurrence(frequencyList))
     }
 
     @Test
@@ -65,6 +65,6 @@ internal class CalibrationServiceTest {
 
         val frequencyList = listOf("+7", "+7", "-2", "-7", "-4")
 
-        assertEquals(14, calibrationService.findFirstDoubleOccurence(frequencyList))
+        assertEquals(14, calibrationService.findFirstDoubleOccurrence(frequencyList))
     }
 }

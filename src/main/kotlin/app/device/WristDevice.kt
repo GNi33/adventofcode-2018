@@ -8,8 +8,8 @@ import java.io.File
 
 class WristDevice : KoinComponent {
 
-    val calibrationService by inject<ICalibrationService>()
-    val boxScanner by inject<IBoxScanner>()
+    private val calibrationService by inject<ICalibrationService>()
+    private val boxScanner by inject<IBoxScanner>()
 
     fun calibrate(): Int {
         val calibrationData = getDataFromFile("src/main/resources/calibration-frequencies.txt")
@@ -18,7 +18,7 @@ class WristDevice : KoinComponent {
 
     fun firstDoubleFrequency(): Int {
         val calibrationData = getDataFromFile("src/main/resources/calibration-frequencies.txt")
-        return calibrationService.findFirstDoubleOccurence(calibrationData)
+        return calibrationService.findFirstDoubleOccurrence(calibrationData)
     }
 
     fun scanBoxes(): Int {
