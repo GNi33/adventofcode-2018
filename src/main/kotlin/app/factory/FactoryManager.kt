@@ -10,9 +10,9 @@ class FactoryManager : KoinComponent {
     val fabricCalculator by inject<IFabricCalculator>()
 
     fun calculateFabricOverlap(): Int {
-        val fabricData = getDataFromFile("src/main/resources/calibration-frequencies.txt")
-
-        return 0
+        val fabricData = getDataFromFile("src/main/resources/fabric-slices.txt")
+        val claims = fabricCalculator.parseClaims(fabricData)
+        return fabricCalculator.calculateOverlap(claims)
     }
 
     private fun getDataFromFile(fileName: String): List<String> = File(fileName).useLines { it.toList() }

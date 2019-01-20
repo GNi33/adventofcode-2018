@@ -4,16 +4,20 @@ import app.model.Array2D
 
 class Fabric {
 
-    private val matrix = Array2D<String>()
+    private val matrix = Array2D<Int>()
 
     fun addClaim(claim: FabricClaim): Fabric {
-        for (row in claim.x..claim.length) {
-            for (col in claim.y..claim.height) {
-                if (matrix[row, col] != null) {
-                    matrix[row, col] = "#"
-                } else {
-                    matrix[row, col] = "1"
+        for (row in claim.x until claim.x + claim.length) {
+            for (col in claim.y until claim.y + claim.height) {
+
+                var value = matrix[row, col]
+
+                if (value == null) {
+                    matrix[row, col] = 0
+                    value = 0
                 }
+
+                matrix[row, col] = value + 1
             }
         }
 
@@ -26,7 +30,10 @@ class Fabric {
 
         for (row in 0 until matrix.ySize) {
             for (col in 0 until matrix.xSize) {
-                if (matrix[row, col] == "#") {
+
+                val value = matrix[row, col]
+
+                if (value != null && value > 1) {
                     overlapCount += 1
                 }
             }
