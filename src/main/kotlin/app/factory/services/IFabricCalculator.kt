@@ -4,10 +4,9 @@ import app.factory.model.FabricClaim
 
 interface IFabricCalculator {
 
-    fun parseClaims(claimData:List<String>) : List<FabricClaim>
+    fun parseClaims(claimData: List<String>): List<FabricClaim>
 
-    fun calculateOverlap(claimList:List<FabricClaim>) : Int
+    fun calculateOverlap(claimList: List<FabricClaim>): Int
 
-    fun visualizeClaims(claimList:List<FabricClaim>) : String
-
+    fun visualizeClaims(claimList: List<FabricClaim>): String
 }
