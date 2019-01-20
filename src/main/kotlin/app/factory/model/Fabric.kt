@@ -1,33 +1,37 @@
 package app.factory.model
 
-class Fabric<T> (val xSize: Int, val ySize: Int, val array: Array<Array<T>>) {
+import app.model.Array2D
 
-    companion object {
-        inline operator fun <reified T> invoke() = Fabric(1000, 1000, Array(1000) { arrayOfNulls<T>(1000) })
+class Fabric {
 
-        inline operator fun <reified T> invoke(xWidth: Int, yWidth: Int, operator: (Int, Int) -> (T)): Fabric<T> {
-            val array = Array(xWidth) {
-                val x = it
-                Array(yWidth) { it1 -> operator(x, it1)}
+    private val matrix = Array2D<String>()
+
+    fun addClaim(claim: FabricClaim): Fabric {
+        for (row in claim.x..claim.length) {
+            for (col in claim.y..claim.height) {
+                if (matrix[row, col] != null) {
+                    matrix[row, col] = "#"
+                } else {
+                    matrix[row, col] = "1"
+                }
             }
-            return Fabric(xWidth, yWidth, array)
         }
+
+        return this
     }
 
-    operator fun get(x: Int, y: Int): T {
-        return array[x][y]
-    }
+    fun getOverlappingSections(): Int {
 
-    operator fun set(x: Int, y: Int, t: T) {
-        array[x][y] = t
-    }
+        var overlapCount = 0
 
-    inline fun forEach(operation: (T) -> Unit) {
-        array.forEach { it -> it.forEach { operation.invoke(it) } }
-    }
+        for (row in 0 until matrix.ySize) {
+            for (col in 0 until matrix.xSize) {
+                if (matrix[row, col] == "#") {
+                    overlapCount += 1
+                }
+            }
+        }
 
-    inline fun forEachIndexed(operation: (x: Int, y: Int, T) -> Unit) {
-        array.forEachIndexed { x, p -> p.forEachIndexed { y, t -> operation.invoke(x, y, t) } }
+        return overlapCount
     }
-
 }

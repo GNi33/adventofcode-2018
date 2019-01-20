@@ -3,7 +3,7 @@ package app.factory.services
 import app.factory.model.FabricClaim
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 
 internal class FabricCalculatorTest {
 
@@ -30,6 +30,18 @@ internal class FabricCalculatorTest {
 
     @Test
     fun calculateOverlap() {
+        val fabricCalculator = FabricCalculator()
+
+        val listOfStrings = listOf(
+            "#1 @ 1,3: 4x4",
+            "#2 @ 3,1: 4x4",
+            "#3 @ 5,5: 2x2")
+
+        val listOfClaims = fabricCalculator.parseClaims(listOfStrings)
+
+        val overlap = fabricCalculator.calculateOverlap(listOfClaims)
+
+        assertEquals(4, overlap)
     }
 
     @Test
