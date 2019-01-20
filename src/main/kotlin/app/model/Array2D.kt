@@ -1,6 +1,6 @@
 package app.model
 
-open class Array2D<T> (val xSize: Int, val ySize: Int, val array: Array<Array<T>>) {
+class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
 
     companion object {
         inline operator fun <reified T> invoke() = Array2D(1000, 1000, Array(1000) { arrayOfNulls<T>(1000) })

@@ -8,5 +8,7 @@ interface IFabricCalculator {
 
     fun calculateOverlap(claimList: List<FabricClaim>): Int
 
+    fun getNonOverlappingClaims(claimList: List<FabricClaim>): List<Int>
+
     fun visualizeClaims(claimList: List<FabricClaim>): String
 }

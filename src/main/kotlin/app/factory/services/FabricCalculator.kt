@@ -17,11 +17,26 @@ class FabricCalculator : IFabricCalculator {
 
         println("Calculating Overlap")
 
+        fabric.reset()
         for (claim in claimList) {
             fabric.addClaim(claim)
         }
 
-        return fabric.getOverlappingSections()
+        return fabric.getOverlappingSectionCount()
+    }
+
+    override fun getNonOverlappingClaims(claimList: List<FabricClaim>): List<Int> {
+
+        // todo refactor
+        // need to reset now before adding again, because if I call "calculateOverlap" before, the matrix is already set
+        // need to refactor anyways, but a way to see if values have been already added would be better
+        // it's okay for now, but I want to go over this and make it better anyways later on
+        fabric.reset()
+        for (claim in claimList) {
+            fabric.addClaim(claim)
+        }
+
+        return fabric.getNonOverlappingClaims(claimList)
     }
 
     override fun visualizeClaims(claimList: List<FabricClaim>): String {

@@ -4,7 +4,7 @@ import app.model.Array2D
 
 class Fabric {
 
-    private val matrix = Array2D<Int>()
+    private var matrix = Array2D<Int>()
 
     fun addClaim(claim: FabricClaim): Fabric {
         for (row in claim.x until claim.x + claim.length) {
@@ -24,7 +24,7 @@ class Fabric {
         return this
     }
 
-    fun getOverlappingSections(): Int {
+    fun getOverlappingSectionCount(): Int {
 
         var overlapCount = 0
 
@@ -40,5 +40,35 @@ class Fabric {
         }
 
         return overlapCount
+    }
+
+    fun getNonOverlappingClaims(listOfClaims: List<FabricClaim>): List<Int> {
+
+        val nonOverlappingClaims = mutableListOf<Int>()
+
+        for (claim in listOfClaims) {
+
+            var hasOverlap = false
+            for (row in claim.x until claim.x + claim.length) {
+                for (col in claim.y until claim.y + claim.height) {
+
+                    var value = matrix[row, col]
+
+                    if (value != null && value > 1) {
+                        hasOverlap = true
+                    }
+                }
+            }
+
+            if (!hasOverlap) {
+                nonOverlappingClaims.add(claim.id)
+            }
+        }
+
+        return nonOverlappingClaims
+    }
+
+    fun reset() {
+        matrix = Array2D()
     }
 }

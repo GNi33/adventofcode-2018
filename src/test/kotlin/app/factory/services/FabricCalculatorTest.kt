@@ -45,6 +45,18 @@ internal class FabricCalculatorTest {
     }
 
     @Test
-    fun visualizeClaims() {
+    fun getNonOverlappingClaims() {
+        val fabricCalculator = FabricCalculator()
+
+        val listOfStrings = listOf(
+            "#1 @ 1,3: 4x4",
+            "#2 @ 3,1: 4x4",
+            "#3 @ 5,5: 2x2")
+
+        val listOfClaims = fabricCalculator.parseClaims(listOfStrings)
+
+        val overlap = fabricCalculator.getNonOverlappingClaims(listOfClaims)
+
+        assertEquals(1, overlap.size)
     }
 }
