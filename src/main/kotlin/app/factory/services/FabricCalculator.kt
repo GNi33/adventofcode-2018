@@ -1,8 +1,11 @@
 package app.factory.services
 
+import app.factory.model.Fabric
 import app.factory.model.FabricClaim
 
 class FabricCalculator : IFabricCalculator {
+
+    private val fabric = Fabric()
 
     override fun parseClaims(claimData: List<String>): List<FabricClaim> {
         return claimData.map {
@@ -11,7 +14,14 @@ class FabricCalculator : IFabricCalculator {
     }
 
     override fun calculateOverlap(claimList: List<FabricClaim>): Int {
-        return 0
+
+        println("Calculating Overlap")
+
+        for (claim in claimList) {
+            fabric.addClaim(claim)
+        }
+
+        return fabric.getOverlappingSections()
     }
 
     override fun visualizeClaims(claimList: List<FabricClaim>): String {
