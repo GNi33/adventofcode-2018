@@ -14,15 +14,18 @@ internal class FabricCalculatorTest {
         val listOfStrings = listOf(
                 "#1 @ 1,3: 4x4",
                 "#2 @ 3,1: 4x4",
-                "#3 @ 5,5: 2x2")
+                "#3 @ 5,5: 2x2",
+                "#31231 @ 502,780: 120x3")
 
         val listOfClaims = fabricCalculator.parseClaims(listOfStrings)
 
-        assertEquals(3, listOfClaims.size)
+        assertEquals(4, listOfClaims.size)
 
         val exampleClaim = FabricClaim(2, 3, 1, 4, 4)
-
         assertEquals(exampleClaim, listOfClaims[1])
+
+        val exampleClaim2 = FabricClaim(31231, 502, 780, 120, 3)
+        assertEquals(exampleClaim2, listOfClaims[3])
     }
 
     @Test
