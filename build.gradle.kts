@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.3.10"
     id("org.jmailen.kotlinter") version "1.20.1"
+    id("io.gitlab.arturbosch.detekt") version("1.0.0-RC12")
 }
 
 group = "lbdot"
@@ -24,6 +25,12 @@ dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
     testCompile("org.junit.jupiter:junit-jupiter-params:5.3.2")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.2")
+}
+
+detekt {
+    toolVersion = "1.0.0-RC12"
+    input = files("src/main/kotlin")
+    filters = ".*/resources/.*,.*/build/.*"
 }
 
 tasks.withType<KotlinCompile> {
