@@ -52,7 +52,7 @@ internal class GuardSpyTest {
 
         val sortedLines = guardSpy.sortInput(lines)
 
-        assertEquals(sortedLines, expectedLines)
+        assertEquals(expectedLines, sortedLines)
     }
 
     @Test
@@ -79,6 +79,8 @@ internal class GuardSpyTest {
             "[1518-11-05 00:55] wakes up"
         )
 
-        guardSpy.parseInput(lines)
+        val guards = guardSpy.parseInput(lines)
+
+        assertEquals(2, guards.size)
     }
 }

@@ -3,7 +3,7 @@ package app.factory.util
 import app.factory.model.Guard
 import app.factory.model.IGuard
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 class GuardParser {
 
