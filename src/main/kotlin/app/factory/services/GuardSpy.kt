@@ -40,4 +40,12 @@ class GuardSpy : IGuardSpy {
 
         return guardParser.guards
     }
+
+    override fun getGuardLongestAsleep(guards: Map<Int, IGuard>): IGuard {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getMinuteMostAsleep(guard: IGuard): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
