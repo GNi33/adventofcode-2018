@@ -32,12 +32,12 @@ class GuardSpy : IGuardSpy {
         })
     }
 
-    override fun parseInput(lines: List<String>): List<IGuard> {
+    override fun parseInput(lines: List<String>): Map<Int, IGuard> {
 
         for (line in lines) {
             guardParser.parseLine(line)
         }
 
-        return emptyList()
+        return guardParser.guards
     }
 }
