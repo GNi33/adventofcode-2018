@@ -1,7 +1,7 @@
 package app.factory.services
 
 import app.factory.model.IGuard
-import app.factory.repository.GuardParser
+import app.factory.util.GuardParser
 import java.util.*
 
 class GuardSpy : IGuardSpy{

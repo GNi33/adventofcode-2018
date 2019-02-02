@@ -1,4 +1,4 @@
-package app.factory.repository
+package app.factory.util
 
 import app.factory.model.IGuard
 import java.text.SimpleDateFormat
@@ -11,8 +11,6 @@ class GuardParser {
     fun parseLine(line: String) {
 
         val date = parseDate(line)
-
-
 
     }
 
