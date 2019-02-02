@@ -4,7 +4,7 @@ import app.factory.model.IGuard
 import app.factory.util.GuardParser
 import java.util.*
 
-class GuardSpy : IGuardSpy{
+class GuardSpy : IGuardSpy {
 
     val guardParser = GuardParser()
 
@@ -20,7 +20,7 @@ class GuardSpy : IGuardSpy{
                         return 1
                     }
 
-                    if(date1 < date2){
+                    if (date1 < date2) {
                         return -1
                     }
 
@@ -29,15 +29,13 @@ class GuardSpy : IGuardSpy{
 
                 return 0
             }
-
         })
     }
 
     override fun parseInput(lines: List<String>): List<IGuard> {
 
         for (line in lines) {
-            println(line)
-            // val guard =
+            guardParser.parseLine(line)
         }
 
         return emptyList()

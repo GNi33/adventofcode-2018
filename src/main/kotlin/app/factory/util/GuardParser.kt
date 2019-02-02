@@ -1,12 +1,13 @@
 package app.factory.util
 
+import app.factory.model.Guard
 import app.factory.model.IGuard
 import java.text.SimpleDateFormat
 import java.util.*
 
 class GuardParser {
 
-    val guards : MutableMap<Int, IGuard> = mutableMapOf()
+    val guards: MutableMap<Int, IGuard> = mutableMapOf()
     lateinit var activeGuard: IGuard
 
     fun parseLine(line: String) {
@@ -16,21 +17,37 @@ class GuardParser {
 
         when (lineType) {
             LineType.BEGINSHIFT -> {
-
+                val guardId = parseGuardId(line)
+                activeGuard = getGuard(guardId)
             }
             LineType.FALLASLEEP -> {
-
+                activeGuard.fallsAsleep(date)
             }
             LineType.WAKEUP -> {
-
-            }
-            else -> {
-
+                activeGuard.wakesUp(date)
             }
         }
     }
 
-    fun getLineType(line: String) : LineType {
+    fun parseGuardId(line: String): Int {
+        val match = Regex("#(\\d+)")
+
+        val result = match.find(line)
+
+        val id = result?.groupValues?.last() ?: throw Exception()
+
+        return id.toInt()
+    }
+
+    fun getGuard(id: Int): IGuard {
+        if (guards[id] == null) {
+            guards[id] = Guard(id)
+        }
+
+        return guards[id] ?: throw Exception()
+    }
+
+    fun getLineType(line: String): LineType {
 
         val splitString = line.split(' ')
 
@@ -44,7 +61,6 @@ class GuardParser {
                 throw IllegalArgumentException()
             }
         }
-
     }
 
     fun parseDate(line: String): Date {
@@ -55,7 +71,6 @@ class GuardParser {
 
         return SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateString1)
     }
-
 }
 
 enum class LineType {
