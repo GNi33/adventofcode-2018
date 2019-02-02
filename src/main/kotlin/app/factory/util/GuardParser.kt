@@ -7,16 +7,44 @@ import java.util.*
 class GuardParser {
 
     val guards : MutableMap<Int, IGuard> = mutableMapOf()
+    lateinit var activeGuard: IGuard
 
     fun parseLine(line: String) {
 
         val date = parseDate(line)
+        val lineType = getLineType(line)
 
+        when (lineType) {
+            LineType.BEGINSHIFT -> {
+
+            }
+            LineType.FALLASLEEP -> {
+
+            }
+            LineType.WAKEUP -> {
+
+            }
+            else -> {
+
+            }
+        }
     }
 
+    fun getLineType(line: String) : LineType {
 
-    fun getGuard(guardId: Int) : String {
-        return ""
+        val splitString = line.split(' ')
+
+        val lastWord = splitString.last()
+
+        return when (lastWord) {
+            "shift" -> LineType.BEGINSHIFT
+            "asleep" -> LineType.FALLASLEEP
+            "up" -> LineType.WAKEUP
+            else -> {
+                throw IllegalArgumentException()
+            }
+        }
+
     }
 
     fun parseDate(line: String): Date {
@@ -28,4 +56,8 @@ class GuardParser {
         return SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateString1)
     }
 
+}
+
+enum class LineType {
+    BEGINSHIFT, FALLASLEEP, WAKEUP
 }
