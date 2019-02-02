@@ -30,6 +30,7 @@ class Application(argv: Array<String>) {
         println(wristDevice.firstDoubleFrequency())
         println(wristDevice.scanBoxes())
         println(wristDevice.retrieveCommonLettersOfFabricBoxes())
+
         println(factoryManager.calculateFabricOverlap())
         println(factoryManager.getNonOverlappingClaim())
     }
