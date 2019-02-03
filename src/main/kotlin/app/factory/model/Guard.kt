@@ -39,11 +39,20 @@ class Guard(override val id: Int) : IGuard {
     override fun getMinuteAsleepMostWithCount(): Pair<Int, Int> {
         val countOfMinutes = getAsleepMinuteCount()
 
-        val maxMin = countOfMinutes.maxBy {
-            it.value
-        } ?: throw Exception()
+        if (countOfMinutes.size < 0) {
+            return Pair(0,0)
+        }
 
-        return maxMin.toPair()
+        return try {
+            val maxMin = countOfMinutes.maxBy {
+                it.value
+            } ?: throw Exception()
+
+            maxMin.toPair()
+
+        } catch (ex : Exception) {
+            Pair(0,0)
+        }
     }
 
     override fun getMinuteAsleepMost(): Int {

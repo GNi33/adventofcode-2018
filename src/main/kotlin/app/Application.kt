@@ -48,6 +48,8 @@ class Application(argv: Array<String>) {
 
         println("Part 01 - Get Guard Hash for Guard Most asleep * Minute most asleep")
         println(guardSpy.getAsleepGuardsHash())
+        println("Part 02 - Get Guard Hash for Guard Most Frequently asleep at one given minute * that minute")
+        println(guardSpy.getMostFrequentlyAsleepGuardHash())
     }
 }
 
