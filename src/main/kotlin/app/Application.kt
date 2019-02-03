@@ -45,6 +45,7 @@ class Application(argv: Array<String>) {
         println(factoryManager.getNonOverlappingClaim())
 
         println("Day 04")
+
         println("Part 01 - Get Guard Hash for Guard Most asleep * Minute most asleep")
         println(guardSpy.getAsleepGuardsHash())
     }
