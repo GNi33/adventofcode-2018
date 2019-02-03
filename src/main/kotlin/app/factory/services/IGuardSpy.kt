@@ -11,4 +11,6 @@ interface IGuardSpy {
     fun getGuardLongestAsleep(guards: Map<Int, IGuard>): IGuard
 
     fun getMinuteMostAsleep(guard : IGuard) : Int
+
+    fun getAsleepGuardsHash() : Int
 }

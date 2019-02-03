@@ -2,6 +2,7 @@ package app.factory.services
 
 import app.factory.model.IGuard
 import app.factory.util.GuardParser
+import java.io.File
 
 class GuardSpy : IGuardSpy {
 
@@ -42,9 +43,6 @@ class GuardSpy : IGuardSpy {
 
     override fun getGuardLongestAsleep(guards: Map<Int, IGuard>): IGuard {
         return guards.values.maxBy {
-
-            println(it.getMinutesAsleep())
-
             it.getMinutesAsleep()
         } ?: throw Exception()
     }
@@ -52,4 +50,24 @@ class GuardSpy : IGuardSpy {
     override fun getMinuteMostAsleep(guard: IGuard): Int {
         return guard.getMinuteAsleepMost()
     }
+
+    override fun getAsleepGuardsHash(): Int {
+        val guardData = getDataFromFile("src/main/resources/guard-shifts.txt")
+        val sortedGuardData = sortInput(guardData)
+        val guards = parseInput(sortedGuardData)
+
+        val guardAsleepLongest = getGuardLongestAsleep(guards)
+        val minMostAsleep = getMinuteMostAsleep(guardAsleepLongest)
+
+        println(guardAsleepLongest.getMinutesAsleep())
+
+        println("Get Guard Id Hash")
+        println(guardAsleepLongest.id)
+        println(minMostAsleep)
+        println(guardAsleepLongest.id * minMostAsleep)
+
+        return guardAsleepLongest.id * minMostAsleep
+    }
+
+    private fun getDataFromFile(fileName: String): List<String> = File(fileName).useLines { it.toList() }
 }

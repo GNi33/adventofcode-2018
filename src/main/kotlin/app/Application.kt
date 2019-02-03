@@ -7,6 +7,7 @@ import app.device.services.IBoxScanner
 import app.device.services.ICalibrationService
 import app.factory.FactoryManager
 import app.factory.services.FabricCalculator
+import app.factory.services.GuardSpy
 import app.factory.services.IFabricCalculator
 import org.koin.dsl.module.module
 import org.koin.standalone.StandAloneContext.startKoin
@@ -24,6 +25,7 @@ class Application(argv: Array<String>) {
 
     private val wristDevice = WristDevice()
     private val factoryManager = FactoryManager()
+    private val guardSpy = GuardSpy()
 
     fun device() {
         println(wristDevice.calibrate())
@@ -33,6 +35,8 @@ class Application(argv: Array<String>) {
 
         println(factoryManager.calculateFabricOverlap())
         println(factoryManager.getNonOverlappingClaim())
+
+        println(guardSpy.getAsleepGuardsHash())
     }
 }
 
