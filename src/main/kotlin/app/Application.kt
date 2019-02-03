@@ -28,12 +28,20 @@ class Application(argv: Array<String>) {
     private val guardSpy = GuardSpy()
 
     fun device() {
+        println("Day 01")
         println(wristDevice.calibrate())
         println(wristDevice.firstDoubleFrequency())
+
+        println("Day 02")
+        println("Part 01 - Get box Id")
         println(wristDevice.scanBoxes())
+        println("Part 02 - Print common letters on the boxes")
         println(wristDevice.retrieveCommonLettersOfFabricBoxes())
 
+        println("Day 03")
+        println("Part 01 - Calculate Fabric Overlap")
         println(factoryManager.calculateFabricOverlap())
+        println("Part 02 - Print only claim that is not overlapping")
         println(factoryManager.getNonOverlappingClaim())
 
         println("Day 04")
