@@ -47,14 +47,19 @@ class GuardSpy : IGuardSpy {
         } ?: throw Exception()
     }
 
+    override fun getGuardAsleepMostFrequent(guards: Map<Int, IGuard>): IGuard {
+        return guards.values.maxBy {
+            it.getMinuteAsleepMostWithCount().second
+        } ?: throw Exception()
+    }
+
     override fun getMinuteMostAsleep(guard: IGuard): Int {
         return guard.getMinuteAsleepMost()
     }
 
     override fun getAsleepGuardsHash(): Int {
-        val guardData = getDataFromFile("src/main/resources/guard-shifts.txt")
-        val sortedGuardData = sortInput(guardData)
-        val guards = parseInput(sortedGuardData)
+
+        val guards = getGuards()
 
         val guardAsleepLongest = getGuardLongestAsleep(guards)
         val minMostAsleep = getMinuteMostAsleep(guardAsleepLongest)
@@ -62,5 +67,19 @@ class GuardSpy : IGuardSpy {
         return guardAsleepLongest.id * minMostAsleep
     }
 
+    override fun getMostFrequentlyAsleepGuardHash(): Int {
+        val guards = getGuards()
+        val guard = getGuardAsleepMostFrequent(guards)
+
+        return guard.id * guard.getMinuteAsleepMost()
+    }
+
     private fun getDataFromFile(fileName: String): List<String> = File(fileName).useLines { it.toList() }
+
+    private fun getGuards(): Map<Int, IGuard> {
+        val guardData = getDataFromFile("src/main/resources/guard-shifts.txt")
+        val sortedGuardData = sortInput(guardData)
+
+        return parseInput(sortedGuardData)
+    }
 }

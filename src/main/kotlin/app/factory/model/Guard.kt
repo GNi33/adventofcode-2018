@@ -36,8 +36,22 @@ class Guard(override val id: Int) : IGuard {
         }
     }
 
-    override fun getMinuteAsleepMost(): Int {
+    override fun getMinuteAsleepMostWithCount(): Pair<Int, Int> {
+        val countOfMinutes = getAsleepMinuteCount()
 
+        val maxMin = countOfMinutes.maxBy {
+            it.value
+        } ?: throw Exception()
+
+        return maxMin.toPair()
+    }
+
+    override fun getMinuteAsleepMost(): Int {
+        val maxMin = getMinuteAsleepMostWithCount()
+        return maxMin.first
+    }
+
+    private fun getAsleepMinuteCount(): Map<Int, Int> {
         val countOfMinutes : MutableMap<Int, Int> = mutableMapOf()
 
         for (guardTime in guardTimes.values) {
@@ -54,10 +68,6 @@ class Guard(override val id: Int) : IGuard {
             }
         }
 
-        val maxMin = countOfMinutes.maxBy {
-            it.value
-        } ?: throw Exception()
-
-        return maxMin.key
+        return countOfMinutes
     }
 }

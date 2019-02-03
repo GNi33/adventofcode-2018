@@ -12,5 +12,7 @@ interface IGuard {
 
     fun getMinutesAsleep() : Int
 
+    fun getMinuteAsleepMostWithCount() : Pair<Int, Int>
+
     fun getMinuteAsleepMost() : Int
 }
