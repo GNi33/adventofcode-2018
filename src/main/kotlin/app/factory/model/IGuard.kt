@@ -9,4 +9,6 @@ interface IGuard {
     fun fallsAsleep(dateTime: Date)
 
     fun wakesUp(dateTime: Date)
+
+    fun getMinutesAsleep() : Int
 }

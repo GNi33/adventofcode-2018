@@ -42,7 +42,12 @@ class GuardSpy : IGuardSpy {
     }
 
     override fun getGuardLongestAsleep(guards: Map<Int, IGuard>): IGuard {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return guards.values.maxBy {
+
+            println(it.getMinutesAsleep())
+
+            it.getMinutesAsleep()
+        } ?: throw Exception()
     }
 
     override fun getMinuteMostAsleep(guard: IGuard): Int {
