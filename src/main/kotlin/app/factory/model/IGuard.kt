@@ -1,6 +1,6 @@
 package app.factory.model
 
-import java.util.*
+import java.util.Date
 
 interface IGuard {
 
@@ -11,4 +11,6 @@ interface IGuard {
     fun wakesUp(dateTime: Date)
 
     fun getMinutesAsleep() : Int
+
+    fun getMinuteAsleepMost() : Int
 }

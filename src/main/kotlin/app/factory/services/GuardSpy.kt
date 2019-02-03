@@ -2,7 +2,6 @@ package app.factory.services
 
 import app.factory.model.IGuard
 import app.factory.util.GuardParser
-import java.util.*
 
 class GuardSpy : IGuardSpy {
 
@@ -51,6 +50,6 @@ class GuardSpy : IGuardSpy {
     }
 
     override fun getMinuteMostAsleep(guard: IGuard): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return guard.getMinuteAsleepMost()
     }
 }

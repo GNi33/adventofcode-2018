@@ -1,6 +1,6 @@
 package app.factory.model
 
-import java.util.*
+import java.util.Date
 
 class Guard(override val id: Int) : IGuard {
 
@@ -34,5 +34,30 @@ class Guard(override val id: Int) : IGuard {
             acc, guardTime ->
                 acc + guardTime.getMinutes()
         }
+    }
+
+    override fun getMinuteAsleepMost(): Int {
+
+        val countOfMinutes : MutableMap<Int, Int> = mutableMapOf()
+
+        for (guardTime in guardTimes.values) {
+            val minutes = guardTime.getListOfMinutes()
+
+            for (minute in minutes) {
+                if (countOfMinutes[minute] == null) {
+                    countOfMinutes[minute] = 0
+                }
+
+                val minCount = countOfMinutes[minute] ?: throw Exception()
+
+                countOfMinutes[minute] = minCount + 1
+            }
+        }
+
+        val maxMin = countOfMinutes.maxBy {
+            it.value
+        } ?: throw Exception()
+
+        return maxMin.key
     }
 }
