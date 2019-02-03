@@ -59,13 +59,6 @@ class GuardSpy : IGuardSpy {
         val guardAsleepLongest = getGuardLongestAsleep(guards)
         val minMostAsleep = getMinuteMostAsleep(guardAsleepLongest)
 
-        println(guardAsleepLongest.getMinutesAsleep())
-
-        println("Get Guard Id Hash")
-        println(guardAsleepLongest.id)
-        println(minMostAsleep)
-        println(guardAsleepLongest.id * minMostAsleep)
-
         return guardAsleepLongest.id * minMostAsleep
     }
 

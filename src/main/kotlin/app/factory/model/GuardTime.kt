@@ -20,6 +20,6 @@ class GuardTime {
         val endDateCal = GregorianCalendar.getInstance()
         endDateCal.time = endTime
 
-        return (startDateCal.get(GregorianCalendar.MINUTE) .. endDateCal.get(GregorianCalendar.MINUTE)).toList()
+        return (startDateCal.get(GregorianCalendar.MINUTE) until endDateCal.get(GregorianCalendar.MINUTE)).toList()
     }
 }
