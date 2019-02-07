@@ -10,6 +10,10 @@ class GuardParser {
     val guards: MutableMap<Int, IGuard> = mutableMapOf()
     lateinit var activeGuard: IGuard
 
+    enum class LineType {
+        BEGINSHIFT, FALLASLEEP, WAKEUP
+    }
+
     fun parseLine(line: String) {
 
         val date = parseDate(line)
@@ -29,7 +33,7 @@ class GuardParser {
         }
     }
 
-    fun parseGuardId(line: String): Int {
+    private fun parseGuardId(line: String): Int {
         val match = Regex("#(\\d+)")
 
         val result = match.find(line)
@@ -39,7 +43,7 @@ class GuardParser {
         return id.toInt()
     }
 
-    fun getGuard(id: Int): IGuard {
+    private fun getGuard(id: Int): IGuard {
         if (guards[id] == null) {
             guards[id] = Guard(id)
         }
@@ -47,7 +51,7 @@ class GuardParser {
         return guards[id] ?: throw Exception()
     }
 
-    fun getLineType(line: String): LineType {
+    private fun getLineType(line: String): LineType {
 
         val splitString = line.split(' ')
 
@@ -71,8 +75,4 @@ class GuardParser {
 
         return SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateString1)
     }
-}
-
-enum class LineType {
-    BEGINSHIFT, FALLASLEEP, WAKEUP
 }
