@@ -8,8 +8,8 @@ import org.koin.standalone.inject
 
 class GuardSpy : KoinComponent, IGuardSpy {
 
-    val inputReader by inject<IInputReader>()
-    val guardParser = GuardParser()
+    private val inputReader by inject<IInputReader>()
+    private val guardParser = GuardParser()
 
     override fun sortInput(lines: List<String>): List<String> {
 

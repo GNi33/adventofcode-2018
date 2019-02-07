@@ -7,8 +7,8 @@ import org.koin.standalone.inject
 
 class FactoryManager : KoinComponent {
 
-    val inputReader by inject<IInputReader>()
-    val fabricCalculator by inject<IFabricCalculator>()
+    private val inputReader by inject<IInputReader>()
+    private val fabricCalculator by inject<IFabricCalculator>()
 
     fun calculateFabricOverlap(): Int {
         val fabricData = inputReader.getDataForDay(3)

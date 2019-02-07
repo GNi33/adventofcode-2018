@@ -13,7 +13,6 @@ import app.util.IInputReader
 import app.util.InputReader
 import org.koin.dsl.module.module
 import org.koin.standalone.StandAloneContext.startKoin
-import java.io.FileReader
 
 fun main(args: Array<String>) {
     println("Hello Advent Of Code 2018")
@@ -21,7 +20,7 @@ fun main(args: Array<String>) {
     startKoin(listOf(dependenciesModule))
 
     val app = Application(args)
-    app.device()
+    app.run()
 }
 
 class Application(argv: Array<String>) {
@@ -30,7 +29,7 @@ class Application(argv: Array<String>) {
     private val factoryManager = FactoryManager()
     private val guardSpy = GuardSpy()
 
-    fun device() {
+    fun run() {
         println("Day 01")
         println(wristDevice.calibrate())
         println(wristDevice.firstDoubleFrequency())
