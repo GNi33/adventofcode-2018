@@ -9,8 +9,11 @@ import app.factory.FactoryManager
 import app.factory.services.FabricCalculator
 import app.factory.services.GuardSpy
 import app.factory.services.IFabricCalculator
+import app.util.IInputReader
+import app.util.InputReader
 import org.koin.dsl.module.module
 import org.koin.standalone.StandAloneContext.startKoin
+import java.io.FileReader
 
 fun main(args: Array<String>) {
     println("Hello Advent Of Code 2018")
@@ -54,6 +57,7 @@ class Application(argv: Array<String>) {
 }
 
 val dependenciesModule = module {
+    single { InputReader() as IInputReader}
     single { CalibrationService() as ICalibrationService }
     single { BoxScanner() as IBoxScanner }
     single { FabricCalculator() as IFabricCalculator }

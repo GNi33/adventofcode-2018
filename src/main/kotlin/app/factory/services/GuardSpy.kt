@@ -2,10 +2,13 @@ package app.factory.services
 
 import app.factory.model.IGuard
 import app.factory.util.GuardParser
-import java.io.File
+import app.util.IInputReader
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
-class GuardSpy : IGuardSpy {
+class GuardSpy : KoinComponent, IGuardSpy {
 
+    val inputReader by inject<IInputReader>()
     val guardParser = GuardParser()
 
     override fun sortInput(lines: List<String>): List<String> {
@@ -74,10 +77,8 @@ class GuardSpy : IGuardSpy {
         return guard.id * guard.getMinuteAsleepMost()
     }
 
-    private fun getDataFromFile(fileName: String): List<String> = File(fileName).useLines { it.toList() }
-
     private fun getGuards(): Map<Int, IGuard> {
-        val guardData = getDataFromFile("src/main/resources/guard-shifts.txt")
+        val guardData = inputReader.getDataFromFile("guard-shifts.txt")
         val sortedGuardData = sortInput(guardData)
 
         return parseInput(sortedGuardData)
