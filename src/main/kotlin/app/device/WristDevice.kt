@@ -13,22 +13,22 @@ class WristDevice : KoinComponent {
     private val boxScanner by inject<IBoxScanner>()
 
     fun calibrate(): Int {
-        val calibrationData = inputReader.getDataFromFile("calibration-frequencies.txt")
+        val calibrationData = inputReader.getDataForDay(1)
         return calibrationService.calibrateFrequencies(calibrationData)
     }
 
     fun firstDoubleFrequency(): Int {
-        val calibrationData = inputReader.getDataFromFile("calibration-frequencies.txt")
+        val calibrationData = inputReader.getDataForDay(1)
         return calibrationService.findFirstDoubleOccurrence(calibrationData)
     }
 
     fun scanBoxes(): Int {
-        val boxIds = inputReader.getDataFromFile("box-ids.txt")
+        val boxIds = inputReader.getDataForDay(2)
         return boxScanner.getChecksumOfList(boxIds)
     }
 
     fun retrieveCommonLettersOfFabricBoxes(): String {
-        val boxIds = inputReader.getDataFromFile("box-ids.txt")
+        val boxIds = inputReader.getDataForDay(2)
         return boxScanner.getCommonLettersOfFabricBoxes(boxIds)
     }
 }

@@ -78,7 +78,7 @@ class GuardSpy : KoinComponent, IGuardSpy {
     }
 
     private fun getGuards(): Map<Int, IGuard> {
-        val guardData = inputReader.getDataFromFile("guard-shifts.txt")
+        val guardData = inputReader.getDataForDay(4)
         val sortedGuardData = sortInput(guardData)
 
         return parseInput(sortedGuardData)

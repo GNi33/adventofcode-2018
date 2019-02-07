@@ -11,13 +11,13 @@ class FactoryManager : KoinComponent {
     val fabricCalculator by inject<IFabricCalculator>()
 
     fun calculateFabricOverlap(): Int {
-        val fabricData = inputReader.getDataFromFile("fabric-slices.txt")
+        val fabricData = inputReader.getDataForDay(3)
         val claims = fabricCalculator.parseClaims(fabricData)
         return fabricCalculator.calculateOverlap(claims)
     }
 
     fun getNonOverlappingClaim(): Int {
-        val fabricData = inputReader.getDataFromFile("fabric-slices.txt")
+        val fabricData = inputReader.getDataForDay(3)
         val claims = fabricCalculator.parseClaims(fabricData)
         val claimList = fabricCalculator.getNonOverlappingClaims(claims)
 

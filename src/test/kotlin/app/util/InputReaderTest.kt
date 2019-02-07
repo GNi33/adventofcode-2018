@@ -28,7 +28,7 @@ internal class InputReaderTest {
 
     @Test
     fun getDataForDay() {
-        val input = inputReader.getDataForDay(1)
+        val input = inputReader.getDataForDay(2)
 
         val expectedList = listOf(
             "abcdef",

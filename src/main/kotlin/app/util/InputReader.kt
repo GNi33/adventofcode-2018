@@ -5,7 +5,11 @@ import java.io.File
 class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) : IInputReader {
 
     private val dayInputs = hashMapOf(
-        Pair(1, "box-ids.txt")
+        1 to "calibration-frequencies.txt",
+        2 to "box-ids.txt",
+        3 to "fabric-slices.txt",
+        4 to "guard-shifts.txt",
+        5 to "polymer.txt"
     )
 
     override fun getDataFromFile(fileName: String): List<String> = File(getFullFilePath(fileName)).useLines { it.toList() }
