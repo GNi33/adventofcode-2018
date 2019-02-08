@@ -11,6 +11,10 @@ class PolymerCalculator : IPolymerCalculator {
         return processPolymerReaction(polymer).length
     }
 
+    override fun getShortestPolymerLength(polymer: String): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private fun polymerReaction(polymer: String, match: Regex) : String {
         val result = match.replace(polymer, "")
 

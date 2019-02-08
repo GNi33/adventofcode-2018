@@ -10,6 +10,7 @@ internal class PolymerCalculatorTest {
 
     private val inputReader = InputReader(IInputReader.MODE.TEST)
 
+
     @Test
     fun processPolymerReaction() {
         val polymerCalc = PolymerCalculator()
@@ -21,8 +22,27 @@ internal class PolymerCalculatorTest {
         assertEquals(expectedResult, polymerCalc.processPolymerReaction(input))
     }
 
-
     @Test
     fun getProcessedPolymerLength() {
+
+        val polymerCalc = PolymerCalculator()
+        val expectedResult = 10
+
+        val inputFromFile = inputReader.getDataFromFile("polymer.txt")
+        val input = inputFromFile.first()
+
+        assertEquals(expectedResult, polymerCalc.getProcessedPolymerLength(input))
+    }
+
+    @Test
+    fun getShortestPolymerLength() {
+
+        val polymerCalc = PolymerCalculator()
+        val expectedResult = 4
+
+        val inputFromFile = inputReader.getDataFromFile("polymer.txt")
+        val input = inputFromFile.first()
+
+        assertEquals(expectedResult, polymerCalc.getShortestPolymerLength(input))
     }
 }
