@@ -49,11 +49,9 @@ class PolymerCalculator : IPolymerCalculator {
     private fun buildSingleRegexList(polymer: String) : List<Regex> {
         val distinctChars = getDistinctCharacters(polymer)
 
-        val matchPairList = distinctChars.flatMap {
+        return distinctChars.flatMap {
             listOf("($it|${it.toUpperCase()})".toRegex())
         }
-
-        return matchPairList
     }
 
     private fun buildMatchPairList(charList: List<Char>): List<Pair<String, String>> {
