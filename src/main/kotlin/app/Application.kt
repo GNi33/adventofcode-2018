@@ -1,10 +1,7 @@
 package app
 
 import app.device.WristDevice
-import app.device.services.BoxScanner
-import app.device.services.CalibrationService
-import app.device.services.IBoxScanner
-import app.device.services.ICalibrationService
+import app.device.services.*
 import app.factory.FactoryManager
 import app.factory.services.FabricCalculator
 import app.factory.services.GuardSpy
@@ -52,6 +49,11 @@ class Application(argv: Array<String>) {
         println(guardSpy.getAsleepGuardsHash())
         println("Part 02 - Get Guard Hash for Guard Most Frequently asleep at one given minute * that minute")
         println(guardSpy.getMostFrequentlyAsleepGuardHash())
+
+        println("Day 05")
+        println("Part 01 - Calculate Polymer Reaction and return number of units (characters) of result")
+        println(wristDevice.calculatePolymerReaction())
+
     }
 }
 
@@ -60,4 +62,5 @@ val dependenciesModule = module {
     single { CalibrationService() as ICalibrationService }
     single { BoxScanner() as IBoxScanner }
     single { FabricCalculator() as IFabricCalculator }
+    single { PolymerCalculator() as IPolymerCalculator}
 }
