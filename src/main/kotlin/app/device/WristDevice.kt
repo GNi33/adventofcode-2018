@@ -38,4 +38,9 @@ class WristDevice : KoinComponent {
         val polymer = inputReader.getDataForDay(5).first()
         return polymerCalculator.getProcessedPolymerLength(polymer)
     }
+
+    fun calculateShortestPolymerReaction(): Int {
+        val polymer = inputReader.getDataForDay(5).first()
+        return polymerCalculator.getShortestPolymerLength(polymer)
+    }
 }

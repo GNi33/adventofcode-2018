@@ -53,6 +53,8 @@ class Application(argv: Array<String>) {
         println("Day 05")
         println("Part 01 - Calculate Polymer Reaction and return number of units (characters) of result")
         println(wristDevice.calculatePolymerReaction())
+        println("Part 02 - Calculate shortest Polymer")
+        println(wristDevice.calculateShortestPolymerReaction())
 
     }
 }
