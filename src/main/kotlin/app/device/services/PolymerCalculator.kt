@@ -12,7 +12,18 @@ class PolymerCalculator : IPolymerCalculator {
     }
 
     override fun getShortestPolymerLength(polymer: String): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        val fullMatch = buildRegex(polymer)
+        val matches = buildSingleRegexList(polymer)
+        val results = mutableMapOf<String, Int>()
+
+        for (match in matches) {
+            val reducedPolymer = match.replace(polymer, "")
+            val result = polymerReaction(reducedPolymer, fullMatch)
+            results[match.pattern] = result.length
+        }
+
+        return results.minBy { it.value }!!.value
     }
 
     private fun polymerReaction(polymer: String, match: Regex) : String {
@@ -27,17 +38,29 @@ class PolymerCalculator : IPolymerCalculator {
     private fun buildRegex(polymer: String) : Regex {
         val distinctChars = getDistinctCharacters(polymer)
         val matchList = buildMatchPairList(distinctChars)
-        val matchGroupString = "(${matchList.joinToString("|")})"
+
+        val matchGroupString = "(${matchList.flatMap {
+            it.toList()
+        }.joinToString("|")})"
 
         return matchGroupString.toRegex()
     }
 
-    private fun buildMatchPairList(charList: List<Char>): List<String> {
-        val matchList = mutableListOf<String>()
+    private fun buildSingleRegexList(polymer: String) : List<Regex> {
+        val distinctChars = getDistinctCharacters(polymer)
+
+        val matchPairList = distinctChars.flatMap {
+            listOf("($it|${it.toUpperCase()})".toRegex())
+        }
+
+        return matchPairList
+    }
+
+    private fun buildMatchPairList(charList: List<Char>): List<Pair<String, String>> {
+        val matchList = mutableListOf<Pair<String, String>>()
 
         for (char in charList) {
-            matchList.add("$char${char.toUpperCase()}")
-            matchList.add("${char.toUpperCase()}$char")
+            matchList.add(Pair("$char${char.toUpperCase()}", "${char.toUpperCase()}$char"))
         }
 
         return matchList
