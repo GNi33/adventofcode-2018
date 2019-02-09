@@ -5,8 +5,8 @@ import app.model.Point
 
 class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
 
-    val coordinates: Map<String, Point>
-    val map: DestinationMap
+    private val coordinates: Map<String, Point>
+    private val map: DestinationMap
 
     init {
         coordinates = parseStringInput(coordinateList)
@@ -18,7 +18,33 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
     }
 
     override fun getLargestAreaSize(): Int {
-        return 0
+
+        val finiteAreas = getFiniteAreas()
+        val areaCounts = mutableMapOf<String, Int>()
+
+        for (area in finiteAreas) {
+            areaCounts[area] = getAreaSize(area)
+        }
+
+        return areaCounts.maxBy { it.value }!!.value
+    }
+
+    fun getAreaSize(area: String): Int {
+
+        var count = 0
+
+        val lineCount = map.getHeight()
+        val colCount = map.getWidth()
+
+        for (line in 0 until lineCount) {
+            for (col in 0 until colCount) {
+                if (area == map.getValue(line, col) || area == map.getValue(line,col).toUpperCase()) {
+                    count++
+                }
+            }
+        }
+
+        return count
     }
 
     fun getFiniteAreas(): List<String> {

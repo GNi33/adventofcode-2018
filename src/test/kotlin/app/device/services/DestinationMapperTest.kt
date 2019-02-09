@@ -1,6 +1,5 @@
 package app.device.services
 
-import app.model.Point
 import app.util.IInputReader
 import app.util.InputReader
 import org.junit.jupiter.api.Test
@@ -16,24 +15,9 @@ internal class DestinationMapperTest {
         val testInput = inputReader.getDataFromFile("coordinates.txt")
 
         val destMapper = DestinationMapper(testInput)
-
-        destMapper.getLargestAreaSize()
-    }
-
-    @Test
-    fun getDistances() {
-
-        val testInput = inputReader.getDataFromFile("coordinates.txt")
-
-        val destMapper = DestinationMapper(testInput)
-
         destMapper.determineAreas()
 
-        val distancesPointA = destMapper.map.getDistances(Point(5, 0))
-
-        println(destMapper.getFiniteAreas())
-
-        println(distancesPointA)
-
+        assertEquals(listOf("D", "E"), destMapper.getFiniteAreas())
+        assertEquals(17, destMapper.getLargestAreaSize())
     }
 }
