@@ -19,4 +19,21 @@ internal class DestinationMapperTest {
 
         destMapper.getLargestAreaSize()
     }
+
+    @Test
+    fun getDistances() {
+
+        val testInput = inputReader.getDataFromFile("coordinates.txt")
+
+        val destMapper = DestinationMapper(testInput)
+
+        destMapper.determineAreas()
+
+        val distancesPointA = destMapper.map.getDistances(Point(5, 0))
+
+        println(destMapper.getFiniteAreas())
+
+        println(distancesPointA)
+
+    }
 }

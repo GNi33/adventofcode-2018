@@ -5,17 +5,40 @@ import app.model.Point
 
 class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
 
-    private val map : DestinationMap
+    val coordinates: Map<String, Point>
+    val map: DestinationMap
 
     init {
-        val coordinates = parseStringInput(coordinateList)
+        coordinates = parseStringInput(coordinateList)
         map = DestinationMap(coordinates)
     }
 
-    override fun getLargestAreaSize(): Int {
-        map.print()
+    fun determineAreas() {
+        map.setAreas()
+    }
 
+    override fun getLargestAreaSize(): Int {
         return 0
+    }
+
+    fun getFiniteAreas(): List<String> {
+        val areas = coordinates.keys.toList()
+        val infiniteAreas = getInfiniteAreas()
+
+        return areas.filter {
+            !infiniteAreas.contains(it)
+        }
+    }
+
+    fun getInfiniteAreas(): List<String> {
+
+        val edgeValues = map.getEdgeValues()
+
+        return edgeValues.flatMap {
+            it.map {s ->
+                s.toUpperCase()
+            }
+        }.distinct()
     }
 
     override fun parseStringInput(input: List<String>): Map<String, Point> {
