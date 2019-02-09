@@ -9,7 +9,8 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         2 to "box-ids.txt",
         3 to "fabric-slices.txt",
         4 to "guard-shifts.txt",
-        5 to "polymer.txt"
+        5 to "polymer.txt",
+        6 to "coordinates.txt"
     )
 
     override fun getDataFromFile(fileName: String): List<String> = File(getFullFilePath(fileName)).useLines { it.toList() }
