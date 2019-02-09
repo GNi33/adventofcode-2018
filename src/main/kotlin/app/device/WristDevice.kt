@@ -1,8 +1,6 @@
 package app.device
 
-import app.device.services.IBoxScanner
-import app.device.services.ICalibrationService
-import app.device.services.IPolymerCalculator
+import app.device.services.*
 import app.util.IInputReader
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
@@ -42,5 +40,11 @@ class WristDevice : KoinComponent {
     fun calculateShortestPolymerReaction(): Int {
         val polymer = inputReader.getDataForDay(5).first()
         return polymerCalculator.getShortestPolymerLength(polymer)
+    }
+
+    fun getLargestAreaAroundDestination() : Int {
+        val destinations = inputReader.getDataForDay(6)
+        val destinationMapper = DestinationMapper(destinations)
+        return destinationMapper.getLargestAreaSize()
     }
 }

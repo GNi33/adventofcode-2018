@@ -50,12 +50,21 @@ class Application(argv: Array<String>) {
         println("Part 02 - Get Guard Hash for Guard Most Frequently asleep at one given minute * that minute")
         println(guardSpy.getMostFrequentlyAsleepGuardHash())
 
+        /*
+        Not execute that for now as it takes too long
+
+        TODO: Make days selectable when starting application
+
         println("Day 05")
         println("Part 01 - Calculate Polymer Reaction and return number of units (characters) of result")
         println(wristDevice.calculatePolymerReaction())
         println("Part 02 - Calculate shortest Polymer")
         println(wristDevice.calculateShortestPolymerReaction())
+        */
 
+        println("Day 06")
+        println("Part 01 - Get Largest Area of Destination")
+        println(wristDevice.getLargestAreaAroundDestination())
     }
 }
 

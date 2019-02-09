@@ -2,6 +2,7 @@ package app.device.services
 
 import app.device.model.DestinationMap
 import app.model.Point
+import kotlin.math.ceil
 
 class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
 
@@ -73,8 +74,18 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
             listOf(Point(coords.first().trim().toInt(), coords.last().trim().toInt()))
         }
 
+        val numOfDestinations = input.size
+        val times = ceil(numOfDestinations.toFloat() / 26).toInt()
+        val upperAlph = CharArray(times) { (it + 97).toChar() }
+
         val alphabet = CharArray(26) { (it + 97).toChar() }
 
-        return coordMap.withIndex().associateBy({ alphabet[it.index].toUpperCase().toString() }, { it.value })
+        val identifiers = upperAlph.map {
+            alphabet.map {c ->
+                "$it$c"
+            }
+        }.flatten()
+
+        return coordMap.withIndex().associateBy({ identifiers[it.index].toUpperCase() }, { it.value })
     }
 }
