@@ -45,6 +45,16 @@ class WristDevice : KoinComponent {
     fun getLargestAreaAroundDestination() : Int {
         val destinations = inputReader.getDataForDay(6)
         val destinationMapper = DestinationMapper(destinations)
+        destinationMapper.determineAreas()
+
         return destinationMapper.getLargestAreaSize()
+    }
+
+    fun getAreaSizeClosestToDestinations(): Int {
+        val destinations = inputReader.getDataForDay(6)
+        val destinationMapper = DestinationMapper(destinations)
+        destinationMapper.determineCloseAreas(10000)
+
+        return destinationMapper.getAreaSize("#")
     }
 }

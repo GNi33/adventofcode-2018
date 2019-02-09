@@ -20,4 +20,13 @@ internal class DestinationMapperTest {
         assertEquals(listOf("D", "E"), destMapper.getFiniteAreas())
         assertEquals(17, destMapper.getLargestAreaSize())
     }
+
+    @Test
+    fun getCloseAreaSize() {
+        val testInput = inputReader.getDataFromFile("coordinates.txt")
+
+        val destMapper = DestinationMapper(testInput)
+        destMapper.determineCloseAreas(32)
+        assertEquals(16, destMapper.getAreaSize("#"))
+    }
 }

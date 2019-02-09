@@ -34,10 +34,35 @@ class DestinationMap(private val coords: Map<String, Point>) {
         }
     }
 
+    fun setCloseAreas(limit: Int) {
+        val lines = 0 until getHeight()
+        val cols = 0 until getWidth()
+
+        for (line in lines) {
+            for (col in cols) {
+                val closestDest = getCombinedDistance(col, line)
+
+                if (closestDest < limit) {
+                    matrix[line, col] = "#"
+                }
+            }
+        }
+    }
+
     private fun initializeDestinations() {
         for (destination in coords) {
             matrix[destination.value.y, destination.value.x] = destination.key
         }
+    }
+
+    fun getCombinedDistance(x: Int, y: Int): Int {
+        return getCombinedDistance(Point(x, y))
+    }
+
+    fun getCombinedDistance(sourceCoordinate: Point): Int {
+        val distances = getDistances(sourceCoordinate)
+
+        return distances.values.reduce { acc, elem -> acc + elem }
     }
 
     fun getClosestDestination(x: Int, y: Int): String {
@@ -150,5 +175,6 @@ class DestinationMap(private val coords: Map<String, Point>) {
     fun getValue(line: Int, col: Int): String {
         return matrix[line, col]
     }
+
 
 }

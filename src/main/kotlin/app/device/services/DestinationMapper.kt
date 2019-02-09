@@ -18,6 +18,10 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
         map.setAreas()
     }
 
+    fun determineCloseAreas(limit: Int) {
+        map.setCloseAreas(limit)
+    }
+
     override fun getLargestAreaSize(): Int {
 
         val finiteAreas = getFiniteAreas()
@@ -87,5 +91,9 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
         }.flatten()
 
         return coordMap.withIndex().associateBy({ identifiers[it.index].toUpperCase() }, { it.value })
+    }
+
+    fun printMap() {
+        map.print()
     }
 }
