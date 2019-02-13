@@ -1,6 +1,5 @@
 package app.sleigh.service
 
-import app.sleigh.model.AssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -18,6 +17,19 @@ internal class InstructionParserTest {
     }
 
     @Test
+    fun lazyInitAssemblySteps() {
+        val assemblySteps = instructionParser.assemblySteps
+        val assemblySteps2 = instructionParser.assemblySteps
+
+        assertEquals(6, assemblySteps.size)
+        assertEquals("C", assemblySteps[0].id)
+
+        assertEquals(6, assemblySteps2.size)
+        assertEquals("C", assemblySteps2[0].id)
+
+    }
+
+    @Test
     fun parseToAssemblySteps() {
 
         val assemblySteps = instructionParser.parseToAssemblySteps()
@@ -25,4 +37,5 @@ internal class InstructionParserTest {
         assertEquals(6, assemblySteps.size)
         assertEquals("C", assemblySteps[0].id)
     }
+
 }

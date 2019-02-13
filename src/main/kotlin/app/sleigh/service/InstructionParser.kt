@@ -4,15 +4,16 @@ import app.sleigh.model.AssemblyStep
 
 class InstructionParser(private val instructions: List<String>) {
 
-    fun parseToAssemblySteps(): List<AssemblyStep> {
+    val assemblySteps : List<AssemblyStep> by lazy {
+        parseToAssemblySteps()
+    }
 
-        val assemblyStepMap = instructions.flatMap { getStepNamesInSingleInstruction(it) }
+    fun parseToAssemblySteps(): List<AssemblyStep> {
+        return instructions.flatMap { getStepNamesInSingleInstruction(it) }
             .distinct()
             .map {
                 AssemblyStep(it)
             }
-
-        return assemblyStepMap
     }
 
     // quick and dirty
