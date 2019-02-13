@@ -23,6 +23,6 @@ internal class InstructionParserTest {
         val assemblySteps = instructionParser.parseToAssemblySteps()
 
         assertEquals(6, assemblySteps.size)
-        assertEquals(AssemblyStep("C"), assemblySteps[0])
+        assertEquals("C", assemblySteps[0].id)
     }
 }
