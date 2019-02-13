@@ -6,17 +6,16 @@ class InstructionParser(private val instructions: List<String>) {
 
     fun parseToAssemblySteps(): List<AssemblyStep> {
 
-        val assemblyStepMap = instructions.flatMap {
-            parseSingleInstruction(it)
-        }.toMap()
+        val assemblyStepMap = instructions.flatMap { getStepNamesInSingleInstruction(it) }
+            .distinct()
+            .map {
+                AssemblyStep(it)
+            }
 
-        return assemblyStepMap.values.toList()
+        return assemblyStepMap
     }
 
     // quick and dirty
-    private fun parseSingleInstruction(instruction: String): List<Pair<String, AssemblyStep>> =
-        getStepNamesInSingleInstruction(instruction).map { it to AssemblyStep(it) }
-
     private fun getStepNamesInSingleInstruction(instruction: String): List<String> =
         instruction.split(" ").filter { it.length == 1 }
 }
