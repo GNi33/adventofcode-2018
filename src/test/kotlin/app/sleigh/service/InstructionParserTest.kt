@@ -2,8 +2,9 @@ package app.sleigh.service
 
 import app.util.IInputReader
 import app.util.InputReader
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
+import org.junit.Assert.assertEquals
+import org.junit.Test
+import java.util.NoSuchElementException
 
 internal class InstructionParserTest {
 
@@ -26,7 +27,6 @@ internal class InstructionParserTest {
 
         assertEquals(6, assemblySteps2.size)
         assertEquals("C", assemblySteps2[0].id)
-
     }
 
     @Test
@@ -36,6 +36,24 @@ internal class InstructionParserTest {
 
         assertEquals(6, assemblySteps.size)
         assertEquals("C", assemblySteps[0].id)
+    }
+
+    @Test
+    fun linkAssemblySteps() {
+        val assemblySteps = instructionParser.linkSteps()
+        assertEquals(listOf("A", "F"), assemblySteps[0].stepsAfter.map{it.id})
+    }
+
+    @Test(expected = NoSuchElementException::class)
+    fun getNonExistingStep() {
+        instructionParser.getAssemblyStep("Z")
+    }
+
+    @Test
+    fun retrieveCorrectStepOrder() {
+        val stepOrder = instructionParser.retrieveStepOrder()
+
+        assertEquals("CABDFE", stepOrder)
     }
 
 }

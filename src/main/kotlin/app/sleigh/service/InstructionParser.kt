@@ -16,6 +16,46 @@ class InstructionParser(private val instructions: List<String>) {
             }
     }
 
+    fun linkSteps(): List<AssemblyStep> {
+        val stepPairs = getStepPairs()
+
+        stepPairs.forEach {
+            val sourceStep = getAssemblyStep(it.first)
+            val destStep = getAssemblyStep(it.second)
+
+            sourceStep.stepsAfter.add(destStep)
+            destStep.stepsBefore.add(sourceStep)
+        }
+
+        return assemblySteps
+    }
+
+    fun getAssemblyStep(identifier: String): AssemblyStep {
+        return assemblySteps.first {
+            it.id == identifier
+        }
+    }
+
+    fun retrieveStepOrder(): String {
+
+
+
+        return ""
+    }
+
+    private fun getFirstStep(): AssemblyStep {
+        return assemblySteps.first {
+            it.isFirstStep()
+        }
+    }
+
+    private fun getStepPairs(): List<Pair<String, String>> {
+        return instructions.map {
+            val occurringSteps = getStepNamesInSingleInstruction(it)
+            Pair(occurringSteps.first(), occurringSteps.last())
+        }
+    }
+
     // quick and dirty
     private fun getStepNamesInSingleInstruction(instruction: String): List<String> =
         instruction.split(" ").filter { it.length == 1 }
