@@ -51,6 +51,9 @@ internal class InstructionParserTest {
 
     @Test
     fun retrieveCorrectStepOrder() {
+
+        instructionParser.linkSteps()
+
         val stepOrder = instructionParser.retrieveStepOrder()
 
         assertEquals("CABDFE", stepOrder)

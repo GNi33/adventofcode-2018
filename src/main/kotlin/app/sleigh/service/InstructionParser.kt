@@ -38,9 +38,33 @@ class InstructionParser(private val instructions: List<String>) {
 
     fun retrieveStepOrder(): String {
 
+        val firstStep = getFirstStep()
+        val stepsList = processStep(firstStep)
 
+        return stepsList.joinToString("") { it.id }
+    }
 
-        return ""
+    private fun processStep(step: AssemblyStep, processedSteps : Set<AssemblyStep> = setOf(), openSteps : Set<AssemblyStep> = setOf()) : Set<AssemblyStep> {
+
+        val stepsProcessed = processedSteps.union(setOf(step))
+
+        if (step.isLastStep()) {
+            return stepsProcessed
+        }
+
+        val stepsOpen = step.stepsAfter.union(openSteps).filter {
+            !stepsProcessed.contains(it)
+        }.sortedBy {
+            it.id
+        }.toSet()
+
+        // TODO: Think of something nicer than this
+        if (stepsOpen.size > 1 && stepsOpen.first().isLastStep()) {
+            return processStep(stepsOpen.elementAt(1), stepsProcessed, stepsOpen)
+        }
+
+        return processStep(stepsOpen.first(), stepsProcessed, stepsOpen)
+
     }
 
     private fun getFirstStep(): AssemblyStep {
