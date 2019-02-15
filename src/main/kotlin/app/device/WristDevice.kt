@@ -32,7 +32,7 @@ class WristDevice : KoinComponent {
         return boxScanner.getCommonLettersOfFabricBoxes(boxIds)
     }
 
-    fun calculatePolymerReaction() : Int {
+    fun calculatePolymerReaction(): Int {
         val polymer = inputReader.getDataForDay(5).first()
         return polymerCalculator.getProcessedPolymerLength(polymer)
     }
@@ -42,7 +42,7 @@ class WristDevice : KoinComponent {
         return polymerCalculator.getShortestPolymerLength(polymer)
     }
 
-    fun getLargestAreaAroundDestination() : Int {
+    fun getLargestAreaAroundDestination(): Int {
         val destinations = inputReader.getDataForDay(6)
         val destinationMapper = DestinationMapper(destinations)
         destinationMapper.determineAreas()

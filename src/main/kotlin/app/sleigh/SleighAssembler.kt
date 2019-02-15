@@ -9,7 +9,7 @@ class SleighAssembler : KoinComponent {
 
     private val inputReader by inject<IInputReader>()
 
-    fun getOrderOfSteps() : String {
+    fun getOrderOfSteps(): String {
         val sleighAssemblyData = inputReader.getDataForDay(7)
         val instructionParser = InstructionParser(sleighAssemblyData)
 
@@ -17,5 +17,4 @@ class SleighAssembler : KoinComponent {
 
         return instructionParser.retrieveStepOrder()
     }
-
 }

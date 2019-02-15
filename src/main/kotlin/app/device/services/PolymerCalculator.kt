@@ -26,16 +26,16 @@ class PolymerCalculator : IPolymerCalculator {
         return results.minBy { it.value }!!.value
     }
 
-    private fun polymerReaction(polymer: String, match: Regex) : String {
+    private fun polymerReaction(polymer: String, match: Regex): String {
         val result = match.replace(polymer, "")
 
-        return when(polymer == result) {
+        return when (polymer == result) {
             true -> result
             false -> polymerReaction(result, match)
         }
     }
 
-    private fun buildRegex(polymer: String) : Regex {
+    private fun buildRegex(polymer: String): Regex {
         val distinctChars = getDistinctCharacters(polymer)
         val matchList = buildMatchPairList(distinctChars)
 
@@ -46,7 +46,7 @@ class PolymerCalculator : IPolymerCalculator {
         return matchGroupString.toRegex()
     }
 
-    private fun buildSingleRegexList(polymer: String) : List<Regex> {
+    private fun buildSingleRegexList(polymer: String): List<Regex> {
         val distinctChars = getDistinctCharacters(polymer)
 
         return distinctChars.flatMap {

@@ -6,8 +6,8 @@ interface IInputReader {
         MAIN, TEST
     }
 
-    fun getDataFromFile(fileName : String) : List<String>
-    fun getDataForDay(dayNum : Int) : List<String>
+    fun getDataFromFile(fileName: String): List<String>
+    fun getDataForDay(dayNum: Int): List<String>
 
-    fun setReaderMode(modeToSet : MODE)
+    fun setReaderMode(modeToSet: MODE)
 }

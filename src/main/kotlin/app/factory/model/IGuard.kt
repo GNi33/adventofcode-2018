@@ -10,9 +10,9 @@ interface IGuard {
 
     fun wakesUp(dateTime: Date)
 
-    fun getMinutesAsleep() : Int
+    fun getMinutesAsleep(): Int
 
-    fun getMinuteAsleepMostWithCount() : Pair<Int, Int>
+    fun getMinuteAsleepMostWithCount(): Pair<Int, Int>
 
-    fun getMinuteAsleepMost() : Int
+    fun getMinuteAsleepMost(): Int
 }

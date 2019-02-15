@@ -40,7 +40,7 @@ class Guard(override val id: Int) : IGuard {
         val countOfMinutes = getAsleepMinuteCount()
 
         if (countOfMinutes.size < 0) {
-            return Pair(0,0)
+            return Pair(0, 0)
         }
 
         return try {
@@ -49,9 +49,8 @@ class Guard(override val id: Int) : IGuard {
             } ?: throw Exception()
 
             maxMin.toPair()
-
-        } catch (ex : Exception) {
-            Pair(0,0)
+        } catch (ex: Exception) {
+            Pair(0, 0)
         }
     }
 
@@ -61,7 +60,7 @@ class Guard(override val id: Int) : IGuard {
     }
 
     private fun getAsleepMinuteCount(): Map<Int, Int> {
-        val countOfMinutes : MutableMap<Int, Int> = mutableMapOf()
+        val countOfMinutes: MutableMap<Int, Int> = mutableMapOf()
 
         for (guardTime in guardTimes.values) {
             val minutes = guardTime.getListOfMinutes()

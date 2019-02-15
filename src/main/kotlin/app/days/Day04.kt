@@ -13,6 +13,5 @@ class Day04 : IDay {
         println(guardSpy.getAsleepGuardsHash())
         println("Part 02 - Get Guard Hash for Guard Most Frequently asleep at one given minute * that minute")
         println(guardSpy.getMostFrequentlyAsleepGuardHash())
-
     }
 }

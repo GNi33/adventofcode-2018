@@ -43,7 +43,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
 
         for (line in 0 until lineCount) {
             for (col in 0 until colCount) {
-                if (area == map.getValue(line, col) || area == map.getValue(line,col).toUpperCase()) {
+                if (area == map.getValue(line, col) || area == map.getValue(line, col).toUpperCase()) {
                     count++
                 }
             }
@@ -66,7 +66,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
         val edgeValues = map.getEdgeValues()
 
         return edgeValues.flatMap {
-            it.map {s ->
+            it.map { s ->
                 s.toUpperCase()
             }
         }.distinct()
@@ -85,7 +85,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
         val alphabet = CharArray(26) { (it + 97).toChar() }
 
         val identifiers = upperAlph.map {
-            alphabet.map {c ->
+            alphabet.map { c ->
                 "$it$c"
             }
         }.flatten()

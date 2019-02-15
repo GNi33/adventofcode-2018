@@ -14,7 +14,7 @@ class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
         }
     }
 
-    operator fun get(x: Int) : Array<T> {
+    operator fun get(x: Int): Array<T> {
         return array[x]
     }
 

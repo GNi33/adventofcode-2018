@@ -9,8 +9,8 @@ import java.util.NoSuchElementException
 internal class InstructionParserTest {
 
     private val inputReader = InputReader(IInputReader.MODE.TEST)
-    private val testInput : List<String>
-    private val instructionParser : InstructionParser
+    private val testInput: List<String>
+    private val instructionParser: InstructionParser
 
     init {
         testInput = inputReader.getDataForDay(7)
@@ -41,7 +41,7 @@ internal class InstructionParserTest {
     @Test
     fun linkAssemblySteps() {
         val assemblySteps = instructionParser.linkSteps()
-        assertEquals(listOf("A", "F"), assemblySteps[0].stepsAfter.map{it.id})
+        assertEquals(listOf("A", "F"), assemblySteps[0].stepsAfter.map { it.id })
     }
 
     @Test(expected = NoSuchElementException::class)
@@ -58,5 +58,4 @@ internal class InstructionParserTest {
 
         assertEquals("CABDFE", stepOrder)
     }
-
 }

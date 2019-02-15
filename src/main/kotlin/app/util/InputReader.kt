@@ -22,7 +22,7 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         mode = modeToSet
     }
 
-    private fun getFullFilePath(fileName: String) : String = when (mode) {
+    private fun getFullFilePath(fileName: String): String = when (mode) {
         IInputReader.MODE.MAIN -> "src/main/resources/$fileName"
         IInputReader.MODE.TEST -> "src/test/resources/$fileName"
     }

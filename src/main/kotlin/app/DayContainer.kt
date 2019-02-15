@@ -15,7 +15,7 @@ class DayContainer {
     }
 
     fun runAllDays() {
-        for (day in 1 .. TOTAL_DAYS) {
+        for (day in 1..TOTAL_DAYS) {
             try {
                 getDay(day).run()
             } catch (ex: Exception) {
@@ -36,5 +36,4 @@ class DayContainer {
             else -> throw Exception("Day $day not found")
         }
     }
-
 }

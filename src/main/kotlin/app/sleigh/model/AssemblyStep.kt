@@ -2,7 +2,7 @@ package app.sleigh.model
 
 class AssemblyStep(val id: String) {
 
-    val stepsBefore : MutableSet<AssemblyStep> = mutableSetOf()
+    val stepsBefore: MutableSet<AssemblyStep> = mutableSetOf()
     val stepsAfter: MutableSet<AssemblyStep> = mutableSetOf()
 
     fun isFirstStep(): Boolean {
@@ -13,7 +13,7 @@ class AssemblyStep(val id: String) {
         return stepsAfter.isEmpty()
     }
 
-    fun arePrerequisitsComplete(openSteps: Set<AssemblyStep>) : Boolean {
+    fun arePrerequisitsComplete(openSteps: Set<AssemblyStep>): Boolean {
         return stepsBefore.intersect(openSteps).isEmpty()
     }
 }

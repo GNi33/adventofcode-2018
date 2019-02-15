@@ -14,6 +14,5 @@ class Day06 : IDay {
 
         println("Part 02 - Get Area Size closest to all destinations (limit 10000)")
         println(wristDevice.getAreaSizeClosestToDestinations())
-
     }
 }

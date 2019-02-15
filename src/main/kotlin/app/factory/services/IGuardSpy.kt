@@ -12,9 +12,9 @@ interface IGuardSpy {
 
     fun getGuardAsleepMostFrequent(guards: Map<Int, IGuard>): IGuard
 
-    fun getMinuteMostAsleep(guard : IGuard) : Int
+    fun getMinuteMostAsleep(guard: IGuard): Int
 
-    fun getAsleepGuardsHash() : Int
+    fun getAsleepGuardsHash(): Int
 
-    fun getMostFrequentlyAsleepGuardHash() : Int
+    fun getMostFrequentlyAsleepGuardHash(): Int
 }

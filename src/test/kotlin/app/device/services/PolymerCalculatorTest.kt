@@ -10,7 +10,6 @@ internal class PolymerCalculatorTest {
 
     private val inputReader = InputReader(IInputReader.MODE.TEST)
 
-
     @Test
     fun processPolymerReaction() {
         val polymerCalc = PolymerCalculator()

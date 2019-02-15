@@ -175,6 +175,4 @@ class DestinationMap(private val coords: Map<String, Point>) {
     fun getValue(line: Int, col: Int): String {
         return matrix[line, col]
     }
-
-
 }

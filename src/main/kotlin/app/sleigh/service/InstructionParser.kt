@@ -4,7 +4,7 @@ import app.sleigh.model.AssemblyStep
 
 class InstructionParser(private val instructions: List<String>) {
 
-    val assemblySteps : List<AssemblyStep> by lazy {
+    val assemblySteps: List<AssemblyStep> by lazy {
         parseToAssemblySteps()
     }
 
@@ -48,7 +48,7 @@ class InstructionParser(private val instructions: List<String>) {
         return stepsList.joinToString("") { it.id }
     }
 
-    private fun processStep(step: AssemblyStep, processedSteps : Set<AssemblyStep> = setOf(), openSteps : Set<AssemblyStep> = setOf()) : Set<AssemblyStep> {
+    private fun processStep(step: AssemblyStep, processedSteps: Set<AssemblyStep> = setOf(), openSteps: Set<AssemblyStep> = setOf()): Set<AssemblyStep> {
 
         val stepsProcessed = processedSteps.union(setOf(step))
 
@@ -79,7 +79,7 @@ class InstructionParser(private val instructions: List<String>) {
         }.sortedBy { it.id }
     }
 
-    private fun getLastSteps() : List<AssemblyStep> {
+    private fun getLastSteps(): List<AssemblyStep> {
         return assemblySteps.filter {
             it.isLastStep()
         }
