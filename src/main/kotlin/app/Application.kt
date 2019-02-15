@@ -1,12 +1,8 @@
 package app
 
-import app.device.WristDevice
 import app.device.services.*
-import app.factory.FactoryManager
 import app.factory.services.FabricCalculator
-import app.factory.services.GuardSpy
 import app.factory.services.IFabricCalculator
-import app.sleigh.SleighAssembler
 import app.util.IInputReader
 import app.util.InputReader
 import org.koin.dsl.module.module
@@ -21,66 +17,24 @@ fun main(args: Array<String>) {
     app.run()
 }
 
-class Application(argv: Array<String>) {
+class Application(private val argv: Array<String>) {
 
-    private val wristDevice = WristDevice()
-    private val factoryManager = FactoryManager()
-    private val guardSpy = GuardSpy()
-    private val sleighAssembler = SleighAssembler()
+    private val dayContainer = DayContainer()
 
     fun run() {
-        println("Day 01")
-        println(wristDevice.calibrate())
-        println(wristDevice.firstDoubleFrequency())
-
-        println("Day 02")
-        println("Part 01 - Get box Id")
-        println(wristDevice.scanBoxes())
-        println("Part 02 - Print common letters on the boxes")
-        println(wristDevice.retrieveCommonLettersOfFabricBoxes())
-
-        println("Day 03")
-        println("Part 01 - Calculate Fabric Overlap")
-        println(factoryManager.calculateFabricOverlap())
-        println("Part 02 - Print only claim that is not overlapping")
-        println(factoryManager.getNonOverlappingClaim())
-
-        println("Day 04")
-
-        println("Part 01 - Get Guard Hash for Guard Most asleep * Minute most asleep")
-        println(guardSpy.getAsleepGuardsHash())
-        println("Part 02 - Get Guard Hash for Guard Most Frequently asleep at one given minute * that minute")
-        println(guardSpy.getMostFrequentlyAsleepGuardHash())
-
-        /*
-        Not execute that for now as it takes too long
-
-        TODO: Make days selectable when starting application
-
-        println("Day 05")
-        println("Part 01 - Calculate Polymer Reaction and return number of units (characters) of result")
-        println(wristDevice.calculatePolymerReaction())
-        println("Part 02 - Calculate shortest Polymer")
-        println(wristDevice.calculateShortestPolymerReaction())
-        */
-
-        println("Day 06")
-        println("Part 01 - Get Largest Area of Destination")
-        println(wristDevice.getLargestAreaAroundDestination())
-
-        println("Part 02 - Get Area Size closest to all destinations (limit 10000)")
-        println(wristDevice.getAreaSizeClosestToDestinations())
-
-        println("Day 07")
-        println("Part 01 - Get correct order of Steps")
-        println(sleighAssembler.getOrderOfSteps())
+        if (argv.isNotEmpty()) {
+            val daysToRun = argv.map { it.toInt() }
+            dayContainer.runDays(daysToRun)
+        } else {
+            dayContainer.runAllDays()
+        }
     }
 }
 
 val dependenciesModule = module {
-    single { InputReader() as IInputReader}
+    single { InputReader() as IInputReader }
     single { CalibrationService() as ICalibrationService }
     single { BoxScanner() as IBoxScanner }
     single { FabricCalculator() as IFabricCalculator }
-    single { PolymerCalculator() as IPolymerCalculator}
+    single { PolymerCalculator() as IPolymerCalculator }
 }
