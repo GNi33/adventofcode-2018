@@ -6,6 +6,7 @@ import app.factory.FactoryManager
 import app.factory.services.FabricCalculator
 import app.factory.services.GuardSpy
 import app.factory.services.IFabricCalculator
+import app.sleigh.SleighAssembler
 import app.util.IInputReader
 import app.util.InputReader
 import org.koin.dsl.module.module
@@ -25,6 +26,7 @@ class Application(argv: Array<String>) {
     private val wristDevice = WristDevice()
     private val factoryManager = FactoryManager()
     private val guardSpy = GuardSpy()
+    private val sleighAssembler = SleighAssembler()
 
     fun run() {
         println("Day 01")
@@ -68,6 +70,10 @@ class Application(argv: Array<String>) {
 
         println("Part 02 - Get Area Size closest to all destinations (limit 10000)")
         println(wristDevice.getAreaSizeClosestToDestinations())
+
+        println("Day 07")
+        println("Part 01 - Get correct order of Steps")
+        println(sleighAssembler.getOrderOfSteps())
     }
 }
 

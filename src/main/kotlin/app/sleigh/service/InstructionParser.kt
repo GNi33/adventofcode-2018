@@ -38,8 +38,12 @@ class InstructionParser(private val instructions: List<String>) {
 
     fun retrieveStepOrder(): String {
 
-        val firstStep = getFirstStep()
-        val stepsList = processStep(firstStep)
+        // TODO this should be nicer
+        val firstSteps = getFirstSteps()
+        val firstStep = firstSteps.first()
+        val otherSteps = firstSteps.filter { it.id != firstStep.id }.toSet()
+
+        val stepsList = processStep(firstStep, openSteps = otherSteps)
 
         return stepsList.joinToString("") { it.id }
     }
@@ -58,18 +62,26 @@ class InstructionParser(private val instructions: List<String>) {
             it.id
         }.toSet()
 
-        // TODO: Think of something nicer than this
-        if (stepsOpen.size > 1 && stepsOpen.first().isLastStep()) {
-            return processStep(stepsOpen.elementAt(1), stepsProcessed, stepsOpen)
+        // TODO it should be possible to make this nicer
+        for (openStep in stepsOpen) {
+            if (openStep.arePrerequisitsComplete(stepsOpen)) {
+                return processStep(openStep, stepsProcessed, stepsOpen)
+            }
         }
 
-        return processStep(stepsOpen.first(), stepsProcessed, stepsOpen)
-
+        // TODO better exception
+        throw Exception("No valid Step found to proceed further. Something went seriously wrong")
     }
 
-    private fun getFirstStep(): AssemblyStep {
-        return assemblySteps.first {
+    private fun getFirstSteps(): List<AssemblyStep> {
+        return assemblySteps.filter {
             it.isFirstStep()
+        }.sortedBy { it.id }
+    }
+
+    private fun getLastSteps() : List<AssemblyStep> {
+        return assemblySteps.filter {
+            it.isLastStep()
         }
     }
 

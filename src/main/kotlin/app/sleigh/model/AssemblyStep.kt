@@ -12,4 +12,8 @@ class AssemblyStep(val id: String) {
     fun isLastStep(): Boolean {
         return stepsAfter.isEmpty()
     }
+
+    fun arePrerequisitsComplete(openSteps: Set<AssemblyStep>) : Boolean {
+        return stepsBefore.intersect(openSteps).isEmpty()
+    }
 }
