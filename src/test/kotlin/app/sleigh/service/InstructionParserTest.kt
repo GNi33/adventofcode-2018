@@ -58,4 +58,12 @@ internal class InstructionParserTest {
 
         assertEquals("CABDFE", stepOrder)
     }
+
+    @Test
+    fun getStepDuration() {
+
+        val assemblySteps = instructionParser.parseToAssemblySteps()
+
+        assertEquals(63, assemblySteps[0].duration)
+    }
 }
