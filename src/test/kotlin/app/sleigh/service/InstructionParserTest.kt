@@ -1,5 +1,6 @@
 package app.sleigh.service
 
+import app.sleigh.model.AssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
 import org.junit.Assert.assertEquals
@@ -52,9 +53,10 @@ internal class InstructionParserTest {
     @Test
     fun retrieveCorrectStepOrder() {
 
-        instructionParser.linkSteps()
+        val linkedSteps = instructionParser.linkSteps()
 
-        val stepOrder = instructionParser.retrieveStepOrder()
+        val stepProcessor = StepProcessor(linkedSteps)
+        val stepOrder = instructionParser.retrieveStepOrder(stepProcessor)
 
         assertEquals("CABDFE", stepOrder)
     }
@@ -62,8 +64,32 @@ internal class InstructionParserTest {
     @Test
     fun getStepDuration() {
 
-        val assemblySteps = instructionParser.parseToAssemblySteps()
+        val assemblyStepA = AssemblyStep("A")
+        val assemblyStepC = AssemblyStep("C")
+        val assemblyStepZ = AssemblyStep("Z")
 
-        assertEquals(63, assemblySteps[0].duration)
+        assertEquals(61, assemblyStepA.duration)
+        assertEquals(63, assemblyStepC.duration)
+        assertEquals(86, assemblyStepZ.duration)
+    }
+
+    @Test
+    fun retrieveTimedStepOrder() {
+        val linkedSteps = instructionParser.linkSteps()
+
+        val stepProcessor = TimedStepProcessor(linkedSteps,2)
+        val stepOrder = instructionParser.retrieveStepOrder(stepProcessor)
+
+        assertEquals("CABFDE", stepOrder)
+    }
+
+    @Test
+    fun retrieveTimedAssemblyDuration() {
+        val linkedSteps = instructionParser.linkSteps()
+
+        val stepProcessor = TimedStepProcessor(linkedSteps,2)
+        val assemblyDuration = instructionParser.retrieveAssemblyDuration(stepProcessor)
+
+        assertEquals(15, assemblyDuration)
     }
 }

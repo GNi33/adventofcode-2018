@@ -36,53 +36,14 @@ class InstructionParser(private val instructions: List<String>) {
         }
     }
 
-    fun retrieveStepOrder(): String {
-
-        // TODO this should be nicer
-        val firstSteps = getFirstSteps()
-        val firstStep = firstSteps.first()
-        val otherSteps = firstSteps.filter { it.id != firstStep.id }.toSet()
-
-        val stepsList = processStep(firstStep, openSteps = otherSteps)
-
+    fun retrieveStepOrder(stepProcessor: IStepProcessor): String {
+        val stepsList = stepProcessor.workOnSteps()
         return stepsList.joinToString("") { it.id }
     }
 
-    private fun processStep(step: AssemblyStep, processedSteps: Set<AssemblyStep> = setOf(), openSteps: Set<AssemblyStep> = setOf()): Set<AssemblyStep> {
-
-        val stepsProcessed = processedSteps.union(setOf(step))
-
-        if (step.isLastStep()) {
-            return stepsProcessed
-        }
-
-        val stepsOpen = step.stepsAfter.union(openSteps).filter {
-            !stepsProcessed.contains(it)
-        }.sortedBy {
-            it.id
-        }.toSet()
-
-        // TODO it should be possible to make this nicer
-        for (openStep in stepsOpen) {
-            if (openStep.arePrerequisitsComplete(stepsOpen)) {
-                return processStep(openStep, stepsProcessed, stepsOpen)
-            }
-        }
-
-        // TODO better exception
-        throw Exception("No valid Step found to proceed further. Something went seriously wrong")
-    }
-
-    private fun getFirstSteps(): List<AssemblyStep> {
-        return assemblySteps.filter {
-            it.isFirstStep()
-        }.sortedBy { it.id }
-    }
-
-    private fun getLastSteps(): List<AssemblyStep> {
-        return assemblySteps.filter {
-            it.isLastStep()
-        }
+    fun retrieveAssemblyDuration(stepProcessor: IStepProcessor): Int {
+        stepProcessor.workOnSteps()
+        return stepProcessor.getElapsedTime()
     }
 
     private fun getStepPairs(): List<Pair<String, String>> {
