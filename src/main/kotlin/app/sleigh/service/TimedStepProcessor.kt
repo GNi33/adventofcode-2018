@@ -1,12 +1,14 @@
 package app.sleigh.service
 
 import app.sleigh.model.AssemblyStep
+import app.sleigh.model.IAssemblyStep
 
-class TimedStepProcessor(private val assemblySteps: List<AssemblyStep>, private val numWorkers: Int) : IStepProcessor {
+class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private val numWorkers: Int) : IStepProcessor {
 
     var elapsedSeconds = 0
+    var workersOccupied = 0
 
-    override fun workOnSteps(): Set<AssemblyStep> {
+    override fun workOnSteps(): Set<IAssemblyStep> {
 
         val firstSteps = getFirstSteps()
 
@@ -15,6 +17,10 @@ class TimedStepProcessor(private val assemblySteps: List<AssemblyStep>, private 
 
     override fun getElapsedTime(): Int {
         return elapsedSeconds
+    }
+
+    fun processSecond() {
+
     }
 
     fun processStep(
@@ -28,7 +34,7 @@ class TimedStepProcessor(private val assemblySteps: List<AssemblyStep>, private 
 
     }
 
-    private fun getFirstSteps(): List<AssemblyStep> {
+    private fun getFirstSteps(): List<IAssemblyStep> {
         return assemblySteps.filter {
             it.isFirstStep()
         }.sortedBy { it.id }

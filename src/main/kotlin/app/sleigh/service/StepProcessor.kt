@@ -1,12 +1,12 @@
 package app.sleigh.service
 
-import app.sleigh.model.AssemblyStep
+import app.sleigh.model.IAssemblyStep
 
-class StepProcessor(private val assemblySteps : List<AssemblyStep>) : IStepProcessor {
+class StepProcessor(private val assemblySteps : List<IAssemblyStep>) : IStepProcessor {
 
     var elapsedSeconds = 0
 
-    override fun workOnSteps() : Set<AssemblyStep> {
+    override fun workOnSteps() : Set<IAssemblyStep> {
         // TODO this should be nicer
         val firstSteps = getFirstSteps()
         val firstStep = firstSteps.first()
@@ -20,10 +20,10 @@ class StepProcessor(private val assemblySteps : List<AssemblyStep>) : IStepProce
     }
 
     private fun processStep(
-        step: AssemblyStep,
-        processedSteps: Set<AssemblyStep> = setOf(),
-        openSteps: Set<AssemblyStep> = setOf()
-    ): Set<AssemblyStep> {
+        step: IAssemblyStep,
+        processedSteps: Set<IAssemblyStep> = setOf(),
+        openSteps: Set<IAssemblyStep> = setOf()
+    ): Set<IAssemblyStep> {
 
         val stepsProcessed = processedSteps.union(setOf(step))
         elapsedSeconds += 1
@@ -49,7 +49,7 @@ class StepProcessor(private val assemblySteps : List<AssemblyStep>) : IStepProce
         throw Exception("No valid Step found to proceed further. Something went seriously wrong")
     }
 
-    private fun getFirstSteps(): List<AssemblyStep> {
+    private fun getFirstSteps(): List<IAssemblyStep> {
         return assemblySteps.filter {
             it.isFirstStep()
         }.sortedBy { it.id }

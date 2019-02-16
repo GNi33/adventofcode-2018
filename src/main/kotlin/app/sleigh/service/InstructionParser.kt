@@ -1,22 +1,26 @@
 package app.sleigh.service
 
-import app.sleigh.model.AssemblyStep
+import app.sleigh.model.IAssemblyStep
+import org.koin.core.parameter.parametersOf
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
-class InstructionParser(private val instructions: List<String>) {
+class InstructionParser(private val instructions: List<String>) : KoinComponent {
 
-    val assemblySteps: List<AssemblyStep> by lazy {
+    val assemblySteps: List<IAssemblyStep> by lazy {
         parseToAssemblySteps()
     }
 
-    fun parseToAssemblySteps(): List<AssemblyStep> {
+    fun parseToAssemblySteps(): List<IAssemblyStep> {
         return instructions.flatMap { getStepNamesInSingleInstruction(it) }
             .distinct()
             .map {
-                AssemblyStep(it)
+                val assemblyStep : IAssemblyStep by inject { parametersOf(it)}
+                assemblyStep
             }
     }
 
-    fun linkSteps(): List<AssemblyStep> {
+    fun linkSteps(): List<IAssemblyStep> {
         val stepPairs = getStepPairs()
 
         stepPairs.forEach {
@@ -30,7 +34,7 @@ class InstructionParser(private val instructions: List<String>) {
         return assemblySteps
     }
 
-    fun getAssemblyStep(identifier: String): AssemblyStep {
+    fun getAssemblyStep(identifier: String): IAssemblyStep {
         return assemblySteps.first {
             it.id == identifier
         }

@@ -13,11 +13,10 @@ class SleighAssembler : KoinComponent {
     fun getOrderOfSteps(): String {
         val sleighAssemblyData = inputReader.getDataForDay(7)
         val instructionParser = InstructionParser(sleighAssemblyData)
+
         val linkedSteps = instructionParser.linkSteps()
 
-
         val stepProcessor = StepProcessor(linkedSteps)
-
 
         return instructionParser.retrieveStepOrder(stepProcessor)
     }

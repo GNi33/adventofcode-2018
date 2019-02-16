@@ -1,14 +1,12 @@
 package app.sleigh.model
 
-import app.days.STEP_BASE_TIME
-
-class AssemblyStep(override val id: String) : IAssemblyStep {
+class TestAssemblyStep(override val id: String) : IAssemblyStep {
 
     override val stepsBefore: MutableSet<IAssemblyStep> = mutableSetOf()
     override val stepsAfter: MutableSet<IAssemblyStep> = mutableSetOf()
 
     val duration: Int by lazy {
-        STEP_BASE_TIME + (id.first() - 'A' + 1)
+        id.first() - 'A' + 1
     }
 
     override fun isFirstStep(): Boolean {
