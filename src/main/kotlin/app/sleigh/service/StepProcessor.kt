@@ -40,7 +40,7 @@ class StepProcessor(private val assemblySteps : List<AssemblyStep>) : IStepProce
 
         // TODO it should be possible to make this nicer
         for (openStep in stepsOpen) {
-            if (openStep.arePrerequisitsComplete(stepsOpen)) {
+            if (openStep.arePrerequisitesComplete(stepsOpen)) {
                 return processStep(openStep, stepsProcessed, stepsOpen)
             }
         }

@@ -19,7 +19,7 @@ class AssemblyStep(val id: String) {
         return stepsAfter.isEmpty()
     }
 
-    fun arePrerequisitsComplete(openSteps: Set<AssemblyStep>): Boolean {
+    fun arePrerequisitesComplete(openSteps: Set<AssemblyStep>): Boolean {
         return stepsBefore.intersect(openSteps).isEmpty()
     }
 }
