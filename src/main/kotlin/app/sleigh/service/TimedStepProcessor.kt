@@ -34,7 +34,6 @@ class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private
         val stepsInProcess = getTasksInProgress()
 
         val doneWorkers = getWorkersWithDoneTasks()
-
         for (worker in doneWorkers) {
             worker.removeTask()
         }
@@ -54,13 +53,19 @@ class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private
             return stepsProcessed
         }
 
-        if (stepsToProcess.isNotEmpty()) {
+        val stepsToStart = stepsToProcess.filter {
+            !stepsInProcess.contains(it) && it.arePrerequisitesComplete(stepsToProcess)
+        }.sortedBy {
+            it.id
+        }.toSet()
 
-            val stepsCount = stepsToProcess.size
+        if (stepsToStart.isNotEmpty()) {
+
+            val stepsCount = stepsToStart.size
 
             for (num in 0 until stepsCount) {
                 if (idleWorkers.size > num) {
-                    idleWorkers[num].addTask(stepsToProcess.elementAt(num))
+                    idleWorkers[num].addTask(stepsToStart.elementAt(num))
                 }
             }
         }
@@ -71,7 +76,7 @@ class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private
             }
         }
 
-        println("$elapsedSeconds - ${stepsProcessed.map { it.id }.joinToString { "" }}")
+        println("$elapsedSeconds - ${stepsProcessed.map { it.id }}")
         for (worker in workers) {
             println("${worker.getName()} - ${worker.assignedTask?.id}")
         }
