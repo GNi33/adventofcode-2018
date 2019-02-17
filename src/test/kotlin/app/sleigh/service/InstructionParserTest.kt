@@ -9,8 +9,8 @@ import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
-import org.junit.jupiter.api.TestInstance
 import org.koin.dsl.module.module
+import org.koin.log.EmptyLogger
 import org.koin.standalone.StandAloneContext.startKoin
 import org.koin.standalone.StandAloneContext.stopKoin
 import org.koin.test.KoinTest
@@ -25,19 +25,19 @@ internal class InstructionParserTest : KoinTest {
     init {
         testInput = inputReader.getDataForDay(7)
         instructionParser = InstructionParser(testInput)
-
     }
 
     @Before
     fun before() {
         startKoin(listOf(module {
             factory { (id: String) -> TestAssemblyStep(id) as IAssemblyStep }
-        }))
+        }), logger = EmptyLogger())
     }
 
     @After
     fun after() {
         stopKoin()
+
     }
 
     @Test

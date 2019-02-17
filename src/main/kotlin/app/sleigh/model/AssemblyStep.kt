@@ -7,7 +7,11 @@ class AssemblyStep(override val id: String) : IAssemblyStep {
     override val stepsBefore: MutableSet<IAssemblyStep> = mutableSetOf()
     override val stepsAfter: MutableSet<IAssemblyStep> = mutableSetOf()
 
-    val duration: Int by lazy {
+    override var progress: Int = 0
+    override var isInProgress: Boolean = false
+    override var isDone: Boolean = false
+
+    override val duration: Int by lazy {
         STEP_BASE_TIME + (id.first() - 'A' + 1)
     }
 
