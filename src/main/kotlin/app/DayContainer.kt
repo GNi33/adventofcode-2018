@@ -33,6 +33,7 @@ class DayContainer {
             5 -> Day05()
             6 -> Day06()
             7 -> Day07()
+            8 -> Day08()
             else -> throw Exception("Day $day not found")
         }
     }
