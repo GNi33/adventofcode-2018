@@ -21,4 +21,9 @@ internal class LicenseParserTest {
     fun getMetaDataSum() {
         assertEquals(138, licenseParser.getMetaDataSum())
     }
+
+    @Test
+    fun getValueOfRootNode() {
+        assertEquals(66, licenseParser.getValueOfRootNode())
+    }
 }
