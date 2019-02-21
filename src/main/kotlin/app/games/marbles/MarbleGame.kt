@@ -17,15 +17,8 @@ class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {
 
             if (marbleNum % 23 == 0) {
 
-                println("Current Index: $current")
-                println("Current Size: ${marbleCircle.size}")
-
                 val idxToRemove = getToRemoveMarbleIndex()
-
-                println("Index to remove: $idxToRemove")
-
                 val addToScore = marbleCircle.get(idxToRemove)
-                println("Removed marble: $addToScore")
 
                 players[currentPlayer - 1] += (marbleNum + addToScore)
                 marbleCircle.removeAt(idxToRemove)
