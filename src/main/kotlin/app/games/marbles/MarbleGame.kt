@@ -1,46 +1,35 @@
 package app.games.marbles
 
-import java.util.LinkedList
+import java.util.Deque
+import java.util.ArrayDeque
 import kotlin.math.abs
 
 class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {
 
-    val marbleCircle: LinkedList<Int> = LinkedList(listOf(0))
-    var current: Int = 0
-    val players = Array(numOfPlayers) { 0 }
-
+    private val marbleCircle: Deque<Int> = ArrayDeque(listOf(0))
+    private val players = LongArray(numOfPlayers) { 0 }
 
     fun playGame() {
         (1..numOfMarbles).forEach { marbleNum ->
-
-            val currentPlayer = getCurrentPlayer(marbleNum)
-
             if (marbleNum % 23 == 0) {
-
-                val idxToRemove = getToRemoveMarbleIndex()
-                val addToScore = marbleCircle.get(idxToRemove)
-
-                players[currentPlayer - 1] += (marbleNum + addToScore)
-                marbleCircle.removeAt(idxToRemove)
-
-                current = idxToRemove
+                val currentPlayer = getCurrentPlayer(marbleNum)
+                rotateCircle(-7)
+                players[currentPlayer - 1] += (marbleNum.toLong() + marbleCircle.pop())
             } else {
-                val newIndex= getIndexOfNewMarble()
-                marbleCircle.add(newIndex, marbleNum)
-
-                current = newIndex
+                rotateCircle(2)
+                marbleCircle.addFirst(marbleNum)
             }
         }
     }
 
-    fun getWinner(): Pair<Int, Int> {
+    fun getWinner(): Pair<Int, Long> {
         val winningScore = getWinningScore()
         val winningPlayer  = players.indexOf(winningScore) + 1
 
         return Pair(winningPlayer, winningScore)
     }
 
-    fun getWinningScore() : Int = players.max() ?: throw Exception()
+    fun getWinningScore() : Long = players.max() ?: throw Exception()
 
     private fun getCurrentPlayer(marbleNum: Int): Int {
         return when ((marbleNum % numOfPlayers)) {
@@ -49,25 +38,17 @@ class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {
         }
     }
 
-    private fun getIndexOfNewMarble(): Int {
+    private fun rotateCircle(steps : Int) {
+        if (steps >= 0) {
+            repeat((0 until steps).count()) {
+                marbleCircle.addLast(marbleCircle.removeFirst())
+            }
+        } else {
+            repeat((0 until abs(steps)).count()) {
+                marbleCircle.addFirst(marbleCircle.removeLast())
+            }
 
-        return when (marbleCircle.size) {
-            1 -> 1
-            current + 1 -> 1
-            current + 2 -> marbleCircle.size
-            else -> current + 2
         }
-    }
-
-    private fun getToRemoveMarbleIndex(): Int {
-
-        val idx = current - 7
-
-        if (idx < 0) {
-            return marbleCircle.size - abs(idx)
-        }
-
-        return idx
     }
 
 }
