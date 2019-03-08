@@ -17,7 +17,8 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         10 to "light-positions.txt"
     )
 
-    override fun getDataFromFile(fileName: String): List<String> = File(getFullFilePath(fileName)).useLines { it.toList() }
+    override fun getDataFromFile(fileName: String): List<String> =
+        File(getFullFilePath(fileName)).useLines { it.toList() }
 
     override fun getDataForDay(dayNum: Int): List<String> = getDataFromFile(dayInputs[dayNum]!!)
 

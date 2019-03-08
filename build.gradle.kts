@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.10"
+    kotlin("jvm") version "1.3.21"
     id("org.jmailen.kotlinter") version "1.20.1"
-    id("io.gitlab.arturbosch.detekt") version("1.0.0-RC12")
+    id("io.gitlab.arturbosch.detekt") version("1.0.0-RC14")
 }
 
 group = "lbdot"
@@ -28,8 +28,9 @@ dependencies {
 }
 
 detekt {
-    toolVersion = "1.0.0-RC12"
+    toolVersion = "1.0.0-RC14"
     input = files("src/main/kotlin")
+    config = files("var/config/detekt/detekt-config.yml")
     filters = ".*/resources/.*,.*/build/.*"
 }
 
