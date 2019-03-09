@@ -14,7 +14,8 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         7 to "sleigh-assembly-steps.txt",
         8 to "navigation-license-file.txt",
         9 to "marble-game.txt",
-        10 to "light-positions.txt"
+        10 to "light-positions.txt",
+        11 to "fuel-grid-serial-number.txt"
     )
 
     override fun getDataFromFile(fileName: String): List<String> =
