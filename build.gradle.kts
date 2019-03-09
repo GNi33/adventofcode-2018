@@ -19,6 +19,8 @@ dependencies {
 
     implementation("org.koin:koin-core:1.0.2")
 
+    implementation("org.reflections", "reflections", "0.9.11")
+
     // Test Dependencies
     testImplementation("org.koin:koin-test:1.0.2")
 

@@ -1,8 +1,11 @@
 package app
 
 import app.days.*
+import org.reflections.Reflections
 
 class DayContainer {
+
+    private val reflect = Reflections("app.days")
 
     companion object {
         const val TOTAL_DAYS = 25
@@ -25,18 +28,23 @@ class DayContainer {
     }
 
     private fun getDay(day: Int): IDay {
-        return when (day) {
-            1 -> Day01()
-            2 -> Day02()
-            3 -> Day03()
-            4 -> Day04()
-            5 -> Day05()
-            6 -> Day06()
-            7 -> Day07()
-            8 -> Day08()
-            9 -> Day09()
-            10 -> Day10()
-            else -> throw Exception("Day $day not found")
+
+        val dayClass = getDayClass(day)
+
+        dayClass?.let {
+            return dayClass.newInstance()
+        }
+
+        throw Exception("Day $day not found")
+    }
+
+    private fun getDayClass(day: Int) : Class<out IDay>? {
+        val dayNum = day.toString().padStart(2, '0')
+
+        return getAllDayClasses()?.find {
+            it.simpleName == "Day$dayNum"
         }
     }
+
+    private fun getAllDayClasses(): MutableSet<Class<out IDay>>? = reflect.getSubTypesOf(IDay::class.java)
 }
