@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.3.21"
-    id("org.jmailen.kotlinter") version "1.20.1"
+    id("org.jmailen.kotlinter") version "1.21.0"
     id("io.gitlab.arturbosch.detekt") version("1.0.0-RC14")
 }
 
