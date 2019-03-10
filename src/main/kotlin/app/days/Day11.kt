@@ -17,6 +17,11 @@ class Day11 : IDay {
 
         println("${largestCell.x}, ${largestCell.y}")
 
+        println("Part 03 - Get square with largest total power over all sizes")
+
+        val largestCellOverSizes = fuelDisplay.getLargestTotalOverSizes()
+
+        println("${largestCellOverSizes.x}, ${largestCellOverSizes.y}")
     }
 
 }
