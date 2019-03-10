@@ -1,16 +1,10 @@
 package app.device.model
 
-import app.device.license.LicenseParser
-import app.util.IInputReader
-import app.util.InputReader
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 
 internal class FuelGridTest {
-
-    private val inputReader = InputReader(IInputReader.MODE.TEST)
-    private val input = inputReader.getDataForDay(11)
 
     @Test
     fun calculateCellPower() {
@@ -24,5 +18,20 @@ internal class FuelGridTest {
         assertEquals(-5, fuelGrid57.getCellPowerAt(122,79))
         assertEquals(0, fuelGrid39.getCellPowerAt(217,196))
         assertEquals(4, fuelGrid71.getCellPowerAt(101,153))
+    }
+
+    @Test
+    fun getLargestTotal() {
+        val fuelGrid18 = FuelGrid(18)
+        val fuelGrid42 = FuelGrid(42)
+
+        val largestCell18 = fuelGrid18.calculateLargestTotal()
+        val largestCell42 = fuelGrid42.calculateLargestTotal()
+
+        assertEquals(33, largestCell18.x)
+        assertEquals(45, largestCell18.y)
+
+        assertEquals(21, largestCell42.x)
+        assertEquals(61, largestCell42.y)
     }
 }

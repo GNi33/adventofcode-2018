@@ -1,5 +1,6 @@
 package app.days
 
+import app.device.fuelgrid.FuelDisplay
 import app.util.InputReader
 
 class Day11 : IDay {
@@ -11,7 +12,11 @@ class Day11 : IDay {
         println("Day 11")
         println("Part 01 - Get square with largest total power")
 
-        
+        val fuelDisplay = FuelDisplay(input.first().toInt())
+        val largestCell = fuelDisplay.getLargestTotal()
+
+        println("${largestCell.x}, ${largestCell.y}")
+
     }
 
 }
