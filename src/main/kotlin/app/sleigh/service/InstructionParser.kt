@@ -15,7 +15,7 @@ class InstructionParser(private val instructions: List<String>) : KoinComponent 
         return instructions.flatMap { getStepNamesInSingleInstruction(it) }
             .distinct()
             .map {
-                val assemblyStep : IAssemblyStep by inject { parametersOf(it)}
+                val assemblyStep: IAssemblyStep by inject { parametersOf(it) }
                 assemblyStep
             }
     }

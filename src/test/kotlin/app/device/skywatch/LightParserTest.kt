@@ -5,7 +5,6 @@ import app.util.InputReader
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-
 internal class LightParserTest {
 
     private val inputReader = InputReader(IInputReader.MODE.TEST)
@@ -24,6 +23,5 @@ internal class LightParserTest {
         assertEquals(Pair(3, -2), lightParser.lights[2].position)
         assertEquals(Pair(-1, 1), lightParser.lights[2].velocity)
         assertEquals(31, lightParser.lights.size)
-
     }
 }

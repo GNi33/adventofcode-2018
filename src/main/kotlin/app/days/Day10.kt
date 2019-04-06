@@ -15,5 +15,4 @@ class Day10 : IDay {
 
         lightsInTheSky.simulateSky()
     }
-
 }

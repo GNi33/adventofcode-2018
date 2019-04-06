@@ -22,7 +22,7 @@ data class SkyLight(val position: Pair<Int, Int>, val velocity: Pair<Int, Int>) 
         }
     }
 
-    fun takeStep() : SkyLight {
+    fun takeStep(): SkyLight {
 
         val newPosition = Pair(currentPosition.first + velocity.first, currentPosition.second + velocity.second)
 

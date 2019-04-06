@@ -1,6 +1,5 @@
 package app.device.license
 
-
 import app.util.IInputReader
 import app.util.InputReader
 import org.junit.Test

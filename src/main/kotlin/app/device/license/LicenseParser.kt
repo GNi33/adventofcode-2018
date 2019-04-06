@@ -12,13 +12,12 @@ class LicenseParser(private val license: String) {
         return licenseTree.metaDataSum
     }
 
-    fun getValueOfRootNode() : Int {
+    fun getValueOfRootNode(): Int {
 
         val licenseValues = splitLicenseInput()
         val licenseTree = parseLicense(licenseValues)
 
         return licenseTree.valueOfNode
-
     }
 
     fun parseLicense(licenseValues: List<Int>): LicenseNode {
@@ -44,5 +43,4 @@ class LicenseParser(private val license: String) {
     fun splitLicenseInput(): List<Int> {
         return license.split(" ").map { it.toInt() }
     }
-
 }

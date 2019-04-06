@@ -37,7 +37,6 @@ internal class InstructionParserTest : KoinTest {
     @After
     fun after() {
         stopKoin()
-
     }
 
     @Test

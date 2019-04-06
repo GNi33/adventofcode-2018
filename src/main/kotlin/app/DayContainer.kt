@@ -38,7 +38,7 @@ class DayContainer {
         throw Exception("Day $day not found")
     }
 
-    private fun getDayClass(day: Int) : Class<out IDay>? {
+    private fun getDayClass(day: Int): Class<out IDay>? {
         val dayNum = day.toString().padStart(2, '0')
 
         return getAllDayClasses()?.find {

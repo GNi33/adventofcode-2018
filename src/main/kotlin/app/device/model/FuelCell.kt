@@ -6,7 +6,7 @@ data class FuelCell(val x: Int, val y: Int, val serialNo: Int) {
         calculatePower()
     }
 
-    private fun calculatePower() : Int {
+    private fun calculatePower(): Int {
         val rackId = x + 10
         var powerLevel = rackId * y
         powerLevel += serialNo
@@ -16,7 +16,7 @@ data class FuelCell(val x: Int, val y: Int, val serialNo: Int) {
         return hundredsDigit - 5
     }
 
-    private fun getHundredsDigit(num: Int) : Int {
+    private fun getHundredsDigit(num: Int): Int {
 
         // this is a travesty tbh
         val paddedNums = String.format("%03d", num).toCharArray()

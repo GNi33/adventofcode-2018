@@ -2,7 +2,7 @@ package app.sleigh.model
 
 class Worker(val id: Int) {
 
-    var assignedTask : IAssemblyStep? = null
+    var assignedTask: IAssemblyStep? = null
 
     fun hasTaskAssigned(): Boolean {
         return assignedTask != null
@@ -30,7 +30,6 @@ class Worker(val id: Int) {
 
     fun removeTask() {
         assignedTask = null
-
     }
 
     fun getName(): String {

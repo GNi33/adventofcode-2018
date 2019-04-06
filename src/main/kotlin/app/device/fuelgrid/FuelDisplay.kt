@@ -14,5 +14,4 @@ class FuelDisplay(serialNo: Int) {
     fun getLargestTotalOverSizes(): FuelCell {
         return fuelGrid.calculateLargestTotalOverSizes()
     }
-
 }

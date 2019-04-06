@@ -14,10 +14,10 @@ internal class FuelGridTest {
         val fuelGrid39 = FuelGrid(39)
         val fuelGrid71 = FuelGrid(71)
 
-        assertEquals(4, fuelGrid8.getCellPowerAt(3,5))
-        assertEquals(-5, fuelGrid57.getCellPowerAt(122,79))
-        assertEquals(0, fuelGrid39.getCellPowerAt(217,196))
-        assertEquals(4, fuelGrid71.getCellPowerAt(101,153))
+        assertEquals(4, fuelGrid8.getCellPowerAt(3, 5))
+        assertEquals(-5, fuelGrid57.getCellPowerAt(122, 79))
+        assertEquals(0, fuelGrid39.getCellPowerAt(217, 196))
+        assertEquals(4, fuelGrid71.getCellPowerAt(101, 153))
     }
 
     @Test

@@ -15,7 +15,6 @@ internal class MarbleGameTest {
 
         assertEquals(32, marbleGame.getWinningScore())
         assertEquals(5, marbleGame.getWinner().first)
-
     }
 
     @Test
@@ -67,5 +66,4 @@ internal class MarbleGameTest {
 
         assertEquals(37305, marbleGame.getWinningScore())
     }
-
 }

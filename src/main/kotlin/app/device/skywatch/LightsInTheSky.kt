@@ -15,7 +15,7 @@ class LightsInTheSky(input: List<String>) {
         var smallestStep = 0
         var stepNum = 0
 
-        val steps : Deque<List<SkyLight>> = ArrayDeque()
+        val steps: Deque<List<SkyLight>> = ArrayDeque()
         steps.addFirst(parser.lights)
         steps.addLast(parser.lights)
 
@@ -44,16 +44,15 @@ class LightsInTheSky(input: List<String>) {
         map.clearSky()
         map.setLights(steps.last)
         map.printSky()
-
     }
 
-    private fun makeStep(lights: List<SkyLight>) : List<SkyLight> {
+    private fun makeStep(lights: List<SkyLight>): List<SkyLight> {
         return lights.map {
             it.takeStep()
         }
     }
 
-    private fun getBoundaries(positions: List<SkyLight>) : List<Int> {
+    private fun getBoundaries(positions: List<SkyLight>): List<Int> {
         val minXDim = positions.minBy {
             it.currentPosition.first
         }!!.currentPosition.first
@@ -73,7 +72,7 @@ class LightsInTheSky(input: List<String>) {
         return listOf(minXDim, maxXDim, minYDim, maxYDim)
     }
 
-    private fun getLightDistances(lights: List<SkyLight>) : Int {
+    private fun getLightDistances(lights: List<SkyLight>): Int {
         val (minXDim, maxXDim, minYDim, maxYDim) = getBoundaries(lights)
         return maxXDim - minXDim + maxYDim - minYDim
     }
@@ -86,9 +85,7 @@ class LightsInTheSky(input: List<String>) {
             val x = skyLight.currentPosition.first
             val y = skyLight.currentPosition.second
 
-            if (x in (minXDim .. maxXDim) && y in (minYDim .. maxYDim)) acc + 1 else acc
+            if (x in (minXDim..maxXDim) && y in (minYDim..maxYDim)) acc + 1 else acc
         }
-
     }
-
 }

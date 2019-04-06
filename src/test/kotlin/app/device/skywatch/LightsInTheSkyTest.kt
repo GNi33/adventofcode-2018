@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions.*
 internal class LightsInTheSkyTest {
 
     private val inputReader = InputReader(IInputReader.MODE.TEST)
-    private val sky : LightsInTheSky
+    private val sky: LightsInTheSky
 
     init {
         val input = inputReader.getDataForDay(10)

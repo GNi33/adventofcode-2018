@@ -6,7 +6,7 @@ import app.sleigh.model.Worker
 class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private val numWorkers: Int) : IStepProcessor {
 
     var elapsedSeconds = 0
-    val workers : MutableSet<Worker> = mutableSetOf()
+    val workers: MutableSet<Worker> = mutableSetOf()
 
     init {
         for (workerNum in 1..numWorkers) {
@@ -25,8 +25,7 @@ class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private
         return elapsedSeconds
     }
 
-    fun processSecond(openSteps: Set<IAssemblyStep>, processedSteps: Set<IAssemblyStep> = setOf()) : Set<IAssemblyStep> {
-
+    fun processSecond(openSteps: Set<IAssemblyStep>, processedSteps: Set<IAssemblyStep> = setOf()): Set<IAssemblyStep> {
 
         val doneTasks = getDoneTasks()
 
@@ -80,7 +79,6 @@ class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private
         for (worker in workers) {
             println("${worker.getName()} - ${worker.assignedTask?.id}")
         }
-
 
         // look at workers
         //      -> are there any done steps?

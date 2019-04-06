@@ -30,7 +30,7 @@ class SkyMap(private val boundaries: List<Int>) {
         val y = light.currentPosition.second + (yDim / 2)
 
         if (x in 0 until xDim && y in 0 until yDim) {
-            map[y,x] = '*'
+            map[y, x] = '*'
         }
     }
 
@@ -81,5 +81,4 @@ class SkyMap(private val boundaries: List<Int>) {
 
         return Pair(xDim, yDim)
     }
-
 }
