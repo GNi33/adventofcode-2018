@@ -5,8 +5,8 @@ import kotlin.math.abs
 
 class SkyMap(private val boundaries: List<Int>) {
 
-    val xDim: Int
-    val yDim: Int
+    private val xDim: Int
+    private val yDim: Int
     private val map: Array2D<Char>
 
     init {

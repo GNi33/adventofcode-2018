@@ -27,7 +27,7 @@ class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
     }
 
     inline fun forEach(operation: (T) -> Unit) {
-        array.forEach { it -> it.forEach { operation.invoke(it) } }
+        array.forEach { it.forEach { operation.invoke(it) } }
     }
 
     inline fun forEachIndexed(operation: (x: Int, y: Int, T) -> Unit) {

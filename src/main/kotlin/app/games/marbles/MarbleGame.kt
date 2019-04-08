@@ -1,7 +1,7 @@
 package app.games.marbles
 
-import java.util.Deque
 import java.util.ArrayDeque
+import java.util.Deque
 import kotlin.math.abs
 
 class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {

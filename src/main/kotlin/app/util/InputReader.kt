@@ -1,21 +1,22 @@
 package app.util
 
+import app.days.DayConsts
 import java.io.File
 
 class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) : IInputReader {
 
     private val dayInputs = hashMapOf(
-        1 to "calibration-frequencies.txt",
-        2 to "box-ids.txt",
-        3 to "fabric-slices.txt",
-        4 to "guard-shifts.txt",
-        5 to "polymer.txt",
-        6 to "coordinates.txt",
-        7 to "sleigh-assembly-steps.txt",
-        8 to "navigation-license-file.txt",
-        9 to "marble-game.txt",
-        10 to "light-positions.txt",
-        11 to "fuel-grid-serial-number.txt"
+        DayConsts.DAY_1 to "calibration-frequencies.txt",
+        DayConsts.DAY_2 to "box-ids.txt",
+        DayConsts.DAY_3 to "fabric-slices.txt",
+        DayConsts.DAY_4 to "guard-shifts.txt",
+        DayConsts.DAY_5 to "polymer.txt",
+        DayConsts.DAY_6 to "coordinates.txt",
+        DayConsts.DAY_7 to "sleigh-assembly-steps.txt",
+        DayConsts.DAY_8 to "navigation-license-file.txt",
+        DayConsts.DAY_9 to "marble-game.txt",
+        DayConsts.DAY_10 to "light-positions.txt",
+        DayConsts.DAY_11 to "fuel-grid-serial-number.txt"
     )
 
     override fun getDataFromFile(fileName: String): List<String> =

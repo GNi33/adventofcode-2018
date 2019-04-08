@@ -5,9 +5,9 @@ import app.util.InputReader
 
 class Day10 : IDay {
 
-    val inputReader = InputReader()
-    val input = inputReader.getDataForDay(10)
-    val lightsInTheSky = LightsInTheSky(input)
+    private val inputReader = InputReader()
+    private val input = inputReader.getDataForDay(DayConsts.DAY_10)
+    private val lightsInTheSky = LightsInTheSky(input)
 
     override fun run() {
         println("Day 10")

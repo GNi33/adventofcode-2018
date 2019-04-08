@@ -2,7 +2,8 @@ package app.device.skywatch
 
 import app.device.model.sky.SkyLight
 import app.device.model.sky.SkyMap
-import java.util.*
+import java.util.ArrayDeque
+import java.util.Deque
 
 class LightsInTheSky(input: List<String>) {
 

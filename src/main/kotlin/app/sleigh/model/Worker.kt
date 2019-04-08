@@ -4,9 +4,7 @@ class Worker(val id: Int) {
 
     var assignedTask: IAssemblyStep? = null
 
-    fun hasTaskAssigned(): Boolean {
-        return assignedTask != null
-    }
+    fun hasTaskAssigned(): Boolean = assignedTask != null
 
     fun workOnTask() {
 
@@ -14,7 +12,7 @@ class Worker(val id: Int) {
             throw Exception("No Task assigned")
         }
 
-        assignedTask?.let {
+        assignedTask?.let { it ->
             it.isInProgress = true
             it.progress += 1
 
@@ -32,7 +30,5 @@ class Worker(val id: Int) {
         assignedTask = null
     }
 
-    fun getName(): String {
-        return "Worker $id"
-    }
+    fun getName(): String = "Worker $id"
 }

@@ -23,9 +23,9 @@ class InstructionParser(private val instructions: List<String>) : KoinComponent 
     fun linkSteps(): List<IAssemblyStep> {
         val stepPairs = getStepPairs()
 
-        stepPairs.forEach {
-            val sourceStep = getAssemblyStep(it.first)
-            val destStep = getAssemblyStep(it.second)
+        stepPairs.forEach { pair ->
+            val sourceStep = getAssemblyStep(pair.first)
+            val destStep = getAssemblyStep(pair.second)
 
             sourceStep.stepsAfter.add(destStep)
             destStep.stepsBefore.add(sourceStep)

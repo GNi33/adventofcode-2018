@@ -1,5 +1,6 @@
 package app.sleigh
 
+import app.days.DayConsts
 import app.sleigh.service.InstructionParser
 import app.sleigh.service.StepProcessor
 import app.sleigh.service.TimedStepProcessor
@@ -12,7 +13,7 @@ class SleighAssembler : KoinComponent {
     private val inputReader by inject<IInputReader>()
 
     fun getOrderOfSteps(): String {
-        val sleighAssemblyData = inputReader.getDataForDay(7)
+        val sleighAssemblyData = inputReader.getDataForDay(DayConsts.DAY_7)
         val instructionParser = InstructionParser(sleighAssemblyData)
 
         val linkedSteps = instructionParser.linkSteps()
@@ -23,7 +24,7 @@ class SleighAssembler : KoinComponent {
     }
 
     fun getTimeSpent(): Int {
-        val sleighAssemblyData = inputReader.getDataForDay(7)
+        val sleighAssemblyData = inputReader.getDataForDay(DayConsts.DAY_7)
         val instructionParser = InstructionParser(sleighAssemblyData)
 
         val linkedSteps = instructionParser.linkSteps()

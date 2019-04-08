@@ -8,7 +8,7 @@ import java.util.Date
 class GuardParser {
 
     val guards: MutableMap<Int, IGuard> = mutableMapOf()
-    lateinit var activeGuard: IGuard
+    private lateinit var activeGuard: IGuard
 
     enum class LineType {
         BEGINSHIFT, FALLASLEEP, WAKEUP

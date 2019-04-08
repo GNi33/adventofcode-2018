@@ -1,15 +1,12 @@
 package app
 
-import app.days.*
+import app.days.DayConsts
+import app.days.IDay
 import org.reflections.Reflections
 
 class DayContainer {
 
     private val reflect = Reflections("app.days")
-
-    companion object {
-        const val TOTAL_DAYS = 25
-    }
 
     fun runDays(daysToRun: List<Int>) {
         daysToRun.forEach {
@@ -18,7 +15,7 @@ class DayContainer {
     }
 
     fun runAllDays() {
-        for (day in 1..TOTAL_DAYS) {
+        for (day in 1..DayConsts.TOTAL_DAYS) {
             try {
                 getDay(day).run()
             } catch (ex: Exception) {
