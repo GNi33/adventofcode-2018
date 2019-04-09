@@ -16,7 +16,8 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         DayConsts.DAY_8 to "navigation-license-file.txt",
         DayConsts.DAY_9 to "marble-game.txt",
         DayConsts.DAY_10 to "light-positions.txt",
-        DayConsts.DAY_11 to "fuel-grid-serial-number.txt"
+        DayConsts.DAY_11 to "fuel-grid-serial-number.txt",
+        DayConsts.DAY_12 to "pots.txt"
     )
 
     override fun getDataFromFile(fileName: String): List<String> =

@@ -70,9 +70,9 @@ class GuardParser {
     fun parseDate(line: String): Date {
         val match = Regex("(15\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01]) ([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])")
 
-        val regexResult1 = match.find(line)
-        val dateString1 = regexResult1!!.value
+        val regexResult = match.find(line)
+        val dateString = regexResult!!.value
 
-        return SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateString1)
+        return SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateString)
     }
 }
