@@ -1,9 +1,9 @@
 package app.sleigh.service
 
 import app.sleigh.model.IAssemblyStep
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
 
 class InstructionParser(private val instructions: List<String>) : KoinComponent {
 

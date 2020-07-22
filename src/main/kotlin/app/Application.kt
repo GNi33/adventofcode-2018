@@ -7,14 +7,16 @@ import app.sleigh.model.AssemblyStep
 import app.sleigh.model.IAssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
-import org.koin.dsl.module.module
-import org.koin.log.EmptyLogger
-import org.koin.standalone.StandAloneContext.startKoin
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 
 fun main(args: Array<String>) {
     println("Hello Advent Of Code 2018")
 
-    startKoin(listOf(dependenciesModule), logger = EmptyLogger())
+    startKoin {
+        printLogger()
+        modules(dependenciesModule)
+    }
 
     val app = Application(args)
     app.run()

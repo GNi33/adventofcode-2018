@@ -3,8 +3,8 @@ package app.factory.services
 import app.factory.model.IGuard
 import app.factory.util.GuardParser
 import app.util.IInputReader
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 class GuardSpy : KoinComponent, IGuardSpy {
 

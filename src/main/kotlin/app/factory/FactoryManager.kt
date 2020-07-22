@@ -3,8 +3,8 @@ package app.factory
 import app.days.DayConsts
 import app.factory.services.IFabricCalculator
 import app.util.IInputReader
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 class FactoryManager : KoinComponent {
 
