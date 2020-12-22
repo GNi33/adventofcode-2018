@@ -2,8 +2,8 @@ package app.device.license
 
 import app.util.IInputReader
 import app.util.InputReader
-import org.junit.Test
-import org.junit.Assert.assertEquals
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 internal class LicenseParserTest {
 

@@ -2,17 +2,16 @@ package app.sleigh.service
 
 import app.sleigh.model.AssemblyStep
 import app.sleigh.model.IAssemblyStep
-import app.sleigh.model.TestAssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
-import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Before
-import org.junit.Test
-import org.koin.dsl.module.module
-import org.koin.log.EmptyLogger
-import org.koin.standalone.StandAloneContext.startKoin
-import org.koin.standalone.StandAloneContext.stopKoin
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
+import org.koin.dsl.module
 import org.koin.test.KoinTest
 import java.util.NoSuchElementException
 
@@ -21,20 +20,24 @@ internal class InstructionParserTest : KoinTest {
     private val inputReader = InputReader(IInputReader.MODE.TEST)
     private val testInput: List<String>
     private val instructionParser: InstructionParser
+    private val dependenciesModule = module {
+        factory { (id: String) -> AssemblyStep(id) as IAssemblyStep }
+    }
+
 
     init {
         testInput = inputReader.getDataForDay(7)
         instructionParser = InstructionParser(testInput)
     }
 
-    @Before
+    @BeforeEach
     fun before() {
-        startKoin(listOf(module {
-            factory { (id: String) -> TestAssemblyStep(id) as IAssemblyStep }
-        }), logger = EmptyLogger())
+        startKoin {
+            modules(dependenciesModule)
+        }
     }
 
-    @After
+    @AfterEach
     fun after() {
         stopKoin()
     }
@@ -66,9 +69,12 @@ internal class InstructionParserTest : KoinTest {
         assertEquals(listOf("A", "F"), assemblySteps[0].stepsAfter.map { it.id })
     }
 
-    @Test(expected = NoSuchElementException::class)
+    @Test()
     fun getNonExistingStep() {
-        instructionParser.getAssemblyStep("Z")
+        assertThrows<NoSuchElementException> ("") {
+            instructionParser.getAssemblyStep("Z")
+        }
+
     }
 
     @Test

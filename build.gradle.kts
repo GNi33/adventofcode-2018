@@ -10,8 +10,8 @@ repositories {
 
 plugins {
     kotlin("jvm") version "1.4.21"
-    id("org.jmailen.kotlinter") version "2.4.1"
-    id("io.gitlab.arturbosch.detekt").version("1.10.0")
+    id("org.jmailen.kotlinter") version "3.3.0"
+    id("io.gitlab.arturbosch.detekt").version("1.15.0")
 }
 
 dependencies {
@@ -24,13 +24,12 @@ dependencies {
     // Test Dependencies
     testImplementation("org.koin:koin-test:2.2.1")
 
-    testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
-    testCompile("org.junit.jupiter:junit-jupiter-params:5.3.2")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.2")
+    testImplementation(platform("org.junit:junit-bom:5.7.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
 detekt {
-    toolVersion = "1.10.0"                                 // Version of the Detekt CLI that will be used. When unspecified the latest detekt version found will be used. Override to stay on the same version.
+    toolVersion = "1.15.0"                                 // Version of the Detekt CLI that will be used. When unspecified the latest detekt version found will be used. Override to stay on the same version.
     input = files("src/main/kotlin")     // The directories where detekt looks for source files. Defaults to `files("src/main/java", "src/main/kotlin")`.
     parallel = false                                      // Builds the AST in parallel. Rules are always executed in parallel. Can lead to speedups in larger projects. `false` by default.
     config = files("var/config/detekt/detekt-config.yml")                  // Define the detekt configuration(s) you want to use. Defaults to the default detekt configuration.
@@ -59,10 +58,13 @@ detekt {
     }
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
