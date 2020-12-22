@@ -9,10 +9,10 @@ data class LicenseNode(
     }
 
     val valueOfNode: Int =
-            when (subNodes.isEmpty()) {
-                true -> metaDataSum
-                false -> metaData.sumBy {
-                    subNodes.getOrNull(it - 1)?.valueOfNode ?: 0
-                }
+        when (subNodes.isEmpty()) {
+            true -> metaDataSum
+            false -> metaData.sumBy {
+                subNodes.getOrNull(it - 1)?.valueOfNode ?: 0
             }
+        }
 }

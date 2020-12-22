@@ -162,7 +162,7 @@ class DestinationMap(private val coords: Map<String, Point>) {
                 Width: ${getWidth()}
                 Height: ${getHeight()}
 
-        """.trimIndent()
+            """.trimIndent()
         )
 
         val xRange = 0 until getHeight()

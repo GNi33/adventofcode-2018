@@ -32,7 +32,7 @@ class Guard(override val id: Int) : IGuard {
     override fun getMinutesAsleep(): Int {
         return guardTimes.values.fold(0) {
             acc, guardTime ->
-                acc + guardTime.getMinutes()
+            acc + guardTime.getMinutes()
         }
     }
 

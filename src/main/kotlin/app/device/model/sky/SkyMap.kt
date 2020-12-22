@@ -43,9 +43,11 @@ class SkyMap(private val boundaries: List<Int>) {
     fun printSky() {
 
         map.array.forEach {
-            println(it.map { c ->
-                c.toString()
-            })
+            println(
+                it.map { c ->
+                    c.toString()
+                }
+            )
         }
 
         println("")

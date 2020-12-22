@@ -24,7 +24,6 @@ internal class InstructionParserTest : KoinTest {
         factory { (id: String) -> AssemblyStep(id) as IAssemblyStep }
     }
 
-
     init {
         testInput = inputReader.getDataForDay(7)
         instructionParser = InstructionParser(testInput)
@@ -74,7 +73,6 @@ internal class InstructionParserTest : KoinTest {
         assertThrows<NoSuchElementException> ("") {
             instructionParser.getAssemblyStep("Z")
         }
-
     }
 
     @Test

@@ -1,9 +1,8 @@
 package app.factory.services
 
 import app.factory.model.FabricClaim
-import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 internal class FabricCalculatorTest {
 
@@ -12,10 +11,11 @@ internal class FabricCalculatorTest {
         val fabricCalculator = FabricCalculator()
 
         val listOfStrings = listOf(
-                "#1 @ 1,3: 4x4",
-                "#2 @ 3,1: 4x4",
-                "#3 @ 5,5: 2x2",
-                "#31231 @ 502,780: 120x3")
+            "#1 @ 1,3: 4x4",
+            "#2 @ 3,1: 4x4",
+            "#3 @ 5,5: 2x2",
+            "#31231 @ 502,780: 120x3"
+        )
 
         val listOfClaims = fabricCalculator.parseClaims(listOfStrings)
 
@@ -35,7 +35,8 @@ internal class FabricCalculatorTest {
         val listOfStrings = listOf(
             "#1 @ 1,3: 4x4",
             "#2 @ 3,1: 4x4",
-            "#3 @ 5,5: 2x2")
+            "#3 @ 5,5: 2x2"
+        )
 
         val listOfClaims = fabricCalculator.parseClaims(listOfStrings)
 
@@ -51,7 +52,8 @@ internal class FabricCalculatorTest {
         val listOfStrings = listOf(
             "#1 @ 1,3: 4x4",
             "#2 @ 3,1: 4x4",
-            "#3 @ 5,5: 2x2")
+            "#3 @ 5,5: 2x2"
+        )
 
         val listOfClaims = fabricCalculator.parseClaims(listOfStrings)
 
