@@ -25,8 +25,8 @@ internal class FuelGridTest {
         val fuelGrid18 = FuelGrid(18)
         val fuelGrid42 = FuelGrid(42)
 
-        val largestCell18 = fuelGrid18.calculateLargestTotal(18)
-        val largestCell42 = fuelGrid42.calculateLargestTotal(42)
+        val largestCell18 = fuelGrid18.calculateLargestTotal(3)
+        val largestCell42 = fuelGrid42.calculateLargestTotal(3)
 
         assertEquals(33, largestCell18.x)
         assertEquals(45, largestCell18.y)

@@ -29,4 +29,8 @@ object DayConsts {
     const val DAY_23 = 23
     const val DAY_24 = 24
     const val DAY_25 = 25
+
+    object DAY_7_CONSTS {
+        const val STEP_BASE_TIME = 60
+    }
 }

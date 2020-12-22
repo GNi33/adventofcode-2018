@@ -1,6 +1,6 @@
 package app.sleigh.model
 
-import app.days.STEP_BASE_TIME
+import app.days.DayConsts.DAY_7_CONSTS.STEP_BASE_TIME
 
 class AssemblyStep(override val id: String) : IAssemblyStep {
 
