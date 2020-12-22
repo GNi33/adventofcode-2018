@@ -5,8 +5,8 @@ import app.sleigh.service.InstructionParser
 import app.sleigh.service.StepProcessor
 import app.sleigh.service.TimedStepProcessor
 import app.util.IInputReader
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class SleighAssembler : KoinComponent {
 

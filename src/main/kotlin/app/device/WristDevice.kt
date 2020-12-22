@@ -6,8 +6,8 @@ import app.device.services.IBoxScanner
 import app.device.services.ICalibrationService
 import app.device.services.IPolymerCalculator
 import app.util.IInputReader
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class WristDevice : KoinComponent {
 
