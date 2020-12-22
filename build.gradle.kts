@@ -9,7 +9,7 @@ repositories {
 }
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.21"
     id("org.jmailen.kotlinter") version "2.4.1"
     id("io.gitlab.arturbosch.detekt").version("1.10.0")
 }
@@ -17,12 +17,12 @@ plugins {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation("org.koin:koin-core:2.1.6")
+    implementation("org.koin:koin-core:2.2.1")
 
     implementation("org.reflections", "reflections", "0.9.11")
 
     // Test Dependencies
-    testImplementation("org.koin:koin-test:2.1.6")
+    testImplementation("org.koin:koin-test:2.2.1")
 
     testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
     testCompile("org.junit.jupiter:junit-jupiter-params:5.3.2")
