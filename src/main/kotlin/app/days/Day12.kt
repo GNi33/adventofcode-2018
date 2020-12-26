@@ -13,6 +13,12 @@ class Day12 : IDay {
         println("Day 12")
         println("Part 01")
 
-        plantPotSimulator.simulateGenerations(10)
+        val generations = plantPotSimulator.simulateGenerations(20)
+
+        plantPotSimulator.printGenerations(generations)
+
+        val plantCount = plantPotSimulator.countPlantPotNumbersOfLastGen(generations)
+
+        println(plantCount)
     }
 }

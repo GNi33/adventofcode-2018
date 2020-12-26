@@ -1,11 +1,10 @@
 package app.device.plants
 
 import app.days.DayConsts
-import app.device.model.FuelGrid
 import app.util.IInputReader
 import app.util.InputReader
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.*
 
 internal class GenerationSimulatorTest {
     private val inputReader = InputReader(IInputReader.MODE.TEST)
@@ -14,6 +13,12 @@ internal class GenerationSimulatorTest {
 
     @Test
     fun generationsTest() {
-        plantPotSimulator.simulateGenerations(20)
+        val generations = plantPotSimulator.simulateGenerations(20)
+
+        plantPotSimulator.printGenerations(generations)
+
+        val plantCount = plantPotSimulator.countPlantPotNumbersOfLastGen(generations)
+
+        assertEquals(325, plantCount)
     }
 }

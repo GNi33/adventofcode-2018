@@ -9,13 +9,16 @@ class RulePipe(private val rules: LinkedList<Rule>) {
         val newGen = MutableList<Char>(size = plantInput.size, init = { _ -> '.' })
 
         plantInput.forEachIndexed plantLoop@{ idx, element ->
-            //if (idx < 3) return@plantLoop
 
             val slidingWindow = getSlidingWindow(idx, plantInput)
 
             rules.forEach { rule ->
                 if (rule.applies(slidingWindow)) {
                     newGen[idx] = rule.result
+
+                    if (rule.result == '#' && idx == plantInput.size - 1) {
+                        newGen.add(plantInput.size, '.')
+                    }
                 }
             }
         }
