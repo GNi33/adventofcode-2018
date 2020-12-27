@@ -6,16 +6,19 @@ version = "0.1"
 repositories {
     mavenCentral()
     jcenter()
+    maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
 plugins {
     kotlin("jvm") version "1.4.21"
+    id("org.jetbrains.compose") version "0.2.0-build132"
     id("org.jmailen.kotlinter") version "3.3.0"
     id("io.gitlab.arturbosch.detekt").version("1.15.0")
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation(compose.desktop.currentOs)
 
     implementation("org.koin:koin-core:2.2.1")
 
@@ -26,6 +29,12 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:5.7.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+compose.desktop {
+    application {
+        mainClass = "MainKt"
+    }
 }
 
 detekt {
