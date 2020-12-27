@@ -7,18 +7,36 @@ class Day12 : IDay {
 
     private val inputReader = InputReader()
     private val input = inputReader.getDataForDay(DayConsts.DAY_12)
-    private val plantPotSimulator = PlantPotSimulator(input)
 
     override fun run() {
         println("Day 12")
         println("Part 01")
 
-        val generations = plantPotSimulator.simulateGenerations(20)
+        val plantPotSimulatorPart01 = PlantPotSimulator(input)
 
-        plantPotSimulator.printGenerations(generations)
+        val generations = plantPotSimulatorPart01.simulateGenerations(20)
 
-        val plantCount = plantPotSimulator.countPlantPotNumbersOfLastGen(generations)
+        plantPotSimulatorPart01.printGenerations(generations)
+
+        val plantCount = plantPotSimulatorPart01.countPlantPotNumbersOfLastGen(generations)
 
         println(plantCount)
+
+        println("Part 02")
+
+        val plantPotSimulatorPart02 = PlantPotSimulator(input, mapOf("printPotNumbers" to false))
+
+        plantPotSimulatorPart02.simulateGenerations(2000)
+
+        val diff = plantPotSimulatorPart02.getMostOccuringDifference()
+        val firstIdx = plantPotSimulatorPart02.getIndexOfFirstDiffOccurence(diff)
+        val valueOnIdx = plantPotSimulatorPart02.potNumbers[firstIdx]
+
+        val part02GenNum = 50000000000
+
+        val result = ((part02GenNum - firstIdx) * diff) + valueOnIdx
+
+        println(result)
+
     }
 }

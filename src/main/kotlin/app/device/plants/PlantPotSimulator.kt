@@ -1,22 +1,64 @@
 package app.device.plants
 
-class PlantPotSimulator(input: List<String>) {
+import kotlin.Exception
+
+class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = mapOf()) {
     private val inputParser = PlantInputParser(input)
     private val rulePipe = RulePipe(inputParser.rules)
+    private val options: Map<String, Boolean>
 
-    fun simulateGenerations(genCount: Int = 10): MutableList<MutableList<Char>> {
+    val generations: MutableList<MutableList<Char>> = mutableListOf()
+    val potNumbers: MutableList<Int> = mutableListOf()
+    val potNumDifferences: MutableList<Int> = mutableListOf()
+
+    init {
+
+        val defaultOptions = mutableMapOf(
+            "printGenerations" to false,
+            "printPotNumbers" to false
+        )
+
+        defaultOptions.putAll(options)
+
+        this.options = defaultOptions
+    }
+
+    fun simulateGenerations(genCount: Long = 10): MutableList<MutableList<Char>> {
+
         val initialState = inputParser.initialState
-        val generations = mutableListOf<MutableList<Char>>()
 
         generations.add(initialState)
+        potNumbers.add(countPlantPotNumsOfGen(initialState))
+        potNumDifferences.add(0)
+
+        if (options["printGenerations"] == true) {
+            printGeneration(0, generations[0])
+        }
+
+        if (options["printPotNumbers"] == true) {
+            println(countPlantPotNumsOfGen(initialState))
+        }
 
         var newGen = initialState
 
-        for (i in 0 until genCount) {
+        for (i in 0 until genCount-1) {
 
             newGen = simulateGeneration(newGen)
-
             generations.add(newGen)
+            potNumbers.add(countPlantPotNumsOfGen(newGen))
+            potNumDifferences.add(potNumbers[i.toInt() + 1] - potNumbers[i.toInt()])
+
+            if (options["printGenerations"] == true) {
+                printGeneration(i.toInt() + 1, newGen)
+            }
+
+            if (options["printPotNumbers"] == true) {
+                println((i+1).toString().padStart(5).plus(": ")
+                        .plus(potNumbers[i.toInt() + 1].toString())
+                        .plus(" - ")
+                        .plus(potNumDifferences[i.toInt() + 1].toString())
+                        )
+            }
         }
 
         return generations
@@ -32,27 +74,52 @@ class PlantPotSimulator(input: List<String>) {
             printableGenerations.add(padGeneration(it, lastGenSize))
         }
 
-        printableGenerations.forEachIndexed { index, mutableList ->
-            println(index.toString().padStart(2).plus(": ").plus(mutableList.joinToString("")))
+        printableGenerations.forEachIndexed { index, gen ->
+            printGeneration(index, gen)
+        }
+    }
+
+    fun printGeneration(index: Int, generation: MutableList<Char>) {
+        println(
+            index.toString().padStart(6).plus(": ")
+                 .plus(generation.joinToString("")
+                 .plus(" : ").plus(countPlantPotNumsOfGen(generation))))
+    }
+
+    fun getIndexOfFirstDiffOccurence(diff: Int) : Int {
+
+        potNumDifferences.forEachIndexed { idx, value ->
+            if (value == diff && potNumDifferences[idx+1] == diff && potNumDifferences[idx+2] == diff) {
+                return idx
+            }
         }
 
+        throw Exception("Not found")
+
+    }
+
+    fun getMostOccuringDifference(): Int {
+        val potNumDifferences = getPotNumDifferenceCount()
+
+        val highestEntry = potNumDifferences.maxByOrNull { it.value }
+
+        return highestEntry?.key ?: throw Exception("No diff found")
+    }
+
+    fun getPotNumDifferenceCount(): MutableMap<Int, Int> {
+        val potNumDifferenceCt = mutableMapOf<Int, Int>()
+
+        potNumDifferences.forEach {
+            potNumDifferenceCt[it] = potNumDifferenceCt.getOrPut(it) { 0 } + 1
+        }
+
+        return potNumDifferenceCt
     }
 
     fun countPlantPotNumbersOfLastGen(generations: MutableList<MutableList<Char>>): Int {
         val lastGen = generations[generations.lastIndex]
 
         return countPlantPotNumsOfGen(lastGen)
-    }
-
-    fun countPlantPotNumbers(generations: MutableList<MutableList<Char>>): Int {
-        var plantCount = 0
-
-        generations.forEach { gen ->
-
-            plantCount += countPlantPotNumsOfGen(gen)
-        }
-
-        return plantCount
     }
 
     fun countPlantPotNumsOfGen(generation: MutableList<Char>): Int {
@@ -66,20 +133,6 @@ class PlantPotSimulator(input: List<String>) {
         }
 
         return potCount
-    }
-
-    fun countPlantedPots(generations: MutableList<MutableList<Char>>): Int {
-        var plantCount = 0
-
-        generations.forEach { gen ->
-            gen.forEach { char ->
-                if (char == '#') {
-                    plantCount += 1
-                }
-            }
-        }
-
-        return plantCount
     }
 
     private fun padGeneration(generation: MutableList<Char>, size: Int): MutableList<Char> {
