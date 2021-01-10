@@ -21,7 +21,7 @@ internal class InstructionParserTest : KoinTest {
     private val testInput: List<String>
     private val instructionParser: InstructionParser
     private val dependenciesModule = module {
-        factory { (id: String) -> AssemblyStep(id) as IAssemblyStep }
+        factory { (id: String) -> AssemblyStep(id) }
     }
 
     init {
