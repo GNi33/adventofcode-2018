@@ -1,6 +1,5 @@
 package app.days
 
-import app.cheat.Day13
 import app.mine.CartSimulation
 import app.util.InputReader
 
