@@ -51,7 +51,7 @@ class CartSimulation(testInput: List<String>, options: Map<String, Boolean> = ma
 
         val lastCart = carts[0]
 
-        println(Pair(lastCart.yPos, lastCart.xPos))
+        println("Last cart is located at: " + Pair(lastCart.yPos, lastCart.xPos))
     }
 
     fun runSimUntilCrash(carts: MutableList<Cart>, map: app.mine.model.Map) {
