@@ -8,6 +8,7 @@ class CartSimulation(testInput: List<String>, options: Map<String, Boolean> = ma
     private val mapParser: MapParser = MapParser(testInput)
     private val options: Map<String, Boolean>
     private val crashes = mutableListOf<Pair<Int, Int>>()
+    private val cartsToRemove = mutableListOf<Cart>()
 
     init {
         val defaultOptions = mutableMapOf(
@@ -36,6 +37,23 @@ class CartSimulation(testInput: List<String>, options: Map<String, Boolean> = ma
         println("Crashes occurred at: " + crashes.distinct())
     }
 
+    fun runSimulationUntilLastCart() {
+        val carts = mapParser.carts
+        val map = mapParser.map
+
+        if (options["printSimSteps"] == true) {
+            map.printMap(carts)
+        }
+
+        do {
+            runStep(carts, map)
+        } while(carts.size > 1)
+
+        val lastCart = carts[0]
+
+        println(Pair(lastCart.yPos, lastCart.xPos))
+    }
+
     fun runSimUntilCrash(carts: MutableList<Cart>, map: app.mine.model.Map) {
 
         do {
@@ -60,12 +78,17 @@ class CartSimulation(testInput: List<String>, options: Map<String, Boolean> = ma
             checkForCrash(carts, cart)
         }
 
+        if (cartsToRemove.size > 0) {
+            cartsToRemove.forEach {
+                carts.remove(it)
+            }
+        }
+
         if (options["printSimSteps"] == true) {
             println('\n')
             map.printMap(carts)
             println('\n')
         }
-
     }
 
     private fun checkForCrash(carts: List<Cart>, cart: Cart) {
@@ -76,6 +99,9 @@ class CartSimulation(testInput: List<String>, options: Map<String, Boolean> = ma
 
         if (cartList.isNotEmpty()) {
             crashes.add(Pair(cart.yPos, cart.xPos))
+
+            cartsToRemove.add(cart)
+            cartList.forEach { cartsToRemove.add(it) }
         }
     }
 

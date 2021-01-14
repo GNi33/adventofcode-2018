@@ -14,5 +14,12 @@ class Day13 : IDay {
 
         val sim = CartSimulation(input)
         sim.runSimulation()
+
+        println("Part 02")
+
+        val sim2 = CartSimulation(input)
+        sim2.runSimulationUntilLastCart()
+
+
     }
 }
