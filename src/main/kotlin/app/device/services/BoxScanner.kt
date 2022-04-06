@@ -27,7 +27,7 @@ class BoxScanner : IBoxScanner {
             twoCount = 1
         }
 
-        val maxVal = values.max()
+        val maxVal = values.maxOrNull()
 
         if (maxVal != null && maxVal > 2) {
             threeCount = 1

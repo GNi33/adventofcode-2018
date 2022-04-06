@@ -31,7 +31,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
             areaCounts[area] = getAreaSize(area)
         }
 
-        return areaCounts.maxBy { it.value }!!.value
+        return areaCounts.maxByOrNull { it.value }!!.value
     }
 
     fun getAreaSize(area: String): Int {
@@ -43,7 +43,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
 
         for (line in 0 until lineCount) {
             for (col in 0 until colCount) {
-                if (area == map.getValue(line, col) || area == map.getValue(line, col).toUpperCase()) {
+                if (area == map.getValue(line, col) || area == map.getValue(line, col).uppercase()) {
                     count++
                 }
             }
@@ -67,7 +67,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
 
         return edgeValues.flatMap {
             it.map { s ->
-                s.toUpperCase()
+                s.uppercase()
             }
         }.distinct()
     }
@@ -90,7 +90,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
             }
         }.flatten()
 
-        return coordMap.withIndex().associateBy({ identifiers[it.index].toUpperCase() }, { it.value })
+        return coordMap.withIndex().associateBy({ identifiers[it.index].uppercase() }, { it.value })
     }
 
     fun printMap() {

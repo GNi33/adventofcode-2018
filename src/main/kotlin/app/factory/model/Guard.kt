@@ -44,7 +44,7 @@ class Guard(override val id: Int) : IGuard {
         }
 
         return try {
-            val maxMin = countOfMinutes.maxBy {
+            val maxMin = countOfMinutes.maxByOrNull {
                 it.value
             } ?: throw Exception()
 

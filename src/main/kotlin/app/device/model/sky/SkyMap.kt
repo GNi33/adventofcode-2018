@@ -55,19 +55,19 @@ class SkyMap(private val boundaries: List<Int>) {
 
     // todo this shouldn't be in here
     fun getBoundaries(positions: List<SkyLight>): List<Int> {
-        val minXDim = positions.minBy {
+        val minXDim = positions.minByOrNull {
             it.currentPosition.first
         }!!.currentPosition.first
 
-        val maxXDim = positions.maxBy {
+        val maxXDim = positions.maxByOrNull {
             it.currentPosition.first
         }!!.currentPosition.first
 
-        val minYDim = positions.minBy {
+        val minYDim = positions.minByOrNull {
             it.currentPosition.second
         }!!.currentPosition.second
 
-        val maxYDim = positions.maxBy {
+        val maxYDim = positions.maxByOrNull {
             it.currentPosition.second
         }!!.currentPosition.second
 

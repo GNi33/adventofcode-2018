@@ -8,7 +8,7 @@ class RulePipe(private val rules: LinkedList<Rule>) {
     fun transform(plantInput: MutableList<Char>): MutableList<Char> {
         val newGen = MutableList<Char>(size = plantInput.size, init = { _ -> '.' })
 
-        plantInput.forEachIndexed plantLoop@{ idx, element ->
+        plantInput.forEachIndexed plantLoop@{ idx, _ ->
 
             val slidingWindow = getSlidingWindow(idx, plantInput)
 

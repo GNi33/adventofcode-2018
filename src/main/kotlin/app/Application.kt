@@ -8,13 +8,14 @@ import app.sleigh.model.IAssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import org.koin.dsl.module
 
 fun main(args: Array<String>) {
     println("Hello Advent Of Code 2018")
 
     startKoin {
-        printLogger()
+        printLogger(Level.ERROR)
         modules(dependenciesModule)
     }
 

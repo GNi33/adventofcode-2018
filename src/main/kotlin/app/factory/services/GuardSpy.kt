@@ -45,13 +45,13 @@ class GuardSpy : KoinComponent, IGuardSpy {
     }
 
     override fun getGuardLongestAsleep(guards: Map<Int, IGuard>): IGuard {
-        return guards.values.maxBy {
+        return guards.values.maxByOrNull {
             it.getMinutesAsleep()
         } ?: throw Exception()
     }
 
     override fun getGuardAsleepMostFrequent(guards: Map<Int, IGuard>): IGuard {
-        return guards.values.maxBy {
+        return guards.values.maxByOrNull {
             it.getMinuteAsleepMostWithCount().second
         } ?: throw Exception()
     }

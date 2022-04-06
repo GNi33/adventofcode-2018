@@ -10,8 +10,8 @@ class DestinationMap(private val coords: Map<String, Point>) {
 
     init {
         // +2 because we want to account for line/col 0 as well as 1 extra padding
-        val maxY = coords.maxBy { it.value.x }!!.value.x + 2
-        val maxX = coords.maxBy { it.value.y }!!.value.y + 2
+        val maxY = coords.maxByOrNull { it.value.x }!!.value.x + 2
+        val maxX = coords.maxByOrNull { it.value.y }!!.value.y + 2
 
         matrix = Array2D(maxX, maxY, Array(maxX) { Array(maxY) { "." } })
 
@@ -28,7 +28,7 @@ class DestinationMap(private val coords: Map<String, Point>) {
                 val closestDest = getClosestDestination(col, line)
 
                 if (matrix[line, col] == ".") {
-                    matrix[line, col] = closestDest.toLowerCase()
+                    matrix[line, col] = closestDest.lowercase()
                 }
             }
         }
@@ -73,7 +73,7 @@ class DestinationMap(private val coords: Map<String, Point>) {
 
         val distances = getDistances(sourceCoordinate)
 
-        val minDist = distances.minBy {
+        val minDist = distances.minByOrNull {
             it.value
         } ?: return "."
 

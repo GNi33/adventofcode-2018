@@ -23,7 +23,7 @@ class PolymerCalculator : IPolymerCalculator {
             results[match.pattern] = result.length
         }
 
-        return results.minBy { it.value }!!.value
+        return results.minByOrNull { it.value }!!.value
     }
 
     private fun polymerReaction(polymer: String, match: Regex): String {
@@ -50,7 +50,7 @@ class PolymerCalculator : IPolymerCalculator {
         val distinctChars = getDistinctCharacters(polymer)
 
         return distinctChars.flatMap {
-            listOf("($it|${it.toUpperCase()})".toRegex())
+            listOf("($it|${it.uppercase()})".toRegex())
         }
     }
 
@@ -58,11 +58,11 @@ class PolymerCalculator : IPolymerCalculator {
         val matchList = mutableListOf<Pair<String, String>>()
 
         for (char in charList) {
-            matchList.add(Pair("$char${char.toUpperCase()}", "${char.toUpperCase()}$char"))
+            matchList.add(Pair("$char${char.uppercase()}", "${char.uppercase()}$char"))
         }
 
         return matchList
     }
 
-    private fun getDistinctCharacters(polymer: String) = polymer.toLowerCase().toList().distinct().sorted()
+    private fun getDistinctCharacters(polymer: String) = polymer.lowercase().toList().distinct().sorted()
 }

@@ -29,7 +29,7 @@ class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {
         return Pair(winningPlayer, winningScore)
     }
 
-    fun getWinningScore(): Long = players.max() ?: throw Exception()
+    fun getWinningScore(): Long = players.maxOrNull() ?: throw Exception()
 
     private fun getCurrentPlayer(marbleNum: Int): Int {
         return when ((marbleNum % numOfPlayers)) {
