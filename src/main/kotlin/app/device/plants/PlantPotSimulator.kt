@@ -41,7 +41,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
 
         var newGen = initialState
 
-        for (i in 0 until genCount-1) {
+        for (i in 0 until genCount) {
 
             newGen = simulateGeneration(newGen)
             generations.add(newGen)

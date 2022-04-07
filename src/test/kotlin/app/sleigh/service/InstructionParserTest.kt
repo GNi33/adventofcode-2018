@@ -2,6 +2,7 @@ package app.sleigh.service
 
 import app.sleigh.model.AssemblyStep
 import app.sleigh.model.IAssemblyStep
+import app.sleigh.model.TestAssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
 import org.junit.Assert.assertEquals
@@ -21,7 +22,7 @@ internal class InstructionParserTest : KoinTest {
     private val testInput: List<String>
     private val instructionParser: InstructionParser
     private val dependenciesModule = module {
-        factory { (id: String) -> AssemblyStep(id) }
+        factory<IAssemblyStep> { (id: String) -> TestAssemblyStep(id) }
     }
 
     init {

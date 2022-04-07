@@ -2,18 +2,6 @@ package app.model
 
 class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
 
-    companion object {
-        inline operator fun <reified T> invoke() = Array2D(1000, 1000, Array(1000) { arrayOfNulls<T>(1000) })
-
-        inline operator fun <reified T> invoke(xWidth: Int, yWidth: Int, operator: (Int, Int) -> (T)): Array2D<T> {
-            val array = Array(xWidth) {
-                val x = it
-                Array(yWidth) { it1 -> operator(x, it1) }
-            }
-            return Array2D(xWidth, yWidth, array)
-        }
-    }
-
     operator fun get(x: Int): Array<T> {
         return array[x]
     }
@@ -32,5 +20,17 @@ class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
 
     inline fun forEachIndexed(operation: (x: Int, y: Int, T) -> Unit) {
         array.forEachIndexed { x, p -> p.forEachIndexed { y, t -> operation.invoke(x, y, t) } }
+    }
+
+    companion object {
+        inline operator fun <reified T> invoke() = Array2D(1000, 1000, Array(1000) { arrayOfNulls<T>(1000) })
+
+        inline operator fun <reified T> invoke(xWidth: Int, yWidth: Int, operator: (Int, Int) -> (T)): Array2D<T> {
+            val array = Array(xWidth) {
+                val x = it
+                Array(yWidth) { it1 -> operator(x, it1) }
+            }
+            return Array2D(xWidth, yWidth, array)
+        }
     }
 }

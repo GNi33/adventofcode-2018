@@ -4,6 +4,13 @@ data class SkyLight(val position: Pair<Int, Int>, val velocity: Pair<Int, Int>) 
 
     var currentPosition: Pair<Int, Int> = position
 
+    fun takeStep(): SkyLight {
+
+        val newPosition = Pair(currentPosition.first + velocity.first, currentPosition.second + velocity.second)
+
+        return this.copy(position = newPosition)
+    }
+
     companion object {
 
         private val pattern = """<\s*(-?\d+),\s*(-?\d+)>""".toRegex()
@@ -20,12 +27,5 @@ data class SkyLight(val position: Pair<Int, Int>, val velocity: Pair<Int, Int>) 
 
             return SkyLight(Pair(posX.toInt(), posY.toInt()), Pair(velX.toInt(), velY.toInt()))
         }
-    }
-
-    fun takeStep(): SkyLight {
-
-        val newPosition = Pair(currentPosition.first + velocity.first, currentPosition.second + velocity.second)
-
-        return this.copy(position = newPosition)
     }
 }

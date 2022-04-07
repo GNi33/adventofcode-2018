@@ -38,11 +38,11 @@ class Application(private val argv: Array<String>) {
 }
 
 val dependenciesModule = module {
-    single { InputReader() as IInputReader }
-    single { CalibrationService() as ICalibrationService }
-    single { BoxScanner() as IBoxScanner }
-    single { FabricCalculator() as IFabricCalculator }
-    single { PolymerCalculator() as IPolymerCalculator }
+    single<IInputReader> { InputReader() }
+    single<ICalibrationService> { CalibrationService() }
+    single<IBoxScanner> { BoxScanner() }
+    single<IFabricCalculator> { FabricCalculator() }
+    single<IPolymerCalculator> { PolymerCalculator() }
 
-    factory { (id: String) -> AssemblyStep(id) as IAssemblyStep }
+    factory<IAssemblyStep> { (id: String) -> AssemblyStep(id)}
 }

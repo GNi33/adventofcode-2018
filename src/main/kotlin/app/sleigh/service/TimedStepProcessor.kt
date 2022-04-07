@@ -3,7 +3,7 @@ package app.sleigh.service
 import app.sleigh.model.IAssemblyStep
 import app.sleigh.model.Worker
 
-class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, private val numWorkers: Int) : IStepProcessor {
+class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, numWorkers: Int) : IStepProcessor {
 
     var elapsedSeconds = 0
     val workers: MutableSet<Worker> = mutableSetOf()
