@@ -101,7 +101,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
 
     }
 
-    fun getMostOccuringDifference(): Int {
+    fun getMostOccurringDifference(): Int {
         val potNumDifferences = getPotNumDifferenceCount()
 
         val highestEntry = potNumDifferences.maxByOrNull { it.value }
@@ -109,7 +109,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
         return highestEntry?.key ?: throw Exception("No diff found")
     }
 
-    fun getPotNumDifferenceCount(): MutableMap<Int, Int> {
+    private fun getPotNumDifferenceCount(): MutableMap<Int, Int> {
         val potNumDifferenceCt = mutableMapOf<Int, Int>()
 
         potNumDifferences.forEach {
@@ -125,7 +125,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
         return countPlantPotNumsOfGen(lastGen)
     }
 
-    fun countPlantPotNumsOfGen(generation: MutableList<Char>): Int {
+    private fun countPlantPotNumsOfGen(generation: MutableList<Char>): Int {
 
         var potCount = 0
 

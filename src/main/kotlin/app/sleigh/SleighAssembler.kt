@@ -17,19 +17,17 @@ class SleighAssembler : KoinComponent {
         val instructionParser = InstructionParser(sleighAssemblyData)
 
         val linkedSteps = instructionParser.linkSteps()
-
         val stepProcessor = StepProcessor(linkedSteps)
 
         return instructionParser.retrieveStepOrder(stepProcessor)
     }
 
-    fun getTimeSpent(): Int {
+    fun getTimeSpent(numWorkers: Int): Int {
         val sleighAssemblyData = inputReader.getDataForDay(DayConsts.DAY_7)
         val instructionParser = InstructionParser(sleighAssemblyData)
 
         val linkedSteps = instructionParser.linkSteps()
-
-        val stepProcessor = TimedStepProcessor(linkedSteps, 5)
+        val stepProcessor = TimedStepProcessor(linkedSteps, numWorkers)
 
         return instructionParser.retrieveAssemblyDuration(stepProcessor)
     }

@@ -50,7 +50,7 @@ class BoxScanner : IBoxScanner {
                 if (!listOfPrototypeFabricBoxes.contains(id)) {
                     val chArr = id.toMutableList()
 
-                    val filtered = chArr.filterIndexed { index, it -> boxCharArr[index] != it }
+                    val filtered = chArr.filterIndexed { index, chId -> boxCharArr[index] != chId }
 
                     if (filtered.count() == 1) {
                         listOfPrototypeFabricBoxes.add(boxId)
@@ -80,7 +80,7 @@ class BoxScanner : IBoxScanner {
 
                 if (fabricBoxId != id && idx >= outerIdx) {
                     val idChars = id.toCharArray()
-                    val filtered = boxChars.filterIndexed { index, it -> idChars[index] == (it) }
+                    val filtered = boxChars.filterIndexed { index, boxChar -> idChars[index] == (boxChar) }
 
                     filtered.forEach { commonLetters.add(it) }
                 }

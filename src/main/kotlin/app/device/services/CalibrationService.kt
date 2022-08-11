@@ -7,7 +7,7 @@ class CalibrationService : ICalibrationService {
     }
 
     override fun calibrateFrequencies(calibrationData: List<String>): Int {
-        return calibrationData.fold(0) { acc, it -> calculateFrequency(acc, it) }
+        return calibrationData.fold(0) { acc, calibration -> calculateFrequency(acc, calibration) }
     }
 
     private fun getMultipleFrequencies(calibrationData: List<String>): Int {

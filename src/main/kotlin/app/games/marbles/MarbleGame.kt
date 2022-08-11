@@ -4,6 +4,10 @@ import java.util.ArrayDeque
 import java.util.Deque
 import kotlin.math.abs
 
+private const val MARBLE_MULTIPLE_OF = 23
+private const val ROTATE_CLOCKWISE_STEPS = 2
+private const val ROTATE_COUNTERCLOCKWISE_STEPS = -7
+
 class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {
 
     private val marbleCircle: Deque<Int> = ArrayDeque(listOf(0))
@@ -11,12 +15,12 @@ class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {
 
     fun playGame() {
         (1..numOfMarbles).forEach { marbleNum ->
-            if (marbleNum % 23 == 0) {
+            if (marbleNum % MARBLE_MULTIPLE_OF == 0) {
                 val currentPlayer = getCurrentPlayer(marbleNum)
-                rotateCircle(-7)
+                rotateCircle(ROTATE_COUNTERCLOCKWISE_STEPS)
                 players[currentPlayer - 1] += (marbleNum.toLong() + marbleCircle.pop())
             } else {
-                rotateCircle(2)
+                rotateCircle(ROTATE_CLOCKWISE_STEPS)
                 marbleCircle.addFirst(marbleNum)
             }
         }

@@ -9,8 +9,8 @@ class Map(xSize: Int, ySize: Int) : AbstractCharMap(xSize, ySize) {
     }
 
     fun printMap(carts: List<Cart>) {
-        arrayMap.array.forEachIndexed { rowIdx, it ->
-            val row = it.mapIndexed { colIdx, c ->
+        arrayMap.array.forEachIndexed { rowIdx, rowData ->
+            val row = rowData.mapIndexed { colIdx, c ->
 
                 val cartL = carts.filter { it.xPos == rowIdx && it.yPos == colIdx }
 

@@ -12,7 +12,7 @@ class Worker(val id: Int) {
             throw Exception("No Task assigned")
         }
 
-        assignedTask?.let { it ->
+        assignedTask?.let {
             it.isInProgress = true
             it.progress += 1
 

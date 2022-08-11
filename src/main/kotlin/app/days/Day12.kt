@@ -33,7 +33,7 @@ class Day12 : IDay {
 
         plantPotSimulatorPart02.simulateGenerations(NUM_OF_GENERATIONS * 100)
 
-        val diff = plantPotSimulatorPart02.getMostOccuringDifference()
+        val diff = plantPotSimulatorPart02.getMostOccurringDifference()
         val firstIdx = plantPotSimulatorPart02.getIndexOfFirstDiffOccurence(diff)
         val valueOnIdx = plantPotSimulatorPart02.potNumbers[firstIdx]
 

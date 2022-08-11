@@ -1,5 +1,6 @@
 package app.factory.services
 
+import app.days.DayConsts
 import app.factory.model.IGuard
 import app.factory.util.GuardParser
 import app.util.IInputReader
@@ -70,7 +71,7 @@ class GuardSpy : KoinComponent, IGuardSpy {
     }
 
     private fun getGuards(): Map<Int, IGuard> {
-        val guardData = inputReader.getDataForDay(4)
+        val guardData = inputReader.getDataForDay(DayConsts.DAY_4)
         val sortedGuardData = sortInput(guardData)
 
         return parseInput(sortedGuardData)

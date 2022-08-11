@@ -4,6 +4,9 @@ import app.device.model.DestinationMap
 import app.model.Point
 import kotlin.math.ceil
 
+private const val ALPHABET_COUNT = 26
+private const val ASCII_INT_TO_CHAR_OFFSET = 97;
+
 class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
 
     private val coordinates: Map<String, Point>
@@ -79,10 +82,10 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
         }
 
         val numOfDestinations = coordMap.size
-        val times = ceil(numOfDestinations.toFloat() / 26).toInt()
-        val upperAlph = CharArray(times) { (it + 97).toChar() }
+        val times = ceil(numOfDestinations.toFloat() / ALPHABET_COUNT).toInt()
 
-        val alphabet = CharArray(26) { (it + 97).toChar() }
+        val upperAlph = CharArray(times) { (it + ASCII_INT_TO_CHAR_OFFSET).toChar() }
+        val alphabet = CharArray(ALPHABET_COUNT) { (it + ASCII_INT_TO_CHAR_OFFSET).toChar() }
 
         val identifiers = upperAlph.map {
             alphabet.map { c ->

@@ -100,12 +100,6 @@ class TimedStepProcessor(private val assemblySteps: List<IAssemblyStep>, numWork
         }.sortedBy { it.id }
     }
 
-    private fun getStepsInProgress(steps: Set<IAssemblyStep>): List<IAssemblyStep> {
-        return steps.filter {
-            it.isInProgress
-        }.sortedBy { it.id }
-    }
-
     private fun getDoneTasks(): Set<IAssemblyStep> {
 
         return workers.mapNotNull {

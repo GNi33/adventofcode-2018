@@ -3,6 +3,8 @@ package app.days
 import app.sleigh.SleighAssembler
 import mu.KotlinLogging
 
+private const val NUM_WORKERS = 5
+
 class Day07 : IDay {
 
     private val logger = KotlinLogging.logger {}
@@ -14,6 +16,6 @@ class Day07 : IDay {
         logger.info { sleighAssembler.getOrderOfSteps() }
 
         logger.info { "Part 02 - Get time spent on steps with multiple workers" }
-        logger.info { sleighAssembler.getTimeSpent() }
+        logger.info { sleighAssembler.getTimeSpent(NUM_WORKERS) }
     }
 }
