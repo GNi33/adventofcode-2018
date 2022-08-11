@@ -5,26 +5,28 @@ version = "0.1"
 
 repositories {
     mavenCentral()
-    jcenter()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
 }
 
 plugins {
-    kotlin("jvm") version "1.6.20"
-    id("io.gitlab.arturbosch.detekt").version("1.19.0")
+    kotlin("jvm") version "1.7.10"
+    id("io.gitlab.arturbosch.detekt").version("1.21.0")
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation("io.insert-koin:koin-core:3.1.5")
+    implementation("io.insert-koin:koin-core:3.2.0")
 
-    implementation("org.reflections", "reflections", "0.9.11")
+    implementation("org.reflections:reflections:0.10.2")
+
+    implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
+    implementation("ch.qos.logback:logback-classic:1.2.11")
 
     // Test Dependencies
-    testImplementation("io.insert-koin:koin-test:3.1.5")
+    testImplementation("io.insert-koin:koin-test:3.2.0")
 
-    testImplementation(platform("org.junit:junit-bom:5.7.0"))
+    testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
