@@ -7,7 +7,6 @@ import app.sleigh.model.AssemblyStep
 import app.sleigh.model.IAssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
-import mu.KLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import org.koin.dsl.module

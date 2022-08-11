@@ -7,8 +7,8 @@ class FuelDisplay(serialNo: Int) {
 
     private val fuelGrid = FuelGrid(serialNo)
 
-    fun getLargestTotal(): FuelCell {
-        return fuelGrid.calculateLargestTotal(3)
+    fun getLargestTotal(size: Int): FuelCell {
+        return fuelGrid.calculateLargestTotal(size)
     }
 
     fun getLargestTotalOverSizes(): FuelCell {

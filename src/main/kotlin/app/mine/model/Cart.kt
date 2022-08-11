@@ -1,7 +1,5 @@
 package app.mine.model
 
-import org.reflections.vfs.Vfs
-
 class Cart(x: Int, y: Int, initialDirection: Direction) {
 
     private var crossingCount: Int = 0

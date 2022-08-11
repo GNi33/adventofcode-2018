@@ -3,6 +3,8 @@ package app.device.plants
 import app.device.model.plants.Rule
 import java.util.*
 
+private const val INITIAL_STATE_STR_LENGTH = 15
+
 class PlantInputParser(input: List<String>) {
 
     val initialState: MutableList<Char>
@@ -18,7 +20,7 @@ class PlantInputParser(input: List<String>) {
     }
 
     private fun extractInitialStateAsString(line: String): String {
-        if (line.take(15) != "initial state: ") {
+        if (line.take(INITIAL_STATE_STR_LENGTH) != "initial state: ") {
             throw Exception("Input malformed")
         }
 

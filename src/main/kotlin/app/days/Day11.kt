@@ -4,6 +4,8 @@ import app.device.fuelgrid.FuelDisplay
 import app.util.InputReader
 import mu.KotlinLogging
 
+private const val SQUARE_SIZE = 3
+
 class Day11 : IDay {
 
     private val logger = KotlinLogging.logger {}
@@ -15,7 +17,7 @@ class Day11 : IDay {
         logger.info { "Part 01 - Get square with largest total power" }
 
         val fuelDisplay = FuelDisplay(input.first().toInt())
-        val largestCell = fuelDisplay.getLargestTotal()
+        val largestCell = fuelDisplay.getLargestTotal(SQUARE_SIZE)
 
         logger.info { "${largestCell.x}, ${largestCell.y}" }
 

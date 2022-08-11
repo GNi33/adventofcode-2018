@@ -24,12 +24,16 @@ class MapParser(input:List<String>) {
                 when (char) {
                     '>', '<' -> {
                         mapChar = '-'
-                        carts.add(Cart(rowIndex, charIndex, if(char == '<') { Direction.WEST } else { Direction.EAST }))
+                        carts.add(
+                            Cart(rowIndex, charIndex, if(char == '<') Direction.WEST else Direction.EAST)
+                        )
 
                     }
                     '^','v' -> {
                         mapChar = '|'
-                        carts.add(Cart(rowIndex, charIndex, if(char == 'v') { Direction.SOUTH } else { Direction.NORTH }))
+                        carts.add(
+                            Cart(rowIndex, charIndex, if(char == 'v') Direction.SOUTH else Direction.NORTH)
+                        )
                     }
                 }
 

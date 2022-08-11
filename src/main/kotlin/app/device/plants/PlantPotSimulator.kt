@@ -2,6 +2,9 @@ package app.device.plants
 
 import kotlin.Exception
 
+private const val POT_NUM_PADDING = 5
+private const val GEN_PADDING = 6
+
 class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = mapOf()) {
     private val inputParser = PlantInputParser(input)
     private val rulePipe = RulePipe(inputParser.rules)
@@ -53,7 +56,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
             }
 
             if (options["printPotNumbers"] == true) {
-                println((i+1).toString().padStart(5).plus(": ")
+                println((i+1).toString().padStart(POT_NUM_PADDING).plus(": ")
                         .plus(potNumbers[i.toInt() + 1].toString())
                         .plus(" - ")
                         .plus(potNumDifferences[i.toInt() + 1].toString())
@@ -81,7 +84,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
 
     fun printGeneration(index: Int, generation: MutableList<Char>) {
         println(
-            index.toString().padStart(6).plus(": ")
+            index.toString().padStart(GEN_PADDING).plus(": ")
                  .plus(generation.joinToString("")
                  .plus(" : ").plus(countPlantPotNumsOfGen(generation))))
     }

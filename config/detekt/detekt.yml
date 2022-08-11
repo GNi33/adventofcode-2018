@@ -136,6 +136,7 @@ style:
     active: true
   DestructuringDeclarationWithTooManyEntries:
     active: true
+    maxDestructuringEntries: 4
   EqualsOnSignatureLine:
     active: true
   ExplicitCollectionElementAccessMethod:

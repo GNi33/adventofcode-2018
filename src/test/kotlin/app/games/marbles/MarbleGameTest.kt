@@ -33,7 +33,7 @@ internal class MarbleGameTest {
 
         marbleGame.playGame()
 
-        assertEquals(146373, marbleGame.getWinningScore())
+        assertEquals(146_373, marbleGame.getWinningScore())
     }
 
     @Test
@@ -53,7 +53,7 @@ internal class MarbleGameTest {
 
         marbleGame.playGame()
 
-        assertEquals(54718, marbleGame.getWinningScore())
+        assertEquals(54_718, marbleGame.getWinningScore())
     }
 
     @Test
@@ -63,6 +63,6 @@ internal class MarbleGameTest {
 
         marbleGame.playGame()
 
-        assertEquals(37305, marbleGame.getWinningScore())
+        assertEquals(37_305, marbleGame.getWinningScore())
     }
 }

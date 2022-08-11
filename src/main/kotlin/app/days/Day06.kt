@@ -3,6 +3,8 @@ package app.days
 import app.device.WristDevice
 import mu.KotlinLogging
 
+private const val DISTANCE_LIMIT = 10_000;
+
 class Day06 : IDay {
 
     private val logger = KotlinLogging.logger {}
@@ -15,6 +17,6 @@ class Day06 : IDay {
         logger.info { wristDevice.getLargestAreaAroundDestination() }
 
         logger.info { "Part 02 - Get Area Size closest to all destinations (limit 10000)" }
-        logger.info { wristDevice.getAreaSizeClosestToDestinations() }
+        logger.info { wristDevice.getAreaSizeClosestToDestinations(DISTANCE_LIMIT) }
     }
 }

@@ -1,7 +1,5 @@
 package app.days
 
-import app.mine.CartSimulation
-import app.util.InputReader
 import mu.KotlinLogging
 
 class Day14 : IDay {

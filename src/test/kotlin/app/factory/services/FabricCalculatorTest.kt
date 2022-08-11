@@ -24,7 +24,7 @@ internal class FabricCalculatorTest {
         val exampleClaim = FabricClaim(2, 3, 1, 4, 4)
         assertEquals(exampleClaim, listOfClaims[1])
 
-        val exampleClaim2 = FabricClaim(31231, 502, 780, 120, 3)
+        val exampleClaim2 = FabricClaim(31_231, 502, 780, 120, 3)
         assertEquals(exampleClaim2, listOfClaims[3])
     }
 

@@ -4,6 +4,9 @@ import app.device.plants.PlantPotSimulator
 import app.util.InputReader
 import mu.KotlinLogging
 
+private const val NUM_OF_GENERATIONS: Long = 20
+private const val PART02_NUM_OF_MAX_GENERATIONS: Long = 20
+
 class Day12 : IDay {
 
     private val logger = KotlinLogging.logger {}
@@ -16,7 +19,7 @@ class Day12 : IDay {
 
         val plantPotSimulatorPart01 = PlantPotSimulator(input)
 
-        val generations = plantPotSimulatorPart01.simulateGenerations(20)
+        val generations = plantPotSimulatorPart01.simulateGenerations(NUM_OF_GENERATIONS)
 
         plantPotSimulatorPart01.printGenerations(generations)
 
@@ -28,13 +31,13 @@ class Day12 : IDay {
 
         val plantPotSimulatorPart02 = PlantPotSimulator(input, mapOf("printPotNumbers" to false))
 
-        plantPotSimulatorPart02.simulateGenerations(2000)
+        plantPotSimulatorPart02.simulateGenerations(NUM_OF_GENERATIONS * 100)
 
         val diff = plantPotSimulatorPart02.getMostOccuringDifference()
         val firstIdx = plantPotSimulatorPart02.getIndexOfFirstDiffOccurence(diff)
         val valueOnIdx = plantPotSimulatorPart02.potNumbers[firstIdx]
 
-        val part02GenNum = 50000000000
+        val part02GenNum = PART02_NUM_OF_MAX_GENERATIONS
 
         val result = ((part02GenNum - firstIdx) * diff) + valueOnIdx
 

@@ -2,10 +2,12 @@ package app.device.model
 
 import app.model.Array2D
 
+private const val MAX_SIZE = 300
+
 class FuelGrid(private val serialNo: Int) {
 
-    private val width = 300
-    private val height = 300
+    private val width = MAX_SIZE
+    private val height = MAX_SIZE
 
     private val grid: Array2D<FuelCell> = Array2D(width, height) { y: Int, x: Int -> FuelCell(x, y, serialNo) }
 
@@ -38,7 +40,7 @@ class FuelGrid(private val serialNo: Int) {
         var largestSize = 0
         var largestScore = 0
 
-        for (size in 2..300) {
+        for (size in 2..MAX_SIZE) {
             val cell = calculateLargestTotal(size)
             val cellTotal = calculateTotalAt(cell.x, cell.y, size)
 

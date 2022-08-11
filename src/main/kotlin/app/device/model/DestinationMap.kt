@@ -81,11 +81,7 @@ class DestinationMap(private val coords: Map<String, Point>) {
             it.value == minDist.value
         }
 
-        if (minDists.size > 1) {
-            return "."
-        }
-
-        return minDist.key
+        return if(minDists.size > 1) "." else minDist.key
     }
 
     fun getDistances(sourceCoordinate: Point): Map<String, Int> {
