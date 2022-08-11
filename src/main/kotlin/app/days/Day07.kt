@@ -1,17 +1,19 @@
 package app.days
 
 import app.sleigh.SleighAssembler
+import mu.KotlinLogging
 
 class Day07 : IDay {
 
+    private val logger = KotlinLogging.logger {}
     private val sleighAssembler = SleighAssembler()
 
     override fun run() {
-        println("Day 07")
-        println("Part 01 - Get correct order of Steps")
-        println(sleighAssembler.getOrderOfSteps())
+        logger.info { "Day 07" }
+        logger.info { "Part 01 - Get correct order of Steps" }
+        logger.info { sleighAssembler.getOrderOfSteps() }
 
-        println("Part 02 - Get time spent on steps with multiple workers")
-        println(sleighAssembler.getTimeSpent())
+        logger.info { "Part 02 - Get time spent on steps with multiple workers" }
+        logger.info { sleighAssembler.getTimeSpent() }
     }
 }

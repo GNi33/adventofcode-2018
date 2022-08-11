@@ -2,15 +2,17 @@ package app.days
 
 import app.device.plants.PlantPotSimulator
 import app.util.InputReader
+import mu.KotlinLogging
 
 class Day12 : IDay {
 
+    private val logger = KotlinLogging.logger {}
     private val inputReader = InputReader()
     private val input = inputReader.getDataForDay(DayConsts.DAY_12)
 
     override fun run() {
-        println("Day 12")
-        println("Part 01")
+        logger.info { "Day 12" }
+        logger.info { "Part 01" }
 
         val plantPotSimulatorPart01 = PlantPotSimulator(input)
 
@@ -20,9 +22,9 @@ class Day12 : IDay {
 
         val plantCount = plantPotSimulatorPart01.countPlantPotNumbersOfLastGen(generations)
 
-        println(plantCount)
+        logger.info { plantCount }
 
-        println("Part 02")
+        logger.info { "Part 02" }
 
         val plantPotSimulatorPart02 = PlantPotSimulator(input, mapOf("printPotNumbers" to false))
 
@@ -36,7 +38,7 @@ class Day12 : IDay {
 
         val result = ((part02GenNum - firstIdx) * diff) + valueOnIdx
 
-        println(result)
+        logger.info { result }
 
     }
 }

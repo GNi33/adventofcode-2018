@@ -1,18 +1,20 @@
 package app.days
 
 import app.device.WristDevice
+import mu.KotlinLogging
 
 class Day06 : IDay {
 
+    private val logger = KotlinLogging.logger {}
     private val wristDevice = WristDevice()
 
     override fun run() {
 
-        println("Day 06")
-        println("Part 01 - Get Largest Area of Destination")
-        println(wristDevice.getLargestAreaAroundDestination())
+        logger.info { "Day 06" }
+        logger.info { "Part 01 - Get Largest Area of Destination" }
+        logger.info { wristDevice.getLargestAreaAroundDestination() }
 
-        println("Part 02 - Get Area Size closest to all destinations (limit 10000)")
-        println(wristDevice.getAreaSizeClosestToDestinations())
+        logger.info { "Part 02 - Get Area Size closest to all destinations (limit 10000)" }
+        logger.info { wristDevice.getAreaSizeClosestToDestinations() }
     }
 }

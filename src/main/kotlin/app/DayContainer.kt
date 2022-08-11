@@ -2,11 +2,13 @@ package app
 
 import app.days.DayConsts
 import app.days.IDay
+import mu.KotlinLogging
 import org.reflections.Reflections
 
 class DayContainer {
 
     private val reflect = Reflections("app.days")
+    private val logger = KotlinLogging.logger {}
 
     fun runDays(daysToRun: List<Int>) {
         daysToRun.forEach {
@@ -19,7 +21,7 @@ class DayContainer {
             try {
                 getDay(day).run()
             } catch (ex: Exception) {
-                println(ex.message)
+                logger.error { (ex.message) }
             }
         }
     }
@@ -29,7 +31,7 @@ class DayContainer {
         val dayClass = getDayClass(day)
 
         dayClass?.let {
-            return dayClass.newInstance()
+            return dayClass.getDeclaredConstructor().newInstance()
         }
 
         throw Exception("Day $day not found")

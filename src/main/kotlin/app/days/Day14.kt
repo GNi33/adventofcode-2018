@@ -2,14 +2,17 @@ package app.days
 
 import app.mine.CartSimulation
 import app.util.InputReader
+import mu.KotlinLogging
 
 class Day14 : IDay {
 
-    override fun run() {
-        println("Day 14")
-        println("Part 01")
+    private val logger = KotlinLogging.logger {}
 
-        println("Part 02")
+    override fun run() {
+        logger.info { "Day 14" }
+        logger.info { "Part 01" }
+
+        logger.info { "Part 02" }
 
 
     }
