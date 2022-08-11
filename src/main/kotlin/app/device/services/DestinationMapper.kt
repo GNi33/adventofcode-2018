@@ -78,7 +78,7 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
             listOf(Point(coords.first().trim().toInt(), coords.last().trim().toInt()))
         }
 
-        val numOfDestinations = input.size
+        val numOfDestinations = coordMap.size
         val times = ceil(numOfDestinations.toFloat() / 26).toInt()
         val upperAlph = CharArray(times) { (it + 97).toChar() }
 

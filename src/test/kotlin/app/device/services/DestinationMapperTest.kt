@@ -16,7 +16,7 @@ internal class DestinationMapperTest {
         val destMapper = DestinationMapper(testInput)
         destMapper.determineAreas()
 
-        assertEquals(listOf("D", "E"), destMapper.getFiniteAreas())
+        assertEquals(listOf("AD", "AE"), destMapper.getFiniteAreas())
         assertEquals(17, destMapper.getLargestAreaSize())
     }
 
