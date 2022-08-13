@@ -1,3 +1,3 @@
 package app.elves
 
-data class Elf(val position: Int)
+data class Elf(var position: Int)
