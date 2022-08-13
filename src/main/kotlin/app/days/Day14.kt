@@ -20,7 +20,9 @@ class Day14 : IDay {
         }
 
         logger.info { "Part 02" }
-
+        input.forEach {
+            logger.info { recipeScoreCalculator.calculateRecipeNumUntil(it) }
+        }
 
     }
 }

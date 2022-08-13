@@ -29,6 +29,36 @@ class RecipeScoreCalculator {
         return finalScoreList.joinToString("")
     }
 
+    fun calculateRecipeNumUntil(sequence: String): Int {
+
+        val seqLen = sequence.length
+        var seqFound = false
+        scoreList = mutableListOf(3,7)
+        val elves: List<Elf> = listOf(Elf(0), Elf(1))
+        var score = 0
+
+        while (score == 0) {
+            calculateStep(elves)
+
+            if (scoreList.size > seqLen) {
+                val lastSeq = scoreList.takeLast(seqLen+1).joinToString("")
+
+                val lastSeq01 = lastSeq.dropLast(1)
+                val lastSeq02 = lastSeq.drop(1)
+
+                if (lastSeq01 == sequence || lastSeq02 == sequence) {
+                    score = scoreList.size - seqLen
+
+                    if (lastSeq01 == sequence) {
+                        score -= 1
+                    }
+                }
+            }
+        }
+
+        return score
+    }
+
     private fun calculateStep(elves: List<Elf>): MutableList<Int> {
 
         val firstElf = elves[0]
