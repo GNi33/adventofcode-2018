@@ -11,10 +11,10 @@ repositories {
 plugins {
     kotlin("jvm") version "1.7.21"
     id("io.gitlab.arturbosch.detekt").version("1.21.0")
+    application
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
 
     implementation("io.insert-koin:koin-core:3.2.2")
 
@@ -28,6 +28,10 @@ dependencies {
 
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+application {
+    mainClass.set("app.MainKt")
 }
 
 detekt {

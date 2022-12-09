@@ -12,17 +12,6 @@ import org.koin.core.logger.Level
 import org.koin.dsl.module
 import mu.KotlinLogging
 
-fun main(args: Array<String>) {
-
-    startKoin {
-        printLogger(Level.ERROR)
-        modules(dependenciesModule)
-    }
-
-    val app = Application(args)
-    app.run()
-}
-
 class Application(private val argv: Array<String>) {
 
     private val logger = KotlinLogging.logger {}
@@ -38,14 +27,4 @@ class Application(private val argv: Array<String>) {
             dayContainer.runAllDays()
         }
     }
-}
-
-val dependenciesModule = module {
-    single<IInputReader> { InputReader() }
-    single<ICalibrationService> { CalibrationService() }
-    single<IBoxScanner> { BoxScanner() }
-    single<IFabricCalculator> { FabricCalculator() }
-    single<IPolymerCalculator> { PolymerCalculator() }
-
-    factory<IAssemblyStep> { (id: String) -> AssemblyStep(id)}
 }
