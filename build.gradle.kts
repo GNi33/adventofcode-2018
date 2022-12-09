@@ -9,22 +9,22 @@ repositories {
 }
 
 plugins {
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.7.21"
     id("io.gitlab.arturbosch.detekt").version("1.21.0")
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation("io.insert-koin:koin-core:3.2.0")
+    implementation("io.insert-koin:koin-core:3.2.2")
 
     implementation("org.reflections:reflections:0.10.2")
 
-    implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
-    implementation("ch.qos.logback:logback-classic:1.2.11")
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
+    implementation("ch.qos.logback:logback-classic:1.4.5")
 
     // Test Dependencies
-    testImplementation("io.insert-koin:koin-test:3.2.0")
+    testImplementation("io.insert-koin:koin-test:3.2.2")
 
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
