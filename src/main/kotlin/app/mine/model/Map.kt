@@ -4,10 +4,6 @@ import app.model.AbstractCharMap
 
 class Map(xSize: Int, ySize: Int) : AbstractCharMap(xSize, ySize) {
 
-    fun getMapTileAt(x: Int, y: Int): Char {
-        return arrayMap[x, y]
-    }
-
     fun printMap(carts: List<Cart>) {
         arrayMap.array.forEachIndexed { rowIdx, rowData ->
             val row = rowData.mapIndexed { colIdx, c ->

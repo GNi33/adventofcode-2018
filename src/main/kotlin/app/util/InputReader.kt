@@ -19,7 +19,8 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         DayConsts.DAY_11 to listOf("fuel-grid-serial-number.txt"),
         DayConsts.DAY_12 to listOf("pots.txt"),
         DayConsts.DAY_13 to listOf("cart-tracks.txt", "cart-tracks-2.txt"),
-        DayConsts.DAY_14 to listOf("recipes.txt")
+        DayConsts.DAY_14 to listOf("recipes.txt"),
+        DayConsts.DAY_15 to listOf("battlefield.txt", "battlefield_positions.txt", "battlefield_targets.txt")
     )
 
     override fun getDataFromFile(fileName: String): List<String> =
