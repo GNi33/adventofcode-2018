@@ -1,6 +1,6 @@
 package app.device.plants
 
-private const val INDEX_OFFSET = 3;
+private const val INDEX_OFFSET = 3
 private const val POT_NUM_PADDING = 5
 private const val GEN_PADDING = 6
 

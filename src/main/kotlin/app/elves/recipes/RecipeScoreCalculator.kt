@@ -10,7 +10,7 @@ private const val DIGIT_CONVERSION_OFFSET = 10
 
 class RecipeScoreCalculator {
 
-    private var scoreList: MutableList<Int> = mutableListOf(3,7)
+    private var scoreList: MutableList<Int> = mutableListOf(FIRST_INITIAL_RECIPE_SCORE, SECOND_INITIAL_RECIPE_SCORE)
 
     fun calculateRecipeScore(stoppingPoint: Int): String {
 
