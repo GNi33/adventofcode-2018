@@ -5,44 +5,43 @@ import app.elves.battle.model.Battlefield
 import app.elves.battle.model.Elf
 import app.elves.battle.model.Goblin
 import app.model.Point
-import java.lang.Exception
 
-class InputParser {
-    companion object {
-        fun parseInput(input: List<String>): Pair<Battlefield, MutableList<Actor>> {
-            val xSize = input.size
-            val ySize = input.maxByOrNull { it.count() }?.count() ?: throw Exception("Parsing went wrong")
+object InputParser {
 
-            val battlefield = Battlefield(xSize, ySize)
-            val actors = mutableListOf<Actor>()
+    fun parseInput(input: List<String>): Pair<Battlefield, MutableList<Actor>> {
+        val xSize = input.size
+        val ySize = input.maxByOrNull { it.count() }?.count() ?: throw Exception("Parsing went wrong")
 
-            var ct = 0
+        val battlefield = Battlefield(xSize, ySize)
+        val actors = mutableListOf<Actor>()
 
-            input.forEachIndexed { rowIndex, row ->
-                row.forEachIndexed { charIndex, char ->
+        var ct = 0
 
-                    var mapChar = char
+        input.forEachIndexed { rowIndex, row ->
+            row.forEachIndexed { charIndex, char ->
 
-                    when (char) {
-                        'G' -> {
-                            mapChar = '.'
-                            actors.add(
-                                Goblin(Point(charIndex, rowIndex), ++ct)
-                            )
-                        }
-                        'E' -> {
-                            mapChar = '.'
-                            actors.add(
-                                Elf(Point(charIndex, rowIndex), ++ct)
-                            )
-                        }
+                var mapChar = char
+
+                when (char) {
+                    'G' -> {
+                        mapChar = '.'
+                        actors.add(
+                            Goblin(Point(charIndex, rowIndex), ++ct)
+                        )
                     }
-
-                    battlefield.arrayMap[rowIndex, charIndex] = mapChar
+                    'E' -> {
+                        mapChar = '.'
+                        actors.add(
+                            Elf(Point(charIndex, rowIndex), ++ct)
+                        )
+                    }
                 }
-            }
 
-            return Pair(battlefield, actors)
+                battlefield.arrayMap[rowIndex, charIndex] = mapChar
+            }
         }
+
+        return Pair(battlefield, actors)
     }
+
 }

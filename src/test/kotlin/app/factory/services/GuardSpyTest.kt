@@ -1,6 +1,6 @@
 package app.factory.services
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class GuardSpyTest {
@@ -168,10 +168,10 @@ internal class GuardSpyTest {
         )
 
         val guards = guardSpy.parseInput(lines)
-        val longestAsleepguard = guardSpy.getGuardAsleepMostFrequent(guards)
-        val mostFrequentAsleepMinute = guardSpy.getMinuteMostAsleep(longestAsleepguard)
+        val longestAsleepGuard = guardSpy.getGuardAsleepMostFrequent(guards)
+        val mostFrequentAsleepMinute = guardSpy.getMinuteMostAsleep(longestAsleepGuard)
 
-        assertEquals(99, longestAsleepguard.id)
+        assertEquals(99, longestAsleepGuard.id)
         assertEquals(45, mostFrequentAsleepMinute)
     }
 }

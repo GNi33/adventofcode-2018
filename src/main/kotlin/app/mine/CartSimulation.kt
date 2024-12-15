@@ -1,7 +1,6 @@
 package app.mine
 
 import app.mine.model.Cart
-import java.lang.RuntimeException
 
 class CartSimulation(testInput: List<String>, options: Map<String, Boolean> = mapOf()) {
 

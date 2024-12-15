@@ -3,8 +3,8 @@ package app.device.plants
 import app.days.DayConsts
 import app.util.IInputReader
 import app.util.InputReader
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.*
 
 internal class GenerationSimulatorTest {
     private val inputReader = InputReader(IInputReader.MODE.TEST)

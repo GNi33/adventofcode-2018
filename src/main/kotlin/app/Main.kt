@@ -1,6 +1,11 @@
 package app
 
-import app.device.services.*
+import app.device.services.BoxScanner
+import app.device.services.CalibrationService
+import app.device.services.IBoxScanner
+import app.device.services.ICalibrationService
+import app.device.services.IPolymerCalculator
+import app.device.services.PolymerCalculator
 import app.factory.services.FabricCalculator
 import app.factory.services.IFabricCalculator
 import app.sleigh.model.AssemblyStep

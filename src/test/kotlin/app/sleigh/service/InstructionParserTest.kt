@@ -5,7 +5,7 @@ import app.sleigh.model.IAssemblyStep
 import app.sleigh.model.TestAssemblyStep
 import app.util.IInputReader
 import app.util.InputReader
-import org.junit.Assert.assertEquals
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

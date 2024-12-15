@@ -18,5 +18,4 @@ class Day15: IDay {
         logger.info { "Part 02" }
 
     }
-
 }

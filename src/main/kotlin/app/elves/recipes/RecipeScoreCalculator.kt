@@ -32,7 +32,6 @@ class RecipeScoreCalculator {
     fun calculateRecipeNumUntil(sequence: String): Int {
 
         val seqLen = sequence.length
-        var seqFound = false
         scoreList = mutableListOf(3,7)
         val elves: List<Elf> = listOf(Elf(0), Elf(1))
         var score = 0

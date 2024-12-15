@@ -1,7 +1,5 @@
 package app.device.plants
 
-import kotlin.Exception
-
 private const val POT_NUM_PADDING = 5
 private const val GEN_PADDING = 6
 
@@ -89,7 +87,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
                  .plus(" : ").plus(countPlantPotNumsOfGen(generation))))
     }
 
-    fun getIndexOfFirstDiffOccurence(diff: Int) : Int {
+    fun getIndexOfFirstDiffOccurrence(diff: Int) : Int {
 
         potNumDifferences.forEachIndexed { idx, value ->
             if (value == diff && potNumDifferences[idx+1] == diff && potNumDifferences[idx+2] == diff) {
@@ -97,7 +95,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
             }
         }
 
-        throw Exception("Not found")
+        error("Not found")
 
     }
 
@@ -106,7 +104,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
 
         val highestEntry = potNumDifferences.maxByOrNull { it.value }
 
-        return highestEntry?.key ?: throw Exception("No diff found")
+        return highestEntry?.key ?: error("No diff found")
     }
 
     private fun getPotNumDifferenceCount(): MutableMap<Int, Int> {

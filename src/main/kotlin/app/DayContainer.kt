@@ -34,7 +34,7 @@ class DayContainer {
             return dayClass.getDeclaredConstructor().newInstance()
         }
 
-        throw Exception("Day $day not found")
+        error("Day $day not found")
     }
 
     private fun getDayClass(day: Int): Class<out IDay>? {

@@ -2,10 +2,6 @@ package app.elves.battle
 
 import app.elves.battle.model.Actor
 import app.elves.battle.model.Battlefield
-import app.elves.battle.model.Elf
-import app.elves.battle.model.Goblin
-import app.model.Point
-import java.lang.Exception
 
 class BattlefieldController(val battlefield: Battlefield) {
 

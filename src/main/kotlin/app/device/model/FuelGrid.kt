@@ -58,11 +58,11 @@ class FuelGrid(private val serialNo: Int) {
     fun calculateTotalAt(x: Int, y: Int, size: Int): Int {
 
         if(x < 0 || y < 0) {
-            throw Exception("Out of area")
+            error("Out of area")
         }
 
         if (x + (size - 1) > width - 1 || y + (size - 1) > height - 1) {
-            throw Exception("Out of area")
+            error("Out of area")
         }
 
         var score = 0

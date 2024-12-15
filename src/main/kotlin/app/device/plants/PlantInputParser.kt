@@ -20,8 +20,8 @@ class PlantInputParser(input: List<String>) {
     }
 
     private fun extractInitialStateAsString(line: String): String {
-        if (line.take(INITIAL_STATE_STR_LENGTH) != "initial state: ") {
-            throw Exception("Input malformed")
+        require(line.take(INITIAL_STATE_STR_LENGTH) != "initial state: ") {
+            "Input malformed"
         }
 
         return line.removePrefix("initial state: ")

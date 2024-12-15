@@ -1,6 +1,6 @@
 package app.factory.model
 
-import java.util.Date
+import java.util.*
 
 class Guard(override val id: Int) : IGuard {
 
@@ -10,7 +10,7 @@ class Guard(override val id: Int) : IGuard {
 
     override fun fallsAsleep(dateTime: Date) {
         if (activeTimeSlot != null) {
-            throw Exception()
+            error("Guard is already asleep")
         }
 
         val guardTime = GuardTime()
@@ -21,10 +21,10 @@ class Guard(override val id: Int) : IGuard {
 
     override fun wakesUp(dateTime: Date) {
 
-        val guardTime = activeTimeSlot ?: throw Exception()
+        val guardTime = activeTimeSlot ?: error("Guard is not asleep")
         guardTime.endTime = dateTime
 
-        guardTimes.put(guardTime.startTime.toString(), guardTime)
+        guardTimes[guardTime.startTime.toString()] = guardTime
 
         activeTimeSlot = null
     }

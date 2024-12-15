@@ -1,7 +1,6 @@
 package app.games.marbles
 
-import java.util.ArrayDeque
-import java.util.Deque
+import java.util.*
 import kotlin.math.abs
 
 private const val MARBLE_MULTIPLE_OF = 23
@@ -14,7 +13,7 @@ class MarbleGame(private val numOfPlayers: Int, private val numOfMarbles: Int) {
     private val players = LongArray(numOfPlayers) { 0 }
 
     fun playGame() {
-        (1..numOfMarbles).forEach { marbleNum ->
+        for (marbleNum in 1..numOfMarbles) {
             if (marbleNum % MARBLE_MULTIPLE_OF == 0) {
                 val currentPlayer = getCurrentPlayer(marbleNum)
                 rotateCircle(ROTATE_COUNTERCLOCKWISE_STEPS)
