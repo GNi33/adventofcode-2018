@@ -2,7 +2,11 @@ package app.elves.recipes
 
 import app.elves.Elf
 
+private const val FIRST_INITIAL_RECIPE_SCORE = 3
+private const val SECOND_INITIAL_RECIPE_SCORE = 7
 private const val RECIPE_SCORE_LENGTH = 10
+private const val MAX_SINGLE_DIGIT = 9
+private const val DIGIT_CONVERSION_OFFSET = 10
 
 class RecipeScoreCalculator {
 
@@ -10,7 +14,7 @@ class RecipeScoreCalculator {
 
     fun calculateRecipeScore(stoppingPoint: Int): String {
 
-        scoreList = mutableListOf(3,7)
+        scoreList = mutableListOf(FIRST_INITIAL_RECIPE_SCORE, SECOND_INITIAL_RECIPE_SCORE)
 
         val maxLength = stoppingPoint + RECIPE_SCORE_LENGTH + 1
         val elves: List<Elf> = listOf(Elf(0), Elf(1))
@@ -32,7 +36,8 @@ class RecipeScoreCalculator {
     fun calculateRecipeNumUntil(sequence: String): Int {
 
         val seqLen = sequence.length
-        scoreList = mutableListOf(3,7)
+        scoreList = mutableListOf(FIRST_INITIAL_RECIPE_SCORE, SECOND_INITIAL_RECIPE_SCORE)
+
         val elves: List<Elf> = listOf(Elf(0), Elf(1))
         var score = 0
 
@@ -68,9 +73,9 @@ class RecipeScoreCalculator {
 
         val newScore = value01 + value02
 
-        if (newScore > 9) {
+        if (newScore > MAX_SINGLE_DIGIT) {
             scoreList.add(1)
-            scoreList.add(newScore - 10)
+            scoreList.add(newScore - DIGIT_CONVERSION_OFFSET)
         } else {
             scoreList.add(newScore)
         }

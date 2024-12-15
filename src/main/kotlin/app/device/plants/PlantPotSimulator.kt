@@ -1,5 +1,6 @@
 package app.device.plants
 
+private const val INDEX_OFFSET = 3;
 private const val POT_NUM_PADDING = 5
 private const val GEN_PADDING = 6
 
@@ -96,7 +97,6 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
         }
 
         error("Not found")
-
     }
 
     fun getMostOccurringDifference(): Int {
@@ -129,7 +129,7 @@ class PlantPotSimulator(input: List<String>, options: Map<String, Boolean> = map
 
         generation.forEachIndexed { idx, char ->
             if (char == '#') {
-                potCount += (idx - 3)
+                potCount += (idx - INDEX_OFFSET)
             }
         }
 
