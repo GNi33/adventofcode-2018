@@ -3,7 +3,7 @@ package app.factory.util
 import app.factory.model.Guard
 import app.factory.model.IGuard
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 class GuardParser {
 
@@ -68,7 +68,9 @@ class GuardParser {
     }
 
     fun parseDate(line: String): Date {
-        val match = Regex("(15\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01]) ([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])")
+        val match = Regex(
+            "(15\\d\\d)[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01]) ([0-9]|0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])"
+        )
 
         val regexResult = match.find(line)
         val dateString = regexResult!!.value

@@ -19,6 +19,7 @@ dependencies {
     implementation(project.dependencies.platform("io.insert-koin:koin-bom:3.5.6"))
     implementation("io.insert-koin:koin-core")
 
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.10")
     implementation("org.reflections:reflections:0.10.2")
 
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")

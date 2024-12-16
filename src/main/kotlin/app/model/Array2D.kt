@@ -1,5 +1,7 @@
 package app.model
 
+const val DEFAULT_SIZE = 1000
+
 class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
 
     operator fun get(x: Int): Array<T> {
@@ -23,7 +25,11 @@ class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
     }
 
     companion object {
-        inline operator fun <reified T> invoke() = Array2D(1000, 1000, Array(1000) { arrayOfNulls<T>(1000) })
+        inline operator fun <reified T> invoke() = Array2D(
+            DEFAULT_SIZE,
+            DEFAULT_SIZE,
+            Array(DEFAULT_SIZE) { arrayOfNulls<T>(DEFAULT_SIZE) }
+        )
 
         inline operator fun <reified T> invoke(xWidth: Int, yWidth: Int, operator: (Int, Int) -> (T)): Array2D<T> {
             val array = Array(xWidth) {

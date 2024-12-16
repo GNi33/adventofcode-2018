@@ -4,9 +4,8 @@ import app.util.IInputReader
 import app.util.InputReader
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
-internal class CartSimulationTest : KoinTest {
+internal class CartSimulationTest {
     private val inputReader = InputReader(IInputReader.MODE.TEST)
     private val testInput: List<String> = inputReader.getDataForDay(13)
 

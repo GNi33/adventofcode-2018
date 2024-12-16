@@ -5,9 +5,8 @@ import app.util.IInputReader
 import app.util.InputReader
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.koin.test.KoinTest
 
-internal class MapParserTest : KoinTest {
+internal class MapParserTest {
     private val inputReader = InputReader(IInputReader.MODE.TEST)
     private val testInput: List<String> = inputReader.getDataForDay(13)
     private val testInput2: List<String> = inputReader.getDataForDay(13, 2)

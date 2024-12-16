@@ -20,11 +20,15 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         DayConsts.DAY_12 to listOf("pots.txt"),
         DayConsts.DAY_13 to listOf("cart-tracks.txt", "cart-tracks-2.txt"),
         DayConsts.DAY_14 to listOf("recipes.txt"),
-        DayConsts.DAY_15 to listOf("battlefield.txt", "battlefield_positions.txt", "battlefield_targets.txt")
+        DayConsts.DAY_15 to listOf("battlefield.txt", "battlefield_positions.txt", "battlefield_targets.txt"),
+        DayConsts.DAY_16 to listOf("opcodes.txt")
     )
 
+    override fun getDayFile(fileName: String): File = File(getFullFilePath(fileName))
+    override fun getFileForDay(dayNum: Int): File = getDayFile(dayInputs[dayNum]!![0])
+
     override fun getDataFromFile(fileName: String): List<String> =
-        File(getFullFilePath(fileName)).useLines { it.toList() }
+        getDayFile(fileName).useLines { it.toList() }
 
     override fun getDataForDay(dayNum: Int): List<String> = getDataFromFile(dayInputs[dayNum]!![0])
 

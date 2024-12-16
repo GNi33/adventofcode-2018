@@ -1,7 +1,9 @@
 package app.factory.model
 
-import java.util.Date
-import java.util.GregorianCalendar
+import java.util.*
+
+const val MS_TO_SECONDS = 1000
+const val SECONDS_TO_MINUTES = 60
 
 class GuardTime {
     lateinit var startTime: Date
@@ -10,7 +12,7 @@ class GuardTime {
     fun getMinutes(): Int {
         val diff = endTime.time - startTime.time
 
-        return (diff / 1000 / 60).toInt()
+        return (diff / MS_TO_SECONDS / SECONDS_TO_MINUTES).toInt()
     }
 
     fun getListOfMinutes(): List<Int> {
