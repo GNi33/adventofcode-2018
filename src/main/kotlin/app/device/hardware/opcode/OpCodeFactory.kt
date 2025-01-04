@@ -1,7 +1,7 @@
 package app.device.hardware.opcode
 
 class OpCodeFactory {
-    fun createOppCode(name: String): AbstractOpCode {
+    fun createOpCode(name: String): AbstractOpCode {
         when (name) {
             "borr" -> return Borr()
             "banr" -> return Banr()

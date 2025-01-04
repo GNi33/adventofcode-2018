@@ -1,5 +1,6 @@
 package app.device.hardware
 
+import app.days.Day16
 import app.device.hardware.opcode.*
 import app.util.InputParser
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -13,17 +14,17 @@ class InstructionTerminalTest {
     @Test
     fun singleInstructionTest() {
 
-        val instruction = Instruction()
-        instruction.deserializeInput(
+        val sampledInstruction = SampledInstruction()
+        sampledInstruction.deserializeInput(
             "Before: [3, 2, 1, 1]\r\n" +
             "9 2 1 2\r\n" +
             "After:  [3, 2, 2, 1]"
         )
 
-        val registers = instruction.before.toMutableList()
-        Mulr().execute(instruction.values, registers)
+        val registers = sampledInstruction.before.toMutableList()
+        Mulr().execute(sampledInstruction.values, registers)
 
-        assertEquals(instruction.after, registers)
+        assertEquals(sampledInstruction.after, registers)
     }
 
     @Test
@@ -83,14 +84,14 @@ class InstructionTerminalTest {
     @Test
     fun instructionIdentifyTest() {
 
-        val instruction = Instruction()
-        instruction.deserializeInput(
+        val sampledInstruction = SampledInstruction()
+        sampledInstruction.deserializeInput(
             "Before: [3, 2, 1, 1]\r\n" +
             "9 2 1 2\r\n" +
             "After:  [3, 2, 2, 1]"
         )
 
-        val oppCodes = instructionTerminal.tryInstruction(instruction)
+        val oppCodes = instructionTerminal.tryInstruction(sampledInstruction)
 
         val expected = mapOf(
             "addr" to false,
@@ -121,11 +122,50 @@ class InstructionTerminalTest {
 
         val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
         val instructionInput = splitInput[0]
-        val instructionInstances = inputParser.parseInput(Instruction::class, instructionInput, "\r\n\r\n")
+        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
 
-        val count = instructionTerminal.checkInstructionCodeCount(instructionInstances);
+        val count = instructionTerminal.checkInstructionCodeCount(sampledInstructionInstances);
 
-        println(count)
+        assertEquals(677, count)
+    }
+
+    @Test
+    fun sortedInstructionCodeCountTest() {
+        val inputParser = InputParser()
+
+        val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
+        val instructionInput = splitInput[0]
+        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
+
+        val sortedInstructions = sampledInstructionInstances.sortedBy { it.values[0] }.groupBy { it.values[0] }
+
+        assertEquals(838, sampledInstructionInstances.count())
+        assertEquals(16, sortedInstructions.count())
+
+        val day16 = Day16()
+        val opCodeIds = day16.determineOpCodeIds(sampledInstructionInstances)
+
+        assertEquals(16, opCodeIds.count())
+    }
+
+    @Test
+    fun runInstructionsTest() {
+        val inputParser = InputParser()
+
+        val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
+
+        val instructionInput = splitInput[0]
+        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
+
+        val programInput = splitInput[1]
+        val programInstructions = inputParser.parseInput(Instruction::class, programInput, "\r\n")
+
+        val day16 = Day16()
+        val opCodeIds = day16.determineOpCodeIds(sampledInstructionInstances)
+
+        instructionTerminal.runInstructions(programInstructions, opCodeIds)
+
+        assertEquals(listOf(540, 2, 9, 540), instructionTerminal.registers)
     }
 
 }

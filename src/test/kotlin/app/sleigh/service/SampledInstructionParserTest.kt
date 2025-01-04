@@ -16,7 +16,7 @@ import org.koin.dsl.module
 import org.koin.test.KoinTest
 import java.util.NoSuchElementException
 
-internal class InstructionParserTest : KoinTest {
+internal class SampledInstructionParserTest : KoinTest {
 
     private val inputReader = InputReader(IInputReader.MODE.TEST)
     private val testInput: List<String>

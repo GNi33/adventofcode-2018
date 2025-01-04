@@ -24,29 +24,41 @@ class InstructionTerminal {
         "eqrr"
     )
 
-    fun checkInstructionCodeCount(instructions : List<Instruction>, cutOff: Int = 3): Int {
-        return instructions.count { countPossibleOpcodes(it) >= cutOff }
+    fun checkInstructionCodeCount(sampledInstructions : List<SampledInstruction>, cutOff: Int = 3): Int {
+        return sampledInstructions.count { countPossibleOpcodes(it) >= cutOff }
     }
 
-    fun countPossibleOpcodes(instruction: Instruction): Int {
-        return tryInstruction(instruction).filter { it.value }.count()
+    fun countPossibleOpcodes(sampledInstruction: SampledInstruction): Int {
+        return tryInstruction(sampledInstruction).filter { it.value }.count()
     }
 
-    fun tryInstruction(instruction: Instruction): Map<String, Boolean> {
+    fun tryInstruction(sampledInstruction: SampledInstruction): Map<String, Boolean> {
 
         val opCodeFactory = OpCodeFactory()
         val opCodeMap = mutableMapOf<String, Boolean>()
 
         oppCodeList.forEach { oppCode ->
-            instruction.before.forEachIndexed { index, value ->
+            sampledInstruction.before.forEachIndexed { index, value ->
                 registers[index] = value
             }
 
-            opCodeFactory.createOppCode(oppCode).execute(instruction.values, registers)
-            opCodeMap[oppCode] = registers == instruction.after
+            opCodeFactory.createOpCode(oppCode).execute(sampledInstruction.values, registers)
+            opCodeMap[oppCode] = registers == sampledInstruction.after
         }
 
         return opCodeMap
+    }
+
+    fun resetRegisters() {
+        registers.clear()
+        registers.addAll(listOf(0, 0, 0, 0))
+    }
+
+    fun runInstructions(programInstructions: List<Instruction>, opCodeIds: Map<Int, String>) {
+        programInstructions.forEach { instruction ->
+            val opCode = OpCodeFactory().createOpCode(opCodeIds[instruction.values[0]]!!)
+            opCode.execute(instruction.values, registers)
+        }
     }
 
 }

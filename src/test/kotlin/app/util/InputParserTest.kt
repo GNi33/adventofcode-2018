@@ -1,6 +1,7 @@
 package app.util
 
 import app.device.hardware.Instruction
+import app.device.hardware.SampledInstruction
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -17,15 +18,26 @@ internal class InputParserTest {
     }
 
     @Test
-    fun parseInputTest() {
+    fun parseSampledInstructionInputTest() {
         val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
 
         val instructionInput = splitInput[0]
 
-        val instructionInstances = inputParser.parseInput(Instruction::class, instructionInput, "\r\n\r\n")
+        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
 
-        assertEquals(instructionInstances[0]::class, Instruction::class)
-        assertEquals(instructionInstances.count(), 838)
+        assertEquals(sampledInstructionInstances[0]::class, SampledInstruction::class)
+        assertEquals(sampledInstructionInstances.count(), 838)
+    }
+
+    @Test
+    fun parseInstructionInputTest() {
+        val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
+
+        val instructionInput = splitInput[1]
+        val sampledInstructionInstances = inputParser.parseInput(Instruction::class, instructionInput, "\r\n")
+
+        assertEquals(sampledInstructionInstances[0]::class, Instruction::class)
+        assertEquals(sampledInstructionInstances.count(), 836)
     }
 
 }
