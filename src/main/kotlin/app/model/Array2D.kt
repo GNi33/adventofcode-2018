@@ -8,12 +8,16 @@ class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
         return array[x]
     }
 
-    operator fun get(x: Int, y: Int): T {
-        return array[x][y]
+    operator fun get(y: Int, x: Int): T {
+        return array[y][x]
     }
 
-    operator fun set(x: Int, y: Int, t: T) {
-        array[x][y] = t
+    operator fun set(y: Int, x: Int, t: T) {
+        array[y][x] = t
+    }
+
+    inline fun forEachRow(operation: (Int, Array<T>) -> Unit) {
+        array.forEachIndexed { i: Int, ts: Array<T> -> operation.invoke(i, ts) }
     }
 
     inline fun forEach(operation: (T) -> Unit) {
@@ -31,12 +35,11 @@ class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
             Array(DEFAULT_SIZE) { arrayOfNulls<T>(DEFAULT_SIZE) }
         )
 
-        inline operator fun <reified T> invoke(xWidth: Int, yWidth: Int, operator: (Int, Int) -> (T)): Array2D<T> {
-            val array = Array(xWidth) {
-                val x = it
-                Array(yWidth) { it1 -> operator(x, it1) }
+        inline operator fun <reified T> invoke(yHeight: Int, xWidth: Int, operator: (Int, Int) -> (T)): Array2D<T> {
+            val array = Array(yHeight) { x ->
+                Array(xWidth) { it1 -> operator(x, it1) }
             }
-            return Array2D(xWidth, yWidth, array)
+            return Array2D(yHeight, xWidth, array)
         }
     }
 }
