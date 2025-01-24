@@ -190,4 +190,19 @@ class GroundScanner(val clayVeins: List<ClayVein>) {
 
         return count
     }
+
+    fun restWaterTileCount(yMin: Int, yMax: Int): Int {
+
+        var count = 0
+
+        undergroundMap.arrayMap.forEachRow { idx, it ->
+            if (idx < yMin || idx > yMax) {
+                return@forEachRow
+            }
+
+            count += it.count { c -> c == '~' }
+        }
+
+        return count
+    }
 }
