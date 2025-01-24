@@ -1,7 +1,7 @@
 package app.model
 
 abstract class AbstractCharMap(val xSize: Int, val ySize: Int) {
-    open val arrayMap: Array2D<Char> = Array2D(xSize, ySize, Array(xSize) { Array(ySize) { ' ' } })
+    open val arrayMap: Array2D<Char> = Array2D(xSize, ySize, Array(ySize) { Array(xSize) { ' ' } })
 
     fun getMapTileAt(y: Int, x: Int): Char {
         return arrayMap[y, x]
