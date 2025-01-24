@@ -176,7 +176,7 @@ class GroundScanner(val clayVeins: List<ClayVein>) {
         return waterTips.any { it.y != -1 }
     }
 
-    fun waterTileCount(yMin: Int, yMax: Int): Int {
+    fun waterTileCount(yMin: Int, yMax: Int, eligibleCharacters: Array<Char> = arrayOf('~', '|')): Int {
 
         var count = 0
 
@@ -185,7 +185,7 @@ class GroundScanner(val clayVeins: List<ClayVein>) {
                 return@forEachRow
             }
 
-            count += it.count { c -> c == '~' || c == '|' }
+            count += it.count { c -> c in eligibleCharacters }
         }
 
         return count

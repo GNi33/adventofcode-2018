@@ -39,6 +39,6 @@ class Day17: IDay {
         logger.info(groundScanner.waterTileCount(bounds["yMinClay"]!!, bounds["yMax"]!!).toString())
 
         logger.info { "Part 02" }
-        logger.info(groundScanner.restWaterTileCount(bounds["yMinClay"]!!, bounds["yMax"]!!).toString())
+        logger.info(groundScanner.waterTileCount(bounds["yMinClay"]!!, bounds["yMax"]!!, arrayOf('~')).toString())
     }
 }

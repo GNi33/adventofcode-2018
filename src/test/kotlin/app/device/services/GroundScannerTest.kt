@@ -5,7 +5,6 @@ import app.util.IInputReader
 import app.util.InputParser
 import app.util.InputReader
 import org.junit.jupiter.api.Test
-import java.lang.Thread.sleep
 import kotlin.test.assertEquals
 
 internal class GroundScannerTest {
@@ -49,15 +48,24 @@ internal class GroundScannerTest {
 
         map.fillMap(input)
 
-        var ct = 0
         while (groundScanner.hasWaterTips()) {
-
             groundScanner.waterFlowStep()
-            map.printMap(map.ySize)
-            ct++
-            sleep(10)
         }
 
-        assertEquals(57, groundScanner.waterTileCount())
+        assertEquals(57, groundScanner.waterTileCount(1, map.ySize))
+    }
+
+    @Test
+    fun restingWaterTest() {
+        val groundScanner = GroundScanner(input)
+        val map = groundScanner.undergroundMap
+
+        map.fillMap(input)
+
+        while (groundScanner.hasWaterTips()) {
+            groundScanner.waterFlowStep()
+        }
+
+        assertEquals(29, groundScanner.waterTileCount(1, map.ySize, arrayOf('~')))
     }
 }
