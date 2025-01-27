@@ -4,8 +4,8 @@ const val DEFAULT_SIZE = 1000
 
 class Array2D<T> (val xSize: Int, val ySize: Int, var array: Array<Array<T>>) {
 
-    operator fun get(x: Int): Array<T> {
-        return array[x]
+    operator fun get(y: Int): Array<T> {
+        return array[y]
     }
 
     operator fun get(y: Int, x: Int): T {

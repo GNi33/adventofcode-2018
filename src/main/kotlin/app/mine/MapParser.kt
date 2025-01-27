@@ -3,7 +3,6 @@ package app.mine
 import app.mine.model.Cart
 import app.mine.model.Direction
 import app.mine.model.Map
-import java.lang.Exception
 
 class MapParser(input:List<String>) {
 
@@ -11,8 +10,8 @@ class MapParser(input:List<String>) {
     val carts: MutableList<Cart> = mutableListOf()
 
     init {
-        val xSize = input.size
-        val ySize = input.maxByOrNull { it.count() }?.count() ?: throw Exception("Parsing went wrong")
+        val ySize = input.size
+        val xSize = input.maxByOrNull { it.count() }?.count() ?: throw Exception("Parsing went wrong")
 
         map = Map(xSize, ySize)
 

@@ -19,8 +19,8 @@ internal class MapParserTest {
         val map = mapParser.map
         val map2 = mapParser2.map
 
-        assertEquals(6, map.xSize)
-        assertEquals(13, map.ySize)
+        assertEquals(13, map.xSize)
+        assertEquals(6, map.ySize)
 
         assertEquals(7, map2.xSize)
         assertEquals(7, map2.ySize)

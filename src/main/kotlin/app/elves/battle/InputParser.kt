@@ -9,8 +9,8 @@ import app.model.Point
 object InputParser {
 
     fun parseInput(input: List<String>): Pair<Battlefield, MutableList<Actor>> {
-        val xSize = input.size
-        val ySize = input.maxByOrNull { it.count() }?.count() ?: throw Exception("Parsing went wrong")
+        val ySize = input.size
+        val xSize = input.maxByOrNull { it.count() }?.count() ?: throw Exception("Parsing went wrong")
 
         val battlefield = Battlefield(xSize, ySize)
         val actors = mutableListOf<Actor>()
