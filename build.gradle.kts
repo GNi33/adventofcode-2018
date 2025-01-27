@@ -9,7 +9,7 @@ repositories {
 }
 
 plugins {
-    kotlin("jvm") version "1.9.25"
+    kotlin("jvm") version "2.1.0"
     id("io.gitlab.arturbosch.detekt").version("1.23.7")
     application
 }
