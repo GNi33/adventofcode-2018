@@ -52,16 +52,19 @@ class MatrixWindow(size: Int) {
         }
     }
 
-    fun countChar(char: Char, includeCenter: Boolean = false): Int {
-
+    fun getCenter(): Char {
         if (ctX == null || ctY == null) {
             throw IllegalStateException("Window not set")
         }
 
+        return values[values.ySize / 2, values.xSize / 2]
+    }
+
+    fun countChar(char: Char, includeCenter: Boolean = false): Int {
         var count = values.array.sumOf { it.count { c -> c == char } }
 
         if(!includeCenter) {
-            if (values[values.ySize / 2,values.xSize / 2] == char) {
+            if (getCenter() == char) {
                 count -= 1
             }
 

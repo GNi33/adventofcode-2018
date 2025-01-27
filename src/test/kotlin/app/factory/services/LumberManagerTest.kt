@@ -47,4 +47,23 @@ class LumberManagerTest {
         assertEquals(3, slidingWindow.countChar('|', true))
         assertEquals(3, slidingWindow.countChar('.'))
     }
+
+    @Test
+    fun lumberManagerTest() {
+        val ySize = testInput.size
+        val xSize = testInput[0].length
+
+        val lumberManager = LumberManager(xSize, ySize, 3, testInput.map { it.toList() })
+
+        println("Initial state")
+        lumberManager.printMap()
+
+        for (i in 1 .. 10) {
+            println("After Minute $i")
+            lumberManager.passMinute()
+            lumberManager.printMap()
+        }
+
+        assertEquals(1147, lumberManager.getWoodAcres() * lumberManager.getLumberyards())
+    }
 }
