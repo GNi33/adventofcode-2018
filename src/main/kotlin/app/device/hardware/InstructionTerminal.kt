@@ -4,7 +4,7 @@ import app.device.hardware.opcode.OpCodeFactory
 
 class InstructionTerminal {
 
-    val registers = mutableListOf(0, 0, 0, 0)
+    val registers = mutableListOf(0, 0, 0, 0, 0, 0)
     private val oppCodeList = listOf(
         "addr",
         "addi",

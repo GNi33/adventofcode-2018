@@ -165,7 +165,7 @@ class InstructionTerminalTest {
 
         instructionTerminal.runInstructions(programInstructions, opCodeIds)
 
-        assertEquals(listOf(540, 2, 9, 540), instructionTerminal.registers)
+        assertEquals(listOf(540, 2, 9, 540, 0, 0), instructionTerminal.registers)
     }
 
 }
