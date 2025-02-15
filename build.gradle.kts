@@ -25,11 +25,14 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
     implementation("ch.qos.logback:logback-classic:1.4.12")
 
+    implementation("com.varabyte.kotter:kotter-jvm:1.2.1")
+
     // Test Dependencies
     testImplementation("io.insert-koin:koin-test")
 
     testImplementation(platform("org.junit:junit-bom:5.9.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("com.varabyte.kotterx:kotter-test-support-jvm:1.2.1")
 }
 
 application {
