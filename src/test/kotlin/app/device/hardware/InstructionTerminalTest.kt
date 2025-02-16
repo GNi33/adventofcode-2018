@@ -2,7 +2,9 @@ package app.device.hardware
 
 import app.days.Day16
 import app.device.hardware.opcode.*
+import app.util.IInputReader
 import app.util.InputParser
+import app.util.InputReader
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -79,6 +81,35 @@ class InstructionTerminalTest {
 
         Eqrr().execute(listOf(9,2,2,3), registers)
         assertEquals(mutableListOf(3,2,2,1), registers)
+    }
+
+    @Test
+    fun namedInstructionTest() {
+        val setiInstruction = NamedInstruction()
+
+        setiInstruction.deserializeInput("seti 5 0 1")
+
+        assertEquals("seti", setiInstruction.name)
+        assertEquals(listOf(0, 5, 0, 1), setiInstruction.values)
+
+        val addrInstruction = NamedInstruction()
+        addrInstruction.deserializeInput("addr 1 2 3")
+
+        assertEquals("addr", addrInstruction.name)
+        assertEquals(listOf(0, 1, 2, 3), addrInstruction.values)
+    }
+
+    @Test
+    fun parseNamedInstructionsTest() {
+        val inputParser = InputParser()
+        val inputReader = InputReader(IInputReader.MODE.TEST)
+
+        val programInput = inputReader.getDataForDay(19).toMutableList()
+        programInput.removeFirst()
+
+        val programInstructions = inputParser.parseInputBlocks(NamedInstruction::class, programInput)
+
+        assertEquals(7, programInstructions.count())
     }
 
     @Test
@@ -166,6 +197,22 @@ class InstructionTerminalTest {
         instructionTerminal.runInstructions(programInstructions, opCodeIds)
 
         assertEquals(listOf(540, 2, 9, 540, 0, 0), instructionTerminal.registers)
+    }
+
+    @Test
+    fun runInstructionsWithPointerTest() {
+        val inputParser = InputParser()
+        val inputReader = InputReader(IInputReader.MODE.TEST)
+
+        val programInput = inputReader.getDataForDay(19).toMutableList()
+
+        val instructionPointer = programInput.removeFirst().substringAfter(" ").toInt()
+        instructionTerminal.instructionPointer = 0
+        instructionTerminal.pointerRegistry = instructionPointer
+
+        val programInstructions = inputParser.parseInputBlocks(NamedInstruction::class, programInput)
+
+        instructionTerminal.runNamedInstructions(programInstructions)
     }
 
 }

@@ -19,6 +19,11 @@ class InputParser(mode: IInputReader.MODE = IInputReader.MODE.MAIN) {
     fun <T : DeserializableInputInterface> parseInput(dtoClass: KClass<T>, input: String, delimiter: String): List<T> {
 
         val inputBlocks = input.trim().split(delimiter)
+
+        return parseInputBlocks(dtoClass, inputBlocks)
+    }
+
+    fun <T : DeserializableInputInterface> parseInputBlocks(dtoClass: KClass<T>, inputBlocks: List<String>): List<T> {
         val instanceList = mutableListOf<T>()
 
         inputBlocks.forEach { block ->

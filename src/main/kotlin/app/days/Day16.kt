@@ -14,6 +14,7 @@ class Day16: IDay {
     private val splitInput = inputParser.splitInput(DayConsts.DAY_16, "\r\n\r\n\r\n")
 
     override fun run() {
+
         logger.info { "Day 16" }
         logger.info { "Part 01" }
 

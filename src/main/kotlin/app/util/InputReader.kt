@@ -24,6 +24,7 @@ class InputReader(private var mode: IInputReader.MODE = IInputReader.MODE.MAIN) 
         DayConsts.DAY_16 to listOf("opcodes.txt"),
         DayConsts.DAY_17 to listOf("underground-clay.txt"),
         DayConsts.DAY_18 to listOf("lumber-collection-area.txt"),
+        DayConsts.DAY_19 to listOf("instructions-program.txt"),
     )
 
     override fun getDayFile(fileName: String): File = File(getFullFilePath(fileName))
