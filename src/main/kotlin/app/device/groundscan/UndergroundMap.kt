@@ -7,6 +7,8 @@ import kotlin.math.absoluteValue
 import kotlin.math.floor
 import kotlin.math.log10
 
+const val MAP_CENTER = 500
+
 class UndergroundMap(val xMin: Int, val xMax: Int, val yMax: Int): AbstractCharMap((xMax - xMin)+1, yMax+1) {
     override val arrayMap: Array2D<Char> = Array2D(xSize, ySize, Array(ySize) { Array(xSize) { '.' } })
 
@@ -17,7 +19,7 @@ class UndergroundMap(val xMin: Int, val xMax: Int, val yMax: Int): AbstractCharM
             }
         }
 
-        arrayMap[0, 500 - xMin] = '+'
+        arrayMap[0, MAP_CENTER - xMin] = '+'
     }
 
     fun printMap(maxY: Int, minY: Int = 0) {

@@ -1,5 +1,6 @@
 package app.days
 
+import app.days.DayConsts.DAY_19
 import app.device.hardware.InstructionTerminal
 import app.device.hardware.NamedInstruction
 import app.util.InputParser
@@ -17,7 +18,7 @@ class Day19: IDay {
 
         val instructionTerminal = InstructionTerminal()
 
-        val programInput = inputReader.getDataForDay(19).toMutableList()
+        val programInput = inputReader.getDataForDay(DAY_19).toMutableList()
 
         val instructionPointer = programInput.removeFirst().substringAfter(" ").toInt()
         instructionTerminal.instructionPointer = 0

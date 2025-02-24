@@ -1,5 +1,6 @@
 package app.days
 
+import app.days.DayConsts.DAY_18
 import app.factory.services.LumberManager
 import app.util.InputReader
 import com.varabyte.kotter.foundation.anim.Anim
@@ -16,6 +17,11 @@ import com.varabyte.kotter.terminal.system.SystemTerminal
 import com.varabyte.kotter.terminal.virtual.VirtualTerminal
 import mu.KotlinLogging
 
+private const val PART01_MINUTES = 10
+private const val PART02_MINUTES = 1_000_000_000
+private const val LOGGING_INTERVAL = 100
+private const val PART02_CUTOFF = 1000
+
 class Day18: IDay {
 
     private val logger = KotlinLogging.logger {}
@@ -25,14 +31,13 @@ class Day18: IDay {
         logger.info { "Day 18 - Settlers of The North Pole" }
         logger.info { "Part 01" }
 
-
-        val input = inputReader.getDataForDay(18)
+        val input = inputReader.getDataForDay(DAY_18)
         val ySize = input.size
         val xSize = input[0].length
 
         val lumberManager = LumberManager(xSize, ySize, 3, input.map { it.toList() })
 
-        for (i in 1 .. 10) {
+        for (i in 1 .. PART01_MINUTES) {
             lumberManager.passMinute()
         }
 
@@ -47,7 +52,7 @@ class Day18: IDay {
         if(lumberManager2.cycle.first > 0) {
             val cycle = lumberManager2.cycle
             val cycleLength = lumberManager2.minute - cycle.second
-            val remainingMinutes = 1_000_000_000 - cycle.first
+            val remainingMinutes = PART02_MINUTES - cycle.first
             val remainingMinutesInCycle = remainingMinutes % cycleLength
 
             for (i in 1 .. remainingMinutesInCycle) {
@@ -61,7 +66,9 @@ class Day18: IDay {
     private fun render(lumberManager: LumberManager) = session(
         terminal = listOf(
             { SystemTerminal() },
-            { VirtualTerminal.create(terminalSize = TerminalSize(lumberManager.xSize, lumberManager.ySize + 15)) }
+            { VirtualTerminal.create(
+                terminalSize = TerminalSize(lumberManager.xSize, lumberManager.ySize + 15))
+            }
         ).firstSuccess(),
         clearTerminal = true) {
 
@@ -109,11 +116,11 @@ class Day18: IDay {
                     }
                 }
 
-                if (lumberManager.minute % 100 == 0) {
+                if (lumberManager.minute % LOGGING_INTERVAL == 0) {
                     logger.info { cycles }
                 }
 
-                if(lumberManager.minute == 1000) {
+                if(lumberManager.minute == PART02_CUTOFF) {
                     logger.info { cycles }
 
                     if (!cycles.isEmpty()) {

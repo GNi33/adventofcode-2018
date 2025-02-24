@@ -1,5 +1,6 @@
 package app.days
 
+import app.days.DayConsts.DAY_17
 import app.device.model.groundscan.ClayVein
 import app.device.services.GroundScanner
 import app.util.InputParser
@@ -16,7 +17,7 @@ class Day17: IDay {
         logger.info { "Day 17 - Reservoir Research" }
         logger.info { "Part 01" }
 
-        val inputRaw = inputReader.getFileForDay(17).readText()
+        val inputRaw = inputReader.getFileForDay(DAY_17).readText()
 
         val inputParser = InputParser()
         val input = inputParser.parseInput(ClayVein::class, inputRaw, "\r\n")

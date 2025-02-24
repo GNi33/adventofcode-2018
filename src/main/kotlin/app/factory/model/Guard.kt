@@ -39,7 +39,7 @@ class Guard(override val id: Int) : IGuard {
     override fun getMinuteAsleepMostWithCount(): Pair<Int, Int> {
         val countOfMinutes = getAsleepMinuteCount()
 
-        if (countOfMinutes.size < 0) {
+        if (countOfMinutes.isEmpty()) {
             return Pair(0, 0)
         }
 

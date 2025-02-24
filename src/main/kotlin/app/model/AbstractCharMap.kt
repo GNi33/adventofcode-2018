@@ -9,9 +9,9 @@ abstract class AbstractCharMap(val xSize: Int, val ySize: Int) {
 
     open fun printMap() {
 
-        arrayMap.forEachRow {_, it ->
+        arrayMap.forEachRow {_, row ->
             println(
-                it.map { c ->
+                row.map { c ->
                     c.toString()
                 }
             )

@@ -23,7 +23,11 @@ internal class InputParserTest {
 
         val instructionInput = splitInput[0]
 
-        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
+        val sampledInstructionInstances = inputParser.parseInput(
+            SampledInstruction::class,
+            instructionInput,
+            "\r\n\r\n"
+        )
 
         assertEquals(sampledInstructionInstances[0]::class, SampledInstruction::class)
         assertEquals(sampledInstructionInstances.count(), 838)

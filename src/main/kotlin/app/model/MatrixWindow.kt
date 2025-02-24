@@ -10,9 +10,7 @@ class MatrixWindow(size: Int) {
     var ctX: Int? = null
 
     init {
-        if(size % 2 == 0) {
-            throw IllegalArgumentException("Size must be odd")
-        }
+        require(size % 2 != 0) { "Size must be odd" }
     }
 
     fun getValue(y: Int, x: Int): Char {
@@ -41,7 +39,7 @@ class MatrixWindow(size: Int) {
         baseMap?.let {
             for (i in 0 until values.ySize) {
                 for (j in 0 until values.xSize) {
-                    if(startingY + i < 0 || startingY + i >= it.ySize || startingX + j < 0 || startingX + j >= it.xSize) {
+                    if(isOutOfBounds(it,startingY + i, startingX + j)) {
                         values[i, j] = ' '
                         continue
                     }
@@ -53,9 +51,7 @@ class MatrixWindow(size: Int) {
     }
 
     fun getCenter(): Char {
-        if (ctX == null || ctY == null) {
-            throw IllegalStateException("Window not set")
-        }
+        check(ctX != null && ctY != null) { "Window not set" }
 
         return values[values.ySize / 2, values.xSize / 2]
     }
@@ -71,6 +67,18 @@ class MatrixWindow(size: Int) {
         }
 
         return count
+    }
+
+    private fun isOutOfBounds(baseMap: Array2D<Char>, y: Int, x: Int): Boolean {
+        if (y < 0 || y >= baseMap.ySize) {
+            return true
+        }
+
+        if (x < 0 || x >= baseMap.xSize) {
+            return true
+        }
+
+        return false
     }
 
 

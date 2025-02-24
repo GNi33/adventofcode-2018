@@ -62,8 +62,7 @@ class CartSimulation(testInput: List<String>, options: Map<String, Boolean> = ma
     }
 
     fun runSimForSteps(carts: MutableList<Cart>, map: app.mine.model.Map, stepNum: Int) {
-
-        for (step in 0 until stepNum) {
+        repeat(stepNum) {
             runStep(carts, map)
         }
     }

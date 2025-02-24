@@ -49,7 +49,7 @@ class LumberManagerTest {
     }
 
     @Test
-    fun lumberManagerTest() {
+    fun lumberTest() {
         val ySize = testInput.size
         val xSize = testInput[0].length
 

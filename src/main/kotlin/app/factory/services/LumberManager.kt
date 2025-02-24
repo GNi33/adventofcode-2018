@@ -4,6 +4,8 @@ import app.factory.model.LumberCollectionArea
 import app.model.Array2D
 import app.model.MatrixWindow
 
+private const val RUN_BUFFER_SIZE = 100
+
 class LumberManager(val xSize: Int, val ySize: Int, windowSize: Int) {
     val lumberCollectionArea = LumberCollectionArea(xSize, ySize)
     val window = MatrixWindow(windowSize)
@@ -26,7 +28,12 @@ class LumberManager(val xSize: Int, val ySize: Int, windowSize: Int) {
 
     fun passMinute() {
 
-        val newMap = Array2D(lumberCollectionArea.arrayMap.xSize, lumberCollectionArea.arrayMap.ySize, Array(lumberCollectionArea.arrayMap.ySize) { Array(lumberCollectionArea.arrayMap.xSize) { ' ' } })
+        val newMap = Array2D(
+            lumberCollectionArea.arrayMap.xSize,
+            lumberCollectionArea.arrayMap.ySize,
+            Array(lumberCollectionArea.arrayMap.ySize) { Array(lumberCollectionArea.arrayMap.xSize) { ' ' } }
+        )
+
         newMap.forEachIndexed { y, x, _ ->
             newMap[y, x] = lumberCollectionArea.arrayMap[y, x]
         }
@@ -47,7 +54,7 @@ class LumberManager(val xSize: Int, val ySize: Int, windowSize: Int) {
             lumberCollectionArea.arrayMap[y, x] = newMap[y, x]
         }
 
-        if(lastRuns.size == 100) {
+        if(lastRuns.size == RUN_BUFFER_SIZE) {
             lastRuns.removeLast()
         }
 
@@ -66,8 +73,8 @@ class LumberManager(val xSize: Int, val ySize: Int, windowSize: Int) {
 
     fun countChar(c: Char): Int {
         var ct = 0;
-        lumberCollectionArea.arrayMap.forEachIndexed { _, _, it ->
-            if (it == c) {
+        lumberCollectionArea.arrayMap.forEachIndexed { _, _, value ->
+            if (value == c) {
                 ct++
             }
         }

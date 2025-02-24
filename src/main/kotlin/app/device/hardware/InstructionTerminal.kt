@@ -78,7 +78,10 @@ class InstructionTerminal {
 
             opCode.execute(instruction.values, registers)
 
-            println("${instruction.name} ${instruction.values[1]} ${instruction.values[2]} ${instruction.values[3]}: ${registers}")
+            println(
+                "${instruction.name} ${instruction.values[1]} ${instruction.values[2]} ${instruction.values[3]}:" +
+                " $registers"
+            )
 
             if(instructionPointer != -1) {
                 instructionPointer = registers[pointerRegistry] + 1

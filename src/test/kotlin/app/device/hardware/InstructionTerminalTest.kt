@@ -153,7 +153,11 @@ class InstructionTerminalTest {
 
         val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
         val instructionInput = splitInput[0]
-        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
+        val sampledInstructionInstances = inputParser.parseInput(
+            SampledInstruction::class,
+            instructionInput,
+            "\r\n\r\n"
+        )
 
         val count = instructionTerminal.checkInstructionCodeCount(sampledInstructionInstances);
 
@@ -166,7 +170,11 @@ class InstructionTerminalTest {
 
         val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
         val instructionInput = splitInput[0]
-        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
+        val sampledInstructionInstances = inputParser.parseInput(
+            SampledInstruction::class,
+            instructionInput,
+            "\r\n\r\n"
+        )
 
         val sortedInstructions = sampledInstructionInstances.sortedBy { it.values[0] }.groupBy { it.values[0] }
 
@@ -186,7 +194,11 @@ class InstructionTerminalTest {
         val splitInput = inputParser.splitInput(16, "\r\n\r\n\r\n")
 
         val instructionInput = splitInput[0]
-        val sampledInstructionInstances = inputParser.parseInput(SampledInstruction::class, instructionInput, "\r\n\r\n")
+        val sampledInstructionInstances = inputParser.parseInput(
+            SampledInstruction::class,
+            instructionInput,
+            "\r\n\r\n"
+        )
 
         val programInput = splitInput[1]
         val programInstructions = inputParser.parseInput(Instruction::class, programInput, "\r\n")
