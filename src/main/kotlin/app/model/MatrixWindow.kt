@@ -36,15 +36,10 @@ class MatrixWindow(size: Int) {
         val startingY = y - floor((values.ySize / 2).toDouble()).toInt()
         val startingX = x - floor((values.xSize / 2).toDouble()).toInt()
 
-        baseMap?.let {
+        baseMap?.let { map ->
             for (i in 0 until values.ySize) {
                 for (j in 0 until values.xSize) {
-                    if(isOutOfBounds(it,startingY + i, startingX + j)) {
-                        values[i, j] = ' '
-                        continue
-                    }
-
-                    values[i, j] = it[startingY + i, startingX + j]
+                    setWindowValue(map, startingY + i, startingX + j, i, j)
                 }
             }
         }
@@ -69,17 +64,15 @@ class MatrixWindow(size: Int) {
         return count
     }
 
-    private fun isOutOfBounds(baseMap: Array2D<Char>, y: Int, x: Int): Boolean {
-        if (y < 0 || y >= baseMap.ySize) {
-            return true
+    private fun setWindowValue(map: Array2D<Char>, mapY: Int, mapX: Int, windowY: Int, windowX: Int) {
+        if (isOutOfBounds(map, mapY, mapX)) {
+            values[windowY, windowX] = ' '
+        } else {
+            values[windowY, windowX] = map[mapY, mapX]
         }
-
-        if (x < 0 || x >= baseMap.xSize) {
-            return true
-        }
-
-        return false
     }
 
-
+    private fun isOutOfBounds(baseMap: Array2D<Char>, y: Int, x: Int): Boolean {
+        return y < 0 || y >= baseMap.ySize || x < 0 || x >= baseMap.xSize
+    }
 }

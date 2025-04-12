@@ -48,19 +48,7 @@ class Fabric {
 
         for (claim in listOfClaims) {
 
-            var hasOverlap = false
-            for (row in claim.x until claim.x + claim.length) {
-                for (col in claim.y until claim.y + claim.height) {
-
-                    var value = matrix[row, col]
-
-                    if (value != null && value > 1) {
-                        hasOverlap = true
-                    }
-                }
-            }
-
-            if (!hasOverlap) {
+            if (!checkForOverlap(claim)) {
                 nonOverlappingClaims.add(claim.id)
             }
         }
@@ -70,5 +58,20 @@ class Fabric {
 
     fun reset() {
         matrix = Array2D()
+    }
+
+    private fun checkForOverlap(claim: FabricClaim): Boolean {
+        for (row in claim.x until claim.x + claim.length) {
+            for (col in claim.y until claim.y + claim.height) {
+
+                val value = matrix[row, col]
+
+                if (value != null && value > 1) {
+                    return true
+                }
+            }
+        }
+
+        return false
     }
 }

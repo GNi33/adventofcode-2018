@@ -12,26 +12,33 @@ class FuelGrid(private val serialNo: Int) {
     private val grid: Array2D<FuelCell> = Array2D(width, height) { y: Int, x: Int -> FuelCell(x, y, serialNo) }
 
     fun calculateLargestTotal(size: Int): FuelCell {
-
         var largestTotal = 0
         var largestCell = grid[0][0]
 
         for (xi in 0 until width - size) {
             for (yi in 0 until height - size) {
-                try {
-                    val score = calculateTotalAt(xi, yi, size)
-
-                    if (score > largestTotal) {
-                        largestTotal = score
-                        largestCell = grid[yi][xi]
-                    }
-                } catch (e: Exception) {
-                    println(e.message)
+                updateLargestTotalAndCell(xi, yi, size, largestTotal)?.let { (score, cell) ->
+                    largestTotal = score
+                    largestCell = cell
                 }
             }
         }
 
         return largestCell
+    }
+
+    private fun updateLargestTotalAndCell(xi: Int, yi: Int, size: Int, currentLargestTotal: Int): Pair<Int, FuelCell>? {
+        return try {
+            val score = calculateTotalAt(xi, yi, size)
+            if (score > currentLargestTotal) {
+                Pair(score, grid[yi][xi])
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            println(e.message)
+            null
+        }
     }
 
     fun calculateLargestTotalOverSizes(): FuelCell {

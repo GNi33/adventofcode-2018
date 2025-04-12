@@ -38,24 +38,13 @@ class BoxScanner : IBoxScanner {
 
     override fun getPrototypeFabricBoxes(boxIds: List<String>): List<String> {
         val listOfPrototypeFabricBoxes = mutableSetOf<String>()
-
         val idIterator = boxIds.iterator()
 
         for (boxId in idIterator) {
-
-            val boxCharArr = boxId.toCharArray()
-
             boxIds.forEach { id ->
-
-                if (!listOfPrototypeFabricBoxes.contains(id)) {
-                    val chArr = id.toMutableList()
-
-                    val filtered = chArr.filterIndexed { index, chId -> boxCharArr[index] != chId }
-
-                    if (filtered.count() == 1) {
-                        listOfPrototypeFabricBoxes.add(boxId)
-                        listOfPrototypeFabricBoxes.add(id)
-                    }
+                if (shouldAddToPrototypeBoxes(boxId, id, listOfPrototypeFabricBoxes)) {
+                    listOfPrototypeFabricBoxes.add(boxId)
+                    listOfPrototypeFabricBoxes.add(id)
                 }
             }
         }
@@ -90,5 +79,15 @@ class BoxScanner : IBoxScanner {
         }
 
         return commonLetters.joinToString("")
+    }
+
+    private fun shouldAddToPrototypeBoxes(boxId: String, id: String, prototypeBoxes: Set<String>): Boolean {
+        if (prototypeBoxes.contains(id)) return false
+
+        val boxCharArr = boxId.toCharArray()
+        val chArr = id.toMutableList()
+        val filtered = chArr.filterIndexed { index, chId -> boxCharArr[index] != chId }
+
+        return filtered.count() == 1
     }
 }
