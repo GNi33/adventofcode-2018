@@ -97,6 +97,19 @@ class DestinationMapper(coordinateList: List<String>) : IDestinationMapper {
     }
 
     fun printMap() {
-        map.print()
+        println(
+            """
+            Map Output
+                Width: ${map.getWidth()}
+                Height: ${map.getHeight()}
+
+            """.trimIndent()
+        )
+
+        val xRange = 0 until map.getHeight()
+
+        for (line in xRange) {
+            println(map.getLine(line).toList())
+        }
     }
 }

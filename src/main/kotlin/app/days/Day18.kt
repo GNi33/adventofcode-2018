@@ -21,8 +21,10 @@ private const val PART01_MINUTES = 10
 private const val PART02_MINUTES = 1_000_000_000
 private const val LOGGING_INTERVAL = 100
 private const val PART02_CUTOFF = 1000
+private const val WINDOW_SIZE = 3
+private const val TERMINAL_SIZE_PADDING = 15
 
-class Day18: IDay {
+class Day18 : IDay {
 
     private val logger = KotlinLogging.logger {}
     private val inputReader = InputReader()
@@ -35,9 +37,9 @@ class Day18: IDay {
         val ySize = input.size
         val xSize = input[0].length
 
-        val lumberManager = LumberManager(xSize, ySize, 3, input.map { it.toList() })
+        val lumberManager = LumberManager(xSize, ySize, WINDOW_SIZE, input.map { it.toList() })
 
-        for (i in 1 .. PART01_MINUTES) {
+        for (i in 1..PART01_MINUTES) {
             lumberManager.passMinute()
         }
 
@@ -45,17 +47,17 @@ class Day18: IDay {
 
         logger.info { "Part 02" }
 
-        val lumberManager2 = LumberManager(xSize, ySize, 3, input.map { it.toList() })
+        val lumberManager2 = LumberManager(xSize, ySize, WINDOW_SIZE, input.map { it.toList() })
 
         render(lumberManager2)
 
-        if(lumberManager2.cycle.first > 0) {
+        if (lumberManager2.cycle.first > 0) {
             val cycle = lumberManager2.cycle
             val cycleLength = lumberManager2.minute - cycle.second
             val remainingMinutes = PART02_MINUTES - cycle.first
             val remainingMinutesInCycle = remainingMinutes % cycleLength
 
-            for (i in 1 .. remainingMinutesInCycle) {
+            for (i in 1..remainingMinutesInCycle) {
                 lumberManager2.passMinute()
             }
         }
@@ -66,8 +68,13 @@ class Day18: IDay {
     private fun render(lumberManager: LumberManager) = session(
         terminal = listOf(
             { SystemTerminal() },
-            { VirtualTerminal.create(
-                terminalSize = TerminalSize(lumberManager.xSize, lumberManager.ySize + 15))
+            {
+                VirtualTerminal.create(
+                    terminalSize = TerminalSize(
+                        lumberManager.xSize,
+                        lumberManager.ySize + TERMINAL_SIZE_PADDING
+                    )
+                )
             }
         ).firstSuccess(),
         clearTerminal = true) {
@@ -80,11 +87,10 @@ class Day18: IDay {
         val cycles = hashMapOf<Int, Pair<Int, Int>>()
 
         section {
-
             textLine("Minute: ${lumberManager.minute}")
             black(ColorLayer.BG, isBright = true)
-            for(y in 0 until lumberManager.ySize) {
-                for(x in 0 until lumberManager.xSize) {
+            for (y in 0 until lumberManager.ySize) {
+                for (x in 0 until lumberManager.xSize) {
                     val c = lumberManager.lumberCollectionArea.arrayMap[y, x]
                     scopedState {
                         text(c)
@@ -92,24 +98,22 @@ class Day18: IDay {
                 }
                 textLine()
             }
-
         }.runUntilSignal {
             addTimer(Anim.ONE_FRAME_60FPS, repeat = true) {
                 lumberManager.passMinute()
                 rerender()
 
                 if (lumberManager.lastRuns.size > 1) {
-                    for(i in lumberManager.lastRuns.size - 1 downTo 1) {
-                        if(lumberManager.lastRuns[i].array.contentDeepEquals(lumberManager.lastRuns[0].array)) {
+                    for (i in lumberManager.lastRuns.size - 1 downTo 1) {
+                        if (lumberManager.lastRuns[i].array.contentDeepEquals(lumberManager.lastRuns[0].array)) {
+                            // Cycle detected
                             val cycle = i
 
-                            if(cycles[cycle] != null) {
+                            if (cycles[cycle] != null) {
                                 cycles[cycle] = cycles[cycle]!!.copy(second = cycles[cycle]!!.second + 1)
                             } else {
-                                cycles[cycle] = Pair( lumberManager.minute, 1)
+                                cycles[cycle] = Pair(lumberManager.minute, 1)
                             }
-
-                            //logger.info { "Cycle detected at minute ${lumberManager.minute}, cycle length: $cycle" }
                             break
                         }
                         rerender()
@@ -120,21 +124,19 @@ class Day18: IDay {
                     logger.info { cycles }
                 }
 
-                if(lumberManager.minute == PART02_CUTOFF) {
+                if (lumberManager.minute == PART02_CUTOFF) {
                     logger.info { cycles }
 
                     if (!cycles.isEmpty()) {
                         val maxCycle = cycles.maxBy { it.value.second }
 
                         logger.info { "Max cycle: $maxCycle" }
-
                         lumberManager.cycle = maxCycle.key to maxCycle.value.first
                     }
-
                     signal()
                 }
             }
         }
-
     }
+
 }

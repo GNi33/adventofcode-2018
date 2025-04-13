@@ -25,7 +25,7 @@ class DestinationMap(private val coords: Map<String, Point>) {
 
         for (line in lines) {
             for (col in cols) {
-                val closestDest = getClosestDestination(col, line)
+                val closestDest = getClosestDestination(Point(col, line))
 
                 if (matrix[line, col] == ".") {
                     matrix[line, col] = closestDest.lowercase()
@@ -65,9 +65,6 @@ class DestinationMap(private val coords: Map<String, Point>) {
         return distances.values.reduce { acc, elem -> acc + elem }
     }
 
-    fun getClosestDestination(x: Int, y: Int): String {
-        return getClosestDestination(Point(x, y))
-    }
 
     fun getClosestDestination(sourceCoordinate: Point): String {
 
@@ -146,26 +143,8 @@ class DestinationMap(private val coords: Map<String, Point>) {
         return getLine(getHeight() - 1)
     }
 
-    private fun getLine(lineNum: Int): Array<String> {
+    fun getLine(lineNum: Int): Array<String> {
         return matrix[lineNum]
-    }
-
-    fun print() {
-
-        println(
-            """
-            Map Output
-                Width: ${getWidth()}
-                Height: ${getHeight()}
-
-            """.trimIndent()
-        )
-
-        val xRange = 0 until getHeight()
-
-        for (line in xRange) {
-            println(matrix[line].toList())
-        }
     }
 
     fun getValue(line: Int, col: Int): String {
