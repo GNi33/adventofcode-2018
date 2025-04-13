@@ -39,7 +39,7 @@ class Day18 : IDay {
 
         val lumberManager = LumberManager(xSize, ySize, WINDOW_SIZE, input.map { it.toList() })
 
-        for (i in 1..PART01_MINUTES) {
+        repeat(PART01_MINUTES) {
             lumberManager.passMinute()
         }
 
@@ -91,9 +91,8 @@ class Day18 : IDay {
             black(ColorLayer.BG, isBright = true)
             for (y in 0 until lumberManager.ySize) {
                 for (x in 0 until lumberManager.xSize) {
-                    val c = lumberManager.lumberCollectionArea.arrayMap[y, x]
                     scopedState {
-                        text(c)
+                        text(lumberManager.lumberCollectionArea.arrayMap[y, x])
                     }
                 }
                 textLine()
